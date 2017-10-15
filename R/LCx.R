@@ -1,0 +1,264 @@
+#' Lethal Concentration
+#' @description Calculates lethal concentration (LC) and
+#' its fiducial confidence limits (CL) using a probit analysis
+#' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
+#' @usage LC(formula, data, p = seq(1, 99, 1), weights, conf.level = NULL)
+#' @param formula an object of class 'formula'or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
+#' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LC is called.
+#' @param p Lethal Concentration (LC) values for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector.
+#' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector called 'total'.
+#' @param conf.level  Adjust confidence level as necessary or NULL set at 0.95.
+#' @return Returns a data frame with predicted LC for given p level, lower FL (LFL), upper FL (UFL), LFL and UFL distance away from LC (LFLdis & UFLdis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LC variance.
+#' @references
+#'
+#' Finney, D. J.1971. Probit Analysis, Cambridge University Press, Cambridge, England
+#'
+#' Wheeler, M. W., Park, R. M., and Bailey, A. J. 2006. Comparing median lethal concentration values using confidence interval overlap or ratio tests, Environ. Toxic. Chem. 25(5), 1441-1444
+#'
+#' Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press.
+
+#' @examples head(lampreytox)
+#'
+#' #within the dataframe used, control dose,
+#' #unless produced a value during experimentation,
+#' #are adjusted to 0.01, as glm cannot handle values of infinite.
+#'
+#' #calculate LC50 and LC99 for May
+#'
+#' m <- LC((dead / total) ~ log10(dose), p = c(50, 99),
+#'          weights = lampreytox[c(1:19), ]$total,
+#'          data = lampreytox[c(1:19), ])
+#'
+#' #view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
+#' #to lamprey in 2011
+#'
+#' m
+#'
+#' #dose-response curve can be plotted using ggplot2
+#'
+#' suppressPackageStartupMessages(library(ggplot2))
+#'
+#' p1 <- ggplot(data = lampreytox[c(1:19), ],
+#'              aes(x = log10(dose), y = (dead / total))) +
+#'   geom_point() +
+#'   geom_smooth(method = "glm",
+#'             method.args = list(family = binomial(link = "probit")),
+#'             aes(weight = total), colour = "#FF0000", se = TRUE)
+#'
+#' p1
+#'
+#' #calculate LC50s and LC99s for multiple toxicity tests, June, August, and  September
+#'
+#' j <- LC((dead / total) ~ log10(dose), p = c(50, 99),
+#'         weights = lampreytox[c(20:38), ]$total,
+#'         data = lampreytox[c(20:38), ])
+#'
+#' a <- LC((dead / total) ~ log10(dose), p = c(50, 99),
+#'         weights = lampreytox[c(39:51), ]$total,
+#'         data = lampreytox[c(39:51), ])
+#'
+#' s <- LC((dead / total) ~ log10(dose), p = c(50, 99),
+#'         weights = lampreytox[c(52:64), ]$total,
+#'         data = lampreytox[c(52:64), ])
+#'
+#'
+#'
+#' #Dose-response curves for all 4 time point
+#' #prior to plotting reorder the time points so ggplot plots correctly
+#'
+#' lampreytox$month <- factor(lampreytox$month,
+#'                            levels(lampreytox$month)[c(3,2,1,4)])
+#'
+#' p2 <- ggplot(data = lampreytox,
+#'              aes(x = log10(dose), y = (dead / total), group = month)) +
+#    geom_point(aes(shape = month, colour = month)) +
+#'   geom_smooth(method = "glm",
+#'   method.args = list(family = binomial(link = "probit")),
+#'   aes(weight = total, colour = month), se = TRUE)
+#'
+#' p2
+#'
+#' #group results together in a dataframe to plot with ggplot2
+#'
+#' results <- rbind(m[, c(1, 3:8, 11)], j[,c(1, 3:8, 11)],
+#'                  a[, c(1, 3:8, 11)], s[, c(1, 3:8, 11)])
+#'
+#' results$month <- with(results, factor(c("May", "May", "June", "June",
+#'                                         "August", "August", "September",
+#'                                         "September"),
+#'                                         levels = c("May", "June",
+#'                                         "August", "September")))
+#'
+#' p3 <- ggplot(data = results, aes(x = month, y = dose,
+#'                              group = factor(p), fill = factor(p))) +
+#'   geom_col(position = position_dodge(width = 0.9), colour = "#000000") +
+#'   geom_errorbar(aes(ymin = (dose - LCLdis), ymax = (dose + UCLdis)),
+#'                 size = 0.4, width = 0.06,
+#'                 position = position_dodge(width = 0.9))
+#'
+#' p3
+#' @import ggplot2
+#' @import stats
+#' @export
+
+
+LC <- function(formula, data, p = seq(1, 99, 1),
+               weights = NULL, conf.level = NULL) {
+
+  data$weights <- weights
+  if(is.null(weights)) {
+
+    model <- glm(formula, family = binomial(link = "probit"), data = data)
+  }
+
+  else {model <- glm(formula, family = binomial(link = "probit"),
+                     weights = weights, data = data)
+  }
+
+  # Calculate heterogeneity correction to confidence intervals
+  # according to Finney, 1971, (p.72, eq. 4.27; also called "h")
+  # Heterogeneity correction factor is used if
+  # pearson's goodness of fit test returns a sigficance
+  # value less than 0.150 (source: SPSS 24)
+
+  PGOF <- (1 - pchisq(sum(residuals(model, type = "pearson") ^ 2),
+                      df.residual(model)))
+
+  if (PGOF < 0.150) {
+    het <- sum(residuals(model, type = "pearson") ^ 2) / (df.residual(model))
+  }
+
+  else {
+    het <- 1
+  }
+
+  # Extract slope and intercept SE, slope and intercept signifcance
+  # z-value, & N
+
+  summary <- summary(model)
+
+  # Intercept (b0)
+  b0 <- summary$coefficients[1]
+
+  # Slope (b1)
+  b1 <- summary$coefficients[2]
+
+  # covariance matrix
+  vcova <- vcov(model)
+
+  #determine other important statistics
+
+  intercept_se <- summary$coefficients[3]
+  intercept_sig <- summary$coefficients[7]
+  slope_se <- summary$coefficients[4]
+  slope_sig <- summary$coefficients[8]
+  z.value <- summary$coefficients[6]
+  n <- nrow(data)
+
+  # variances have to be adjusted for heterogenity
+  # if PGOF returns a signfacnce value less than 0.15
+  # (Finney 1971 p 72; SPSS 24)
+  # Intercept variance
+
+  if (het > 1) {
+    var_b0 <- het * vcova[2, 2]
+  }
+
+  else {
+    var_b0 <- vcova[2, 2]
+  }
+
+  # Slope variance
+
+  if (het > 1) {
+    var_b1 <- het * vcova[1, 1]
+  }
+
+  else {
+    var_b1 <- vcova[1, 1]
+  }
+
+  # Slope & intercept covariance
+
+  if (het > 1) {
+    cov_b0_b1 <- het * vcova[1, 2]
+  }
+
+  else {
+    cov_b0_b1 <- vcova[1, 2]
+  }
+
+  # Adjust distibution depending on heterogeneity (Finney, 1971,  p72,
+  # t distubtion used instead of normal distubtion  with appropriate df
+  # if PGOF returns a signfacnce value less than 0.15
+  # (Finney 1971 p 72; SPSS 24)
+
+  if (is.null(conf.level)) {
+    conf.level = 0.95
+    }
+
+  t <- (1 - conf.level)
+  if (het > 1) {
+    tdis <- (- qt((t / 2), df = df.residual(model)))
+  }
+
+  else {
+    tdis <- (- qnorm(t / 2))
+  }
+
+  # Calculate g (Finney, 1971, p 78, eq. 4.36) "With almost
+  # all good sets of data, g will be substantially smaller
+  # than 1.0 and ## seldom greater than 0.4."
+
+  g <- ((tdis ^ 2 * var_b0) / b1 ^ 2)
+
+  # Calculate m for all LC levels based on probits
+  # in est (Robertson et al., 2007, pg. 27; or "m" in Finney, 1971, p. 78)
+
+  est <- (qnorm(p / 100))
+  m <- (est - b0) / b1
+
+  # Calculate correction of fiducial limits according to Fieller method
+  # (Finney, 1971,# p. 78-79. eq. 4.35)
+  # v11 = var_b1 , v22 = var_b0, v12 = cov_b0_b1
+
+  fl1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b0))
+  fl2 <- (tdis / ((1 - g) * b1)) * sqrt((var_b1 + (2 * m * cov_b0_b1) +
+          (m ^ 2 * var_b0) - (g * (var_b1 - cov_b0_b1 ^ 2 / var_b0))))
+
+  # Calculate the fiducial limit LFL=lower fiducial limit,
+  # UFL = upper fiducial limit (Finney, 1971, p. 78-79. eq. 4.35)
+
+  LFL <- (m + (fl1 - fl2))
+  UFL <- (m + (fl1 + fl2))
+
+  # Calculate variance for m (Robertson et al., 2007, pg. 27)
+
+  var_m <- (1 / (m ^ 2)) * (var_b1 + 2 * m * cov_b0_b1 +
+                              var_b0 * m ^ 2)
+
+  # Make a data frame from the data at all the different values
+  LCtable <- data.frame(
+    p = p,
+    n = n,
+    dose = 10 ^ m,
+    LCL = 10 ^ LFL,
+    UCL = 10 ^ UFL,
+    LCLdis = 10 ^ m - 10 ^ LFL,
+    UCLdis = 10 ^ UFL - 10 ^ m,
+    chisquare = sum(residuals(model, type = "pearson") ^ 2),
+    df = df.residual(model),
+    PGOF_sig = PGOF,
+    h = het,
+    slope = b1,
+    slope_se = slope_se,
+    slope_sig = slope_sig,
+    intercept = b0,
+    intercept_se = intercept_se,
+    intercept_sig = intercept_sig,
+    z = z.value,
+    var_m = var_m)
+
+  return(LCtable)
+
+}
