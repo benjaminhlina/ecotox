@@ -61,23 +61,6 @@
 #'         weights = lampreytox[c(52:64), ]$total,
 #'         data = lampreytox[c(52:64), ])
 #'
-#'
-#'
-#' #Dose-response curves for all 4 time point
-#' #prior to plotting reorder the time points so ggplot plots correctly
-#'
-#' lampreytox$month <- factor(lampreytox$month,
-#'                            levels(lampreytox$month)[c(3,2,1,4)])
-#'
-#' p2 <- ggplot(data = lampreytox,
-#'              aes(x = log10(dose), y = (dead / total), group = month)) +
-#    geom_point(aes(shape = month, colour = month)) +
-#'   geom_smooth(method = "glm",
-#'   method.args = list(family = binomial(link = "probit")),
-#'   aes(weight = total, colour = month), se = TRUE)
-#'
-#' p2
-#'
 #' #group results together in a dataframe to plot with ggplot2
 #'
 #' results <- rbind(m[, c(1, 3:8, 11)], j[,c(1, 3:8, 11)],
@@ -89,14 +72,14 @@
 #'                                         levels = c("May", "June",
 #'                                         "August", "September")))
 #'
-#' p3 <- ggplot(data = results, aes(x = month, y = dose,
+#' p2 <- ggplot(data = results, aes(x = month, y = dose,
 #'                              group = factor(p), fill = factor(p))) +
 #'   geom_col(position = position_dodge(width = 0.9), colour = "#000000") +
 #'   geom_errorbar(aes(ymin = (dose - LCLdis), ymax = (dose + UCLdis)),
 #'                 size = 0.4, width = 0.06,
 #'                 position = position_dodge(width = 0.9))
 #'
-#' p3
+#' p2
 #' @import ggplot2
 #' @import stats
 #' @export

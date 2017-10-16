@@ -1,0 +1,15 @@
+Package: ecotox
+Type: Package
+Title: Analysis of Ecotoxicology
+Version: 0.1.0
+Authors@R: person("Benjamin", "Hlina", email = "benjamin.hlina@gmail.com",
+  role = c("aut", "cre"))
+Description: Uses a probit anlysis to calculate lethal concentrations 
+        and time and their confidence limits for ecotoxicology studies.
+Depends: R (>= 3.3.3)
+Imports: ggplot2, stats
+Suggest: dplyr, Hmisc, plyr, xlsx
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1.9000
