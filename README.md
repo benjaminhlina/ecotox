@@ -24,7 +24,7 @@ remotes::install_github("benjaminhlina/ecotox")
 
 ## Example
 
-This is an example which uses the LC function to calculate a LC~50~ and LC~99~: 
+This is an example which uses the LC function to calculate a LC<sub>50</sub> and LC<sub>99</sub>: 
 
 
 ``` r
@@ -57,7 +57,7 @@ Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays 
 
 ## Citation 
 
-version 1.0.0. Written by Benjamin L. Hlina, Wilfrid Laurier University, Waterloo Ontario, Canada. Written in programming language R (R Core Team, 2017, www.R-project.org), version 3.4.2 (2017-09-28) -- "Short Summer". Run on a PC with Intel(R) Core(TM) I7- Q820 CPU, 1.73 GHz processor, 14.0 GB RAM, and Microsoft Windows 7 Professional operating system, 2009 Service Pack 1. Source code is available [ecotox](https://github.com/benjaminhlina/ecotox) or by contacting Benjamin L. Hlina at [benjamin.hlina@gmail.com](benjamin.hlina@gmail.com)
+version 1.0.0. Written by Benjamin L. Hlina, Wilfrid Laurier University, Waterloo Ontario, Canada. Written in programming language R (R Core Team, 2017, www.R-project.org), version 3.4.2 (2017-09-28) -- "Short Summer". Run on a PC with Intel(R) Core(TM) I7- Q820 CPU, 1.73 GHz processor, 14.0 GB RAM, and Microsoft Windows 7 Professional operating system, 2009 Service Pack 1. Source code is available [ecotox](https://github.com/benjaminhlina/ecotox) or by contacting Benjamin L. Hlina at (benjamin.hlina@gmail.com)
 
 When using this package please cite the following publicaiton: 
 
