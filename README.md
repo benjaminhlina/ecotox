@@ -2,7 +2,7 @@
 
 # ecotox
 
-ecotox is a package of functions for the [R Programing Langauge](https://www.r-project.org/). ecotox was created to calculate lethal concentrations (LC) or times (LT) for ecotoxicology studies using a probit anlysis following methods by Finney (1971), Wheeler et al. (2006), and Robertson et al. (2007). 
+ecotox is a package of functions for the [R Programing Langauge](https://www.r-project.org/). ecotox was created to calculate lethal concentrations (LC) or times (LT) for ecotoxicology studies using a probit anlysis following methods by Finney (1971), Wheeler et al. (2006), and Robertson et al. (2007) and is published in Hlina et al. *In Preparation*. 
 
 
 ## Installation
@@ -57,7 +57,7 @@ Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays 
 
 ## Citation 
 
-version 1.0.0. Written by Benjamin L. Hlina, Wilfrid Laurier University, Waterloo Ontario, Canada. Written in programming language R (R Core Team, 2017, www.R-project.org), version 3.4.2 (2017-09-28) -- "Short Summer". Run on a PC with Intel(R) Core(TM) I7- Q820 CPU, 1.73 GHz processor, 14.0 GB RAM, and Microsoft Windows 7 Professional operating system, 2009 Service Pack 1. Source code is available [ecotox](https://github.com/benjaminhlina/ecotox) or by contacting Benjamin L. Hlina at (benjamin.hlina@gmail.com)
+version 1.0.0. Written by Benjamin L. Hlina, Wilfrid Laurier University, Waterloo Ontario, Canada. Written in programming language R [Programming Language R](https://www.r-project.org/), version 3.4.2 (2017-09-28) -- "Short Summer". Run on a PC with Intel(R) Core(TM) I7- Q820 CPU, 1.73 GHz processor, 14.0 GB RAM, and Microsoft Windows 7 Professional operating system, 2009 Service Pack 1. Source code is available [ecotox](https://github.com/benjaminhlina/ecotox) or by contacting Benjamin L. Hlina at benjamin.hlina@gmail.com
 
 When using this package please cite the following publicaiton: 
 
