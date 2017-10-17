@@ -1,9 +1,8 @@
-
-[Travis Build Status](https://travis-ci.org/benjaminhlina/ecotox.svg?branch=1.0.0
+[![Build Status](https://travis-ci.org/benjaminhlina/ecotox.svg?branch=master)](https://travis-ci.org/benjaminhlina/ecotox)
 
 # ecotox
 
-ecotox is a package of functions for the [R programming language] (https://www.r-project.org/). ecotox was created to calculate lethal concentrations (LC) or times (LT) for ecotoxicology studies using a probit anlysis following methods by Finney (1971). 
+ecotox is a package of functions for the [![R Programing Langauge](https://www.r-project.org/). ecotox was created to calculate lethal concentrations (LC) or times (LT) for ecotoxicology studies using a probit anlysis following methods by Finney (1971). 
 
 
 ## Installation
