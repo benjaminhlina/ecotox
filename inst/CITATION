@@ -1,0 +1,22 @@
+citHeader("To cite ecotox in publications, please use:")
+
+citEntry(entry = "Article",
+         title        = "Changes in the sensitivity of piscicide in
+         an invasive species",
+         author       = personList(as.person("Benjamin L. Hlina"),
+                                   as.person("Oana Birceanu"),
+                                   as.person("Laura R. Tessier"),
+                                   as.person("Christopher Robinson"),
+                                   as.person("Alexandra Muhametsafina,"),
+                                   as.person("Leslie M. Bragg"),
+                                   as.person("Mark R. Servos,"),
+                                   as.person("Michael P. Wilkie")),
+         journal      = "Environmental Science & Technology",
+         year         = "2017",
+
+         textVersion  =
+           paste("Hlina, B.L., Birceanu, O., Robinson, C., Tessier, L.R.,
+                 Muhametsafina, A., Bragg, L.M, Servos, M.R., Wilkie, M.P.",
+                 "In Preparation.", "Changes in the sensitivity of
+                 piscicide in an invasive species.",
+                 "Environmental Science & Technology"))
