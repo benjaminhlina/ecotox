@@ -3,7 +3,7 @@
 
 # ecotox
 
-ecotox is a package of functions for the [!R programming language] (https://www.r-project.org/) ecotox was created to calculate lethal concentrations (LC) or times (LT) for ecotoxicology studies using a probit anlysis following methods by Finney (1971). 
+ecotox is a package of functions for the [!R programming language] (https://www.r-project.org/). ecotox was created to calculate lethal concentrations (LC) or times (LT) for ecotoxicology studies using a probit anlysis following methods by Finney (1971). 
 
 
 ## Installation
@@ -19,7 +19,7 @@ devtools::install_github("benjaminhlina/ecotox")
 or 
 
 ``` r
-source("https://raw.githubusercontent.com/MangoTheCat/remotes/master/install-github.R")$value("mangothecat/remotes"")
+source("https://raw.githubusercontent.com/MangoTheCat/remotes/master/install-github.R")$value("mangothecat/remotes")
 remotes::install_github("benjaminhlina/ecotox")
 ```
 
@@ -46,5 +46,3 @@ head(lampreytox)
  ## to lamprey in 2011
 
  m
-
-'''
