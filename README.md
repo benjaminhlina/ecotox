@@ -61,4 +61,4 @@ version 1.0.0. Written by Benjamin L. Hlina, Wilfrid Laurier University, Waterlo
 
 When using this package please cite the following publicaiton: 
 
-Hlina, B.L., Birceanu, O., Tessier, L.R., Robinson, C.,  Muhametsafina, A., Bragg, L.M, Servos, M.R. *In Preperation*. Changes in the sensitivity of piscicide in an invasive species. Environmental Science & Technology.
+Hlina, B.L., Birceanu, O., Tessier, L.R., Robinson, C.,  Muhametsafina, A., Bragg, L.M, Servos, M.R. *In Preparation*. Changes in the sensitivity of piscicide in an invasive species. Environmental Science & Technology.
