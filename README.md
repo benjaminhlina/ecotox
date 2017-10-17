@@ -1,9 +1,9 @@
 
-[![Travis Build Status](https://travis-ci.org/benjaminhlina/ecotox.svg?branch=1.0.0
+[Travis Build Status](https://travis-ci.org/benjaminhlina/ecotox.svg?branch=1.0.0
 
 # ecotox
 
-ecotox is a package of functions for the [!R programming language] (https://www.r-project.org/). ecotox was created to calculate lethal concentrations (LC) or times (LT) for ecotoxicology studies using a probit anlysis following methods by Finney (1971). 
+ecotox is a package of functions for the [R programming language] (https://www.r-project.org/). ecotox was created to calculate lethal concentrations (LC) or times (LT) for ecotoxicology studies using a probit anlysis following methods by Finney (1971). 
 
 
 ## Installation
@@ -25,11 +25,11 @@ remotes::install_github("benjaminhlina/ecotox")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is an example which uses the LC function to calculate a LC50 and LC99: 
 
 
 ``` r
-## basic example code
+## Calcualte LC50 and LC99
 head(lampreytox)
 
  ## within the dataframe used, control dose,
@@ -46,3 +46,4 @@ head(lampreytox)
  ## to lamprey in 2011
 
  m
+```
