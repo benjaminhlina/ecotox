@@ -3,12 +3,12 @@
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
 #' @usage LC(formula, data, p = seq(1, 99, 1), weights, conf.level = NULL)
-#' @param formula an object of class 'formula'or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
+#' @param formula an object of class 'formula' or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LC is called.
 #' @param p Lethal Concentration (LC) values for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector.
 #' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector called 'total'.
-#' @param conf.level  Adjust confidence level as necessary or NULL set at 0.95.
-#' @return Returns a data frame with predicted LC for given p level, lower FL (LFL), upper FL (UFL), LFL and UFL distance away from LC (LFLdis & UFLdis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LC variance.
+#' @param conf.level Adjust confidence level as necessary or NULL set at 0.95.
+#' @return Returns a data frame with predicted LC for given p level, lower FL (LCL), upper FL (UCL), LFL and UFL distance away from LC (LCLdis & UCLdis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LC variance.
 #' @references
 #'
 #' Finney, D. J.1971. Probit Analysis, Cambridge University Press, Cambridge, England
@@ -47,7 +47,7 @@
 #'
 #' p1
 #'
-#' #calculate LC50s and LC99s for multiple toxicity tests, June, August, and  September
+#' #calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
 #'
 #' j <- LC((dead / total) ~ log10(dose), p = c(50, 99),
 #'         weights = lampreytox[c(20:38), ]$total,

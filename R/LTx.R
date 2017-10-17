@@ -23,7 +23,7 @@
 #' data = lampreytime[c(1:11), ])
 #'
 #' #view calculated LT50 and LT99 for seasonal
-#' #toxicity of a pisicide, to lamprey in 2011
+#' #toxicity of a piscicide, 3-trifluoromethyl-4-nitrophenol, to lamprey in 2011
 #'
 #' results
 #'

@@ -6,7 +6,7 @@
 #' \describe{
 #'   \item{nominal.dose}{nominal TFM dose (mg/L)}
 #'   \item{tank}{tank assignment}
-#'   \item{month}{month in which toxicity test occured}
+#'   \item{month}{month in which toxicity test occurred}
 #'   \item{dose}{averaged measured TFM dose (mg/L) over 12 h of exposures}
 #'   \item{dead}{number of lamprey that died over 12 h exposure to TFM}
 #'   \item{survive}{number of lamprey that survived over 12 h exposure to TFM}
