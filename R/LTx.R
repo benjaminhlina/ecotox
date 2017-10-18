@@ -6,14 +6,14 @@
 #' @param formula an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT is called.
 #' @param p Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.
-#' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector called 'total'.
+#' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.
 #' @param conf.level  Adjust confidence level as necessary or NULL set at 0.95.
 #' @return Returns a data frame with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCLdis & UCLdis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LT variance.
 #' @references
 #'
-#' Finney, D. J.1971. Probit Analysis, Cambridge University Press, Cambridge, England
+#' Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England
 #'
-#' Wheeler, M. W., Park, R. M., and Bailey, A. J. 2006. Comparing median lethal concentration values using confidence interval overlap or ratio tests, Environ. Toxic. Chem. 25(5), 1441-1444
+#' Wheeler, M.W., Park, R.M., and Bailey, A.J., 2006. Comparing median lethal concentration values using confidence interval overlap or ratio tests, Environ. Toxic. Chem. 25(5), 1441-1444
 #'
 #' Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press.
 #' @examples head(lampreytime)

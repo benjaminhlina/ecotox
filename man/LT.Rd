@@ -13,7 +13,7 @@ LT(formula, data, p = seq(1, 99, 1), weights, conf.level = NULL)
 
 \item{p}{Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.}
 
-\item{weights}{vector of 'prior weights' to be used in the fitting process. Should be a numeric vector called 'total'.}
+\item{weights}{vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.}
 
 \item{conf.level}{Adjust confidence level as necessary or NULL set at 0.95.}
 }
@@ -40,9 +40,9 @@ results
 #dose-response curve can be plotted using ggplot2
 }
 \references{
-Finney, D. J.1971. Probit Analysis, Cambridge University Press, Cambridge, England
+Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England
 
-Wheeler, M. W., Park, R. M., and Bailey, A. J. 2006. Comparing median lethal concentration values using confidence interval overlap or ratio tests, Environ. Toxic. Chem. 25(5), 1441-1444
+Wheeler, M.W., Park, R.M., and Bailey, A.J., 2006. Comparing median lethal concentration values using confidence interval overlap or ratio tests, Environ. Toxic. Chem. 25(5), 1441-1444
 
 Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press.
 }
