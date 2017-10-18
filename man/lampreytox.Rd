@@ -24,6 +24,6 @@ lampreytox
 This dataset contains 2011 seasonal larval sea lamprey exposed to the piscicide, 3-trifluoromethyl-4-nitrophenol (TFM) toxicity data.
 }
 \details{
-For each month, new lamprey were collected from the deer creek, MI, and were randomly assigned to a tank for exposure to varying doses of the piscicide, 3-trifluoromethly-4-nitrophenol (TFM).
+For each month, new lamprey were collected from the deer creek, MI, and were randomly assigned to a tank for exposure to varying doses of the piscicide, 3-trifluoromethyl-4-nitrophenol (TFM).
 }
 \keyword{datasets}
