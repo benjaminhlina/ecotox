@@ -8,7 +8,7 @@ Description: Uses a probit analysis to calculate lethal concentrations
         and time and their confidence limits for ecotoxicology studies.
 Depends: R (>= 3.3.3)
 Imports: ggplot2, stats
-Suggests: dplyr, Hmisc, plyr, xlsx
+Suggests: Hmisc, tidyverse, xlsx
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
