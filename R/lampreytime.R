@@ -13,6 +13,6 @@
 #'   \item{total}{total number of lamprey that were exposed to TFM over 12 h}
 #'   }
 #' @details For each month, new lamprey were collected from the deer creek, MI, and were randomly assigned to a tank for exposure to the piscicide, 3-trifluoromethyl-4-nitrophenol (TFM). The LC50 at each month was then calculated and the amount of responding/dead lamprey from 1 to 12 h was recorded.
-#' @source Hlina, B.L., Birceanu, O., Robinson, C., Tessier, L.R., Muhametsafina, A., Bragg, L.M, Servos, M.R., Wilkie, M.P. In Preparation. Changes in the sensitivity of piscicide in an invasive species. Environmental Science & Technology.
+#' @source Hlina, B.L., Birceanu, O., Tessier, L.R., Robinson, C.,  Muhametsafina, A., Bragg, L.M, Servos, M.R., Wilkie, M.P. In Preparation. Changes in the sensitivity of piscicide in an invasive species. Environmental Science & Technology.
 
 "lampreytime"
