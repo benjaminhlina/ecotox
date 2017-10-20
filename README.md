@@ -50,7 +50,7 @@ head(lampreytox)
 
 Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England. ISBN: 052108041X
  
-Wheeler, M.W., Park, R.M., and Bailey, A.J. 2006. Comparing median lethal concentration values using confidence interval overlap or ratio tests, Environ. Toxic. Chem. 25(5), 1441-1444. [10.1897/05-320R.1](10.1897/05-320R.1)
+Wheeler, M.W., Park, R.M., and Bailey, A.J. 2006. Comparing median lethal concentration values using confidence interval overlap or ratio tests, Environ. Toxic. Chem. 25(5), 1441-1444. [10.1897/05-320R.1](http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract)
 
 Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press. ISBN: 0849323312
 
