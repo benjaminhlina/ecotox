@@ -4,7 +4,7 @@
 \alias{LC}
 \title{Lethal Concentration}
 \usage{
-LC(formula, data, p = seq(1, 99, 1), weights, conf.level = NULL)
+LC(formula, data, p = seq(1, 99, 1), weights = NULL, conf.level = NULL)
 }
 \arguments{
 \item{formula}{an object of class 'formula' or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.}
@@ -91,9 +91,9 @@ p2 <- ggplot(data = results, aes(x = month, y = dose,
 p2
 }
 \references{
-Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England
+Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England, ISBN: 052108041X
 
-Wheeler, M.W., Park, R.M., and Bailey, A.J., 2006. Comparing median lethal concentration values using confidence interval overlap or ratio tests, Environ. Toxic. Chem. 25(5), 1441-1444
+Wheeler, M.W., Park, R.M., and Bailey, A.J., 2006. Comparing median lethal concentration values using confidence interval overlap or ratio tests, Environ. Toxic. Chem. 25(5), 1441-1444.10.1897/05-320R.1
 
-Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press.
+Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press. ISBN: 9780849323317
 }
