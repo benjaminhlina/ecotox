@@ -1,8 +1,7 @@
 [![Build Status](https://travis-ci.org/benjaminhlina/ecotox.svg?branch=master)](https://travis-ci.org/benjaminhlina/ecotox)
 
 # ecotox
-
-ecotox is a package of functions for the [R Programing Language](https://www.r-project.org/). ecotox was created to calculate lethal concentrations (LC) or times (LT) for ecotoxicology studies using a probit analysis following methods by Finney (1971), Wheeler et al. (2006), and Robertson et al. (2007) and is published in Hlina et al. *In Preparation*. 
+ecotox was created as simple approach to using a probit analysis to calculate lethal concentration (LC) or time (LT) and the appropriate fiducial confidence limits desired for selected LC or LT for ecotoxicology studies (Finney 1971; Wheeler et al. 2006; Robertson et al. 2007). The simplicity of ecotox comes from the syntax it implies within its functions which is similar to functions like glm() and lm(). In addition to the simplicity of the syntax, a comprehensive data frame is produced which gives the user a predicted LC or LT value for the desired level and a suite of important parameters such as fiducial confidence limits and slope. ecotox was built for and is published in Hlina et al. *In Preparation*. 
 
 
 ## Installation
@@ -49,11 +48,11 @@ head(lampreytox)
 
 ## References 
 
-Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England
+Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England. ISBN: 052108041X
  
-Wheeler, M.W., Park, R.M., and Bailey, A.J. 2006. Comparing median lethal concentration values using confidence interval overlap or ratio tests, Environ. Toxic. Chem. 25(5), 1441-1444
+Wheeler, M.W., Park, R.M., and Bailey, A.J. 2006. Comparing median lethal concentration values using confidence interval overlap or ratio tests, Environ. Toxic. Chem. 25(5), 1441-1444. [10.1897/05-320R.1](10.1897/05-320R.1)
 
-Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press.
+Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press. ISBN: 0849323312
 
 ## Citation 
 
