@@ -9,7 +9,7 @@ Description: A simple approach to using a probit analysis to calculate lethal
         confidence limits desired for selected LC or LT for
         ecotoxicology studies (Finney 1971; Wheeler et al. 2006; 
         Robertson et al. 2007). The simplicity of ecotox comes from the 
-        syntax it implies within its functions which is similar to functions 
+        syntax it implies within its functions which are similar to functions 
         like glm() and lm(). In addition to the simplicity of the syntax, 
         a comprehensive data frame is produced which gives the user a 
         predicted LC or LT value for the desired level and a suite of important 
