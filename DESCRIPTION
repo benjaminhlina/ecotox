@@ -17,7 +17,7 @@ Description: A simple approach to using a probit analysis to calculate lethal
         Finney, D.J. (1971, ISBN: 052108041X);
         Wheeler, M.W., Park, R.M., and Bailer, A.J. (2006) <doi:10.1897/05-320R.1>;
         Robertson, J.L., Savin, N.E., Russell, R.M., and Preisler, H.K.
-        (2007, ISBN: 0849323312)
+        (2007, ISBN: 0849323312).
 Depends: R (>= 3.3.3)
 Imports: ggplot2, stats
 Suggests: dplyr, Hmisc, tidyr, xlsx
