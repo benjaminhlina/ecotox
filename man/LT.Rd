@@ -4,7 +4,7 @@
 \alias{LT}
 \title{Lethal Time}
 \usage{
-LT(formula, data, p = seq(1, 99, 1), weights = NULL, conf.level = NULL)
+LT(formula, data, p = seq(1, 99, 1), weights = NULL, het.sig = NULL, conf.level = NULL)
 }
 \arguments{
 \item{formula}{an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.}
@@ -14,6 +14,8 @@ LT(formula, data, p = seq(1, 99, 1), weights = NULL, conf.level = NULL)
 \item{p}{Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.}
 
 \item{weights}{vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.}
+
+\item{het.sig}{signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.}
 
 \item{conf.level}{Adjust confidence level as necessary or NULL set at 0.95.}
 }
@@ -37,7 +39,7 @@ data = lampreytime[c(1:11), ])
 
 results
 
-#dose-response curve can be plotted using ggplot2
+#dose-response curve can be plotted using 'ggplot2'
 }
 \references{
 Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England, ISBN: 052108041X

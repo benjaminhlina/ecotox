@@ -4,7 +4,7 @@
 \alias{LC}
 \title{Lethal Concentration}
 \usage{
-LC(formula, data, p = seq(1, 99, 1), weights = NULL, conf.level = NULL)
+LC(formula, data, p = seq(1, 99, 1), weights = NULL, het.sig = NULL, conf.level = NULL)
 }
 \arguments{
 \item{formula}{an object of class 'formula' or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.}
@@ -14,6 +14,8 @@ LC(formula, data, p = seq(1, 99, 1), weights = NULL, conf.level = NULL)
 \item{p}{Lethal Concentration (LC) values for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector.}
 
 \item{weights}{vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.}
+
+\item{het.sig}{signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.}
 
 \item{conf.level}{Adjust confidence level as necessary or NULL set at 0.95.}
 }
@@ -43,7 +45,7 @@ m <- LC((dead / total) ~ log10(dose), p = c(50, 99),
 
 m
 
-#dose-response curve can be plotted using ggplot2
+#dose-response curve can be plotted using 'ggplot2'
 
 suppressPackageStartupMessages(library(ggplot2))
 
@@ -70,7 +72,7 @@ s <- LC((dead / total) ~ log10(dose), p = c(50, 99),
         weights = lampreytox[c(52:64), ]$total,
         data = lampreytox[c(52:64), ])
 
-#group results together in a dataframe to plot with ggplot2
+#group results together in a dataframe to plot with 'ggplot2'
 
 results <- rbind(m[, c(1, 3:8, 11)], j[,c(1, 3:8, 11)],
                  a[, c(1, 3:8, 11)], s[, c(1, 3:8, 11)])

@@ -2,11 +2,12 @@
 #' @description Calculates lethal time (LT) and
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LT(formula, data, p = seq(1, 99, 1), weights = NULL, conf.level = NULL)
+#' @usage LT(formula, data, p = seq(1, 99, 1), weights = NULL, het.sig = NULL, conf.level = NULL)
 #' @param formula an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT is called.
 #' @param p Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.
 #' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.
+#' @param het.sig signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.
 #' @param conf.level  Adjust confidence level as necessary or NULL set at 0.95.
 #' @return Returns a data frame with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCLdis & UCLdis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LT variance.
 #' @references
@@ -28,7 +29,7 @@
 #'
 #' results
 #'
-#' #dose-response curve can be plotted using ggplot2
+#' #dose-response curve can be plotted using 'ggplot2'
 #' @import stats
 #' @export
 
@@ -39,7 +40,7 @@
 
 
 LT <- function(formula, data, p = seq(1, 99, 1),
-               weights = NULL, conf.level = NULL) {
+               weights = NULL, het.sig = NULL, conf.level = NULL) {
 
   data$weights <- weights
   if(is.null(weights)) {
@@ -54,12 +55,16 @@ LT <- function(formula, data, p = seq(1, 99, 1),
   # according to Finney, 1971, (p.72, eq. 4.27; also called "h")
   # Heterogeneity correction factor is used if
   # pearson's goodness of fit test returns a sigficance
-  # value less than 0.150 (source: SPSS 24)
+  # value less than 0.150 (source: 'SPSS 24')
 
   PGOF <- (1 - pchisq(sum(residuals(model, type = "pearson") ^ 2),
                       df.residual(model)))
 
-  if (PGOF < 0.150) {
+  if (is.null(het.sig)) {
+    het.sig = 0.150
+  }
+
+  if (PGOF < het.sig) {
     het <- sum(residuals(model, type = "pearson") ^ 2) / (df.residual(model))
   }
 
@@ -92,7 +97,7 @@ LT <- function(formula, data, p = seq(1, 99, 1),
 
   # variances have to be adjusted for heterogenity
   # if PGOF returns a signfacnce value less than 0.15
-  # (Finney 1971 p 72; SPSS 24)
+  # (Finney 1971 p 72; 'SPSS 24')
   # Intercept variance
 
   if (het > 1) {
@@ -126,7 +131,7 @@ LT <- function(formula, data, p = seq(1, 99, 1),
   # Adjust distibution depending on heterogeneity (Finney, 1971,  p72,
   # t distubtion used instead of normal distubtion  with appropriate df
   # if PGOF returns a signfacnce value less than 0.15
-  # (Finney 1971 p 72; SPSS 24)
+  # (Finney 1971 p 72; 'SPSS 24')
 
   if (is.null(conf.level)) {
     conf.level = 0.95
