@@ -8,7 +8,7 @@ Description: A simple approach to using a probit analysis to calculate lethal
         concentration (LC) or time (LT) and the appropriate fiducial 
         confidence limits desired for selected LC or LT for
         ecotoxicology studies (Finney 1971; Wheeler et al. 2006; 
-        Robertson et al. 2007). The simplicity of ecotox comes from the 
+        Robertson et al. 2007). The simplicity of 'ecotox' comes from the 
         syntax it implies within its functions which are similar to functions 
         like glm() and lm(). In addition to the simplicity of the syntax, 
         a comprehensive data frame is produced which gives the user a 
@@ -19,8 +19,14 @@ Description: A simple approach to using a probit analysis to calculate lethal
         Robertson, J.L., Savin, N.E., Russell, R.M., and Preisler, H.K.
         (2007, ISBN: 0849323312).
 Depends: R (>= 3.3.3)
-Imports: ggplot2, stats
-Suggests: dplyr, Hmisc, tidyr, xlsx
+Imports:
+    ggplot2,
+    stats
+Suggests:
+    dplyr,
+    Hmisc, 
+    tidyr, 
+    xlsx
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
