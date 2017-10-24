@@ -1,7 +1,7 @@
 Package: ecotox
 Type: Package
 Title: Analysis of Ecotoxicology
-Version: 1.0.2
+Version: 1.1.0
 Authors@R: person("Benjamin", "Hlina", email = "benjamin.hlina@gmail.com",
   role = c("aut", "cre"))
 Description: A simple approach to using a probit analysis to calculate lethal 
