@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/benjaminhlina/ecotox.svg?branch=master)](https://travis-ci.org/benjaminhlina/ecotox) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/benjaminhlina/ecotox?branch=master&svg=true)](https://ci.appveyor.com/project/benjaminhlina/ecotox) [![CRAN status](http://www.r-pkg.org/badges/version/ecotox)](https://cran.r-project.org/package=ecotox) 
 
 # ecotox
-['ecotox'](https://github.com/benjaminhlina/ecotox) was created as simple approach to using a probit analysis to calculate lethal concentration (LC) or time (LT) and the appropriate fiducial confidence limits desired for selected LC or LT for ecotoxicology studies (Finney 1971; Wheeler et al. 2006; Robertson et al. 2007). The simplicity of ['ecotox'](https://github.com/benjaminhlina/ecotox) comes from the syntax it implies within its functions which are similar to functions like [glm()](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html) and [lm()](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html). In addition to the simplicity of the syntax, a comprehensive data frame is produced which gives the user a predicted LC or LT value for the desired level and a suite of important parameters such as fiducial confidence limits and slope.
-['ecotox'](https://github.com/benjaminhlina/ecotox) was built for and is published in Hlina et al. *In Preparation*. 
+['ecotox'](https://cran.r-project.org/web/packages/ecotox/index.html) was created as simple approach to using a probit analysis to calculate lethal concentration (LC) or time (LT) and the appropriate fiducial confidence limits desired for selected LC or LT for ecotoxicology studies (Finney 1971; Wheeler et al. 2006; Robertson et al. 2007). The simplicity of ['ecotox'](https://cran.r-project.org/web/packages/ecotox/index.html) comes from the syntax it implies within its functions which are similar to functions like [glm()](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html) and [lm()](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html). In addition to the simplicity of the syntax, a comprehensive data frame is produced which gives the user a predicted LC or LT value for the desired level and a suite of important parameters such as fiducial confidence limits and slope.
+['ecotox'](https://cran.r-project.org/web/packages/ecotox/index.html) was built for and is published in Hlina et al. *In Preparation*. 
 
 
 ## Installation
@@ -11,7 +11,6 @@ You can install the released version of 'ecotox' from CRAN with:
 ``` r 
 install.packages("ecotox")
 ```
-
 
 
 You can install the developer version of 'ecotox' from github with:
