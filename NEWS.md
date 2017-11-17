@@ -1,6 +1,6 @@
-# ecotox 1.2.0.9000
+# ecotox v1.2.0.9000
 
-### New Features as of 16 - Nov - 2017
+### New Features as of 16-Nov-2017
   * Logit function for LC and LT has been added and can be called upon using 
     LClogit or LTlogit
   * LC and LT orignal functions have been renamed to LCprobit and LTprobit and 
@@ -8,7 +8,7 @@
     from the package.
   
   
-### New Features as of 08 - Nov - 2017
+### New Features as of 08-Nov-2017
   * 'ecotox' v1.1.0 is now available  on CRAN 
   * het.sig is a new argument added to the both LC and LT functions 
     it allows for the user to adjust the level of signficance that 
@@ -21,7 +21,7 @@
      can only run R v3.3.2 and less. 
      
 ### Development 
-    * Spearman-Karber method is in development  
-    * Parallism test is in development 
-    * Shiny app 
-    * video demo 
+  * Spearman-Karber method is in development  
+  * Parallism test is in development 
+  * Shiny app 
+  * video demo 
