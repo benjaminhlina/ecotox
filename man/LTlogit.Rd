@@ -4,7 +4,8 @@
 \alias{LTlogit}
 \title{Lethal Time Logit}
 \usage{
-LTlogit(formula, data, p = seq(1, 99, 1), weights = NULL, het.sig = NULL, conf.level = NULL)
+LTlogit(formula, data, p = seq(1, 99, 1),
+weights = NULL, het.sig = NULL, conf.level = NULL)
 }
 \arguments{
 \item{formula}{an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.}

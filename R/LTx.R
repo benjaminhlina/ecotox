@@ -207,7 +207,8 @@ LT <- function(formula, data, p = seq(1, 99, 1),
 #' @description Calculates lethal time (LT) and
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LTprobit(formula, data, p = seq(1, 99, 1), weights = NULL, het.sig = NULL, conf.level = NULL)
+#' @usage LTprobit(formula, data, p = seq(1, 99, 1),
+#' weights = NULL, het.sig = NULL, conf.level = NULL)
 #' @param formula an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT is called.
 #' @param p Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.
@@ -415,7 +416,8 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
 #' @description Calculates lethal time (LT) and
 #' its fiducial confidence limits (CL) using a logit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LTlogit(formula, data, p = seq(1, 99, 1), weights = NULL, het.sig = NULL, conf.level = NULL)
+#' @usage LTlogit(formula, data, p = seq(1, 99, 1),
+#' weights = NULL, het.sig = NULL, conf.level = NULL)
 #' @param formula an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT is called.
 #' @param p Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.
