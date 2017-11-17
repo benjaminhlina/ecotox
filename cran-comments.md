@@ -14,6 +14,6 @@ DESCRIPTION file, and added '' around package names
 There were no ERRORs, WARNINGs or NOTEs. 
 
 ## Downstream dependencies
-I have rran R CMD check on downstream dependencies of 'ecotox'
+I have ran R CMD check on downstream dependencies of 'ecotox'
  
 All packages that were installed passed. 
