@@ -1,7 +1,7 @@
 Package: ecotox
 Type: Package
 Title: Analysis of Ecotoxicology
-Version: 1.1.0.9000
+Version: 1.2.0.9000
 Authors@R: person("Benjamin", "Hlina", email = "benjamin.hlina@gmail.com",
   role = c("aut", "cre"))
 Description: A simple approach to using a probit analysis to calculate lethal 
@@ -22,12 +22,11 @@ Depends: R (>= 3.3.2)
 Imports:
     ggplot2,
     stats
-Suggests: 
+Suggests:
     dplyr,
     Hmisc,
     tidyr,
-    xlsx,
-    covr
+    xlsx
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
