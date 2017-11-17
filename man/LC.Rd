@@ -47,7 +47,7 @@ m
 
 #dose-response curve can be plotted using 'ggplot2'
 
-suppressPackageStartupMessages(library(ggplot2))
+library(ggplot2)
 
 p1 <- ggplot(data = lampreytox[c(1:19), ],
              aes(x = log10(dose), y = (dead / total))) +
