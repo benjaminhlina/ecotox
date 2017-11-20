@@ -56,16 +56,18 @@ m
 
 ## References 
 
-Finney, D.J., 1971. Probit analysis, Cambridge University Press, Cambridge, England. ISBN: 052108041X
+* Finney, D.J., 1971. Probit analysis, Cambridge University Press, Cambridge, England. ISBN: 052108041X
  
-Wheeler, M.W., Park, R.M., and Bailey, A.J. 2006. Comparing median lethal concentration values using confidence interval overlap or ratio tests, Environ. Toxic. Chem. 25(5), 1441-1444. [10.1897/05-320R.1](http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract)
+* Wheeler, M.W., Park, R.M., and Bailey, A.J. 2006. Comparing median lethal concentration values using confidence interval overlap or ratio tests, Environ. Toxic. Chem. 25(5), 1441-1444. [10.1897/05-320R.1](http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract)
 
-Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press. ISBN: 0849323312
+* Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press. ISBN: 0849323312
 
 ## Citation 
 
-version 1.2.0.9000 written by Benjamin L. Hlina, Wilfrid Laurier University, Waterloo, Ontario, Canada. Written in ['Programming Language R'](https://www.r-project.org/), version 3.4.2 (2017-09-28) -- "Short Summer". Run on a PC with Intel(R) Core(TM) I7- Q820 CPU, 1.73 GHz processor, 14.0 GB RAM, and Microsoft Windows 7 Professional operating system, 2009 Service Pack 1. Source code is available at ['ecotox'](https://github.com/benjaminhlina/ecotox) or by contacting Benjamin L. Hlina at benjamin.hlina@gmail.com
+* When using this package please cite the following  publication:
 
-When using this package please cite the following  publication: 
+      Hlina, B.L., Birceanu, O., Tessier, L.R., Robinson, C.,  Muhametsafina, A., Bragg,   L.M, Servos, M.R., Wilkie, M.P., *In Preparation*. Changes in the sensitivity of     piscicide in an invasive species. Environmental Science & Technology.
 
-Hlina, B.L., Birceanu, O., Tessier, L.R., Robinson, C.,  Muhametsafina, A., Bragg, L.M, Servos, M.R., Wilkie, M.P., *In Preparation*. Changes in the sensitivity of piscicide in an invasive species. Environmental Science & Technology.
+
+
+* version 1.2.0.9000 written by Benjamin L. Hlina, Wilfrid Laurier University, Waterloo, Ontario, Canada. Written in ['Programming Language R'](https://www.r-project.org/), version 3.4.2 (2017-09-28) -- "Short Summer". Run on a PC with Intel(R) Core(TM) I7- Q820 CPU, 1.73 GHz processor, 14.0 GB RAM, and Microsoft Windows 7 Professional operating system, 2009 Service Pack 1. Source code is available at ['ecotox'](https://github.com/benjaminhlina/ecotox) or by contacting Benjamin L. Hlina at benjamin.hlina@gmail.com
