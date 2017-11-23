@@ -4,8 +4,8 @@ Title: Analysis of Ecotoxicology
 Version: 1.2.0.9000
 Authors@R: person("Benjamin", "Hlina", email = "benjamin.hlina@gmail.com",
   role = c("aut", "cre"))
-Description: A simple approach to using a probit analysis to calculate lethal 
-        concentration (LC) or time (LT) and the appropriate fiducial 
+Description: A simple approach to using a probit or logit analysis to calculate
+        lethal concentration (LC) or time (LT) and the appropriate fiducial 
         confidence limits desired for selected LC or LT for
         ecotoxicology studies (Finney 1971; Wheeler et al. 2006; 
         Robertson et al. 2007). The simplicity of 'ecotox' comes from the 
