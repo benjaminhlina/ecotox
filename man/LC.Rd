@@ -20,7 +20,7 @@ LC(formula, data, p = seq(1, 99, 1), weights = NULL, het_sig = NULL, conf_level 
 \item{conf_level}{Adjust confidence level as necessary or NULL set at 0.95.}
 }
 \value{
-Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCLdis & UCLdis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LC variance.
+Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LC variance.
 }
 \description{
 Calculates lethal concentration (LC) and
@@ -86,7 +86,7 @@ results$month <- with(results, factor(c("May", "May", "June", "June",
 p2 <- ggplot(data = results, aes(x = month, y = dose,
                              group = factor(p), fill = factor(p))) +
   geom_col(position = position_dodge(width = 0.9), colour = "#000000") +
-  geom_errorbar(aes(ymin = (dose - LCLdis), ymax = (dose + UCLdis)),
+  geom_errorbar(aes(ymin = (dose - LCL_dis), ymax = (dose + UCL_dis)),
                 size = 0.4, width = 0.06,
                 position = position_dodge(width = 0.9))
 
