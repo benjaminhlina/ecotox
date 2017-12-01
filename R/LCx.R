@@ -244,7 +244,7 @@ LC <- function(formula, data, p = seq(1, 99, 1),
     intercept = b0,
     intercept_se = intercept_se,
     intercept_sig = intercept_sig,
-    z = z.value,
+    z = z_value,
     var_m = var_m)
 
   return(table)
