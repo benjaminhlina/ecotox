@@ -2,14 +2,14 @@
 #' @description Calculates lethal time (LT) and
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LT(formula, data, p = seq(1, 99, 1), weights = NULL, het.sig = NULL, conf.level = NULL)
+#' @usage LT(formula, data, p = seq(1, 99, 1), weights = NULL, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT is called.
 #' @param p Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.
 #' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.
-#' @param het.sig signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.
-#' @param conf.level  Adjust confidence level as necessary or NULL set at 0.95.
-#' @return Returns a data frame with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCLdis & UCLdis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LT variance.
+#' @param het_sig signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.
+#' @param conf_level  Adjust confidence level as necessary or NULL set at 0.95.
+#' @return Returns a data frame with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCL_dis & UCL_dis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LT variance.
 #' @references
 #'
 #' Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England, ISBN: 052108041X
@@ -40,7 +40,7 @@
 
 
 LT <- function(formula, data, p = seq(1, 99, 1),
-               weights = NULL, het.sig = NULL, conf.level = NULL) {
+               weights = NULL, het_sig = NULL, conf_level = NULL) {
   .Deprecated("LTprobit")
   data$weights <- weights
   if(is.null(weights)) {
@@ -60,11 +60,11 @@ LT <- function(formula, data, p = seq(1, 99, 1),
   PGOF <- (1 - pchisq(sum(residuals(model, type = "pearson") ^ 2),
                       df.residual(model)))
 
-  if (is.null(het.sig)) {
-    het.sig = 0.150
+  if (is.null(het_sig)) {
+    het_sig = 0.150
   }
 
-  if (PGOF < het.sig) {
+  if (PGOF < het_sig) {
     het <- sum(residuals(model, type = "pearson") ^ 2) / (df.residual(model))
   }
 
@@ -92,7 +92,7 @@ LT <- function(formula, data, p = seq(1, 99, 1),
   intercept_sig <- summary$coefficients[7]
   slope_se <- summary$coefficients[4]
   slope_sig <- summary$coefficients[8]
-  z.value <- summary$coefficients[6]
+  z_value <- summary$coefficients[6]
   n <- nrow(data)
 
   # variances have to be adjusted for heterogenity
@@ -100,7 +100,7 @@ LT <- function(formula, data, p = seq(1, 99, 1),
   # (Finney 1971 p 72; 'SPSS 24')
   # Intercept variance
 
-  if (PGOF < het.sig) {
+  if (PGOF < het_sig) {
     var_b0 <- het * vcova[2, 2]
   }
 
@@ -110,7 +110,7 @@ LT <- function(formula, data, p = seq(1, 99, 1),
 
   # Slope variance
 
-  if (PGOF < het.sig) {
+  if (PGOF < het_sig) {
     var_b1 <- het * vcova[1, 1]
   }
 
@@ -120,7 +120,7 @@ LT <- function(formula, data, p = seq(1, 99, 1),
 
   # Slope & intercept covariance
 
-  if (PGOF < het.sig) {
+  if (PGOF < het_sig) {
     cov_b0_b1 <- het * vcova[1, 2]
   }
 
@@ -133,12 +133,12 @@ LT <- function(formula, data, p = seq(1, 99, 1),
   # if PGOF returns a signfacnce value less than 0.15
   # (Finney 1971 p 72; 'SPSS 24')
 
-  if (is.null(conf.level)) {
-    conf.level = 0.95
+  if (is.null(conf_level)) {
+    conf_level = 0.95
   }
 
-  t <- (1 - conf.level)
-  if (PGOF < het.sig) {
+  t <- (1 - conf_level)
+  if (PGOF < het_sig) {
     tdis <- (- qt((t / 2), df = df.residual(model)))
   }
 
@@ -184,9 +184,9 @@ LT <- function(formula, data, p = seq(1, 99, 1),
     time = 10 ^ m,
     LCL = 10 ^ LCL,
     UCL = 10 ^ UCL,
-    LCLdis = 10 ^ m - 10 ^ LCL,
-    UCLdis = 10 ^ UCL - 10 ^ m,
-    chisquare = sum(residuals(model, type = "pearson") ^ 2),
+    LCL_dis = 10 ^ m - 10 ^ LCL,
+    UCL_dis = 10 ^ UCL - 10 ^ m,
+    chi_square = sum(residuals(model, type = "pearson") ^ 2),
     df = df.residual(model),
     PGOF_sig = PGOF,
     h = het,
@@ -196,7 +196,7 @@ LT <- function(formula, data, p = seq(1, 99, 1),
     intercept = b0,
     intercept_se = intercept_se,
     intercept_sig = intercept_sig,
-    z = z.value,
+    z = z_value,
     var_m = var_m)
 
   return(table)
@@ -208,14 +208,14 @@ LT <- function(formula, data, p = seq(1, 99, 1),
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
 #' @usage LTprobit(formula, data, p = seq(1, 99, 1),
-#' weights = NULL, het.sig = NULL, conf.level = NULL)
+#' weights = NULL, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT is called.
 #' @param p Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.
 #' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.
-#' @param het.sig signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.
-#' @param conf.level  Adjust confidence level as necessary or NULL set at 0.95.
-#' @return Returns a data frame with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCLdis & UCLdis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LT variance.
+#' @param het_sig signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.
+#' @param conf_level  Adjust confidence level as necessary or NULL set at 0.95.
+#' @return Returns a data frame with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCL_dis & UCL_dis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LT variance.
 #' @references
 #'
 #' Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England, ISBN: 052108041X
@@ -246,7 +246,7 @@ LT <- function(formula, data, p = seq(1, 99, 1),
 
 
 LTprobit <- function(formula, data, p = seq(1, 99, 1),
-               weights = NULL, het.sig = NULL, conf.level = NULL) {
+               weights = NULL, het_sig = NULL, conf_level = NULL) {
 
   data$weights <- weights
   if(is.null(weights)) {
@@ -266,11 +266,11 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
   PGOF <- (1 - pchisq(sum(residuals(model, type = "pearson") ^ 2),
                       df.residual(model)))
 
-  if (is.null(het.sig)) {
-    het.sig = 0.150
+  if (is.null(het_sig)) {
+    het_sig = 0.150
   }
 
-  if (PGOF < het.sig) {
+  if (PGOF < het_sig) {
     het <- sum(residuals(model, type = "pearson") ^ 2) / (df.residual(model))
   }
 
@@ -298,7 +298,7 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
   intercept_sig <- summary$coefficients[7]
   slope_se <- summary$coefficients[4]
   slope_sig <- summary$coefficients[8]
-  z.value <- summary$coefficients[6]
+  z_value <- summary$coefficients[6]
   n <- nrow(data)
 
   # variances have to be adjusted for heterogenity
@@ -306,7 +306,7 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
   # (Finney 1971 p 72; 'SPSS 24')
   # Intercept variance
 
-  if (PGOF < het.sig) {
+  if (PGOF < het_sig) {
     var_b0 <- het * vcova[2, 2]
   }
 
@@ -316,7 +316,7 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
 
   # Slope variance
 
-  if (PGOF < het.sig) {
+  if (PGOF < het_sig) {
     var_b1 <- het * vcova[1, 1]
   }
 
@@ -326,7 +326,7 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
 
   # Slope & intercept covariance
 
-  if (PGOF < het.sig) {
+  if (PGOF < het_sig) {
     cov_b0_b1 <- het * vcova[1, 2]
   }
 
@@ -339,12 +339,12 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
   # if PGOF returns a signfacnce value less than 0.15
   # (Finney 1971 p 72; 'SPSS 24')
 
-  if (is.null(conf.level)) {
-    conf.level = 0.95
+  if (is.null(conf_level)) {
+    conf_level = 0.95
   }
 
-  t <- (1 - conf.level)
-  if (PGOF < het.sig) {
+  t <- (1 - conf_level)
+  if (PGOF < het_sig) {
     tdis <- (- qt((t / 2), df = df.residual(model)))
   }
 
@@ -369,16 +369,17 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
   # (Finney, 1971,# p. 78-79. eq. 4.35)
   # v11 = var_b1 , v22 = var_b0, v12 = cov_b0_b1
 
-  cl1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b0))
-  cl2 <- (tdis / ((1 - g) * b1)) *
-    sqrt((var_b1 + (2 * m * cov_b0_b1) + (m ^ 2 * var_b0) -
-            (g * (var_b1 - cov_b0_b1 ^ 2 / var_b0))))
+  cl_part_1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b0))
+  cl_part_2 <- (var_b1 + (2 * m * cov_b0_b1) + (m ^ 2 * var_b0) -
+            (g * (var_b1 - cov_b0_b1 ^ 2 / var_b0)))
+
+  cl_part_3 <- (tdis / ((1 - g) * b1)) * sqrt(cl_part_2)
 
   # Calculate the fiducial limit LFL=lower fiducial limit,
   # UFL = upper fiducial limit (Finney, 1971, p. 78-79. eq. 4.35)
 
-  LCL <- (m + (cl1 - cl2))
-  UCL <- (m + (cl1 + cl2))
+  LCL <- (m + (cl_part_1 - cl2_part_3))
+  UCL <- (m + (cl_part_1 + cl_part_3))
 
   # Calculate variance for m (Robertson et al., 2007, pg. 27)
 
@@ -392,9 +393,9 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
     time = 10 ^ m,
     LCL = 10 ^ LCL,
     UCL = 10 ^ UCL,
-    LCLdis = 10 ^ m - 10 ^ LCL,
-    UCLdis = 10 ^ UCL - 10 ^ m,
-    chisquare = sum(residuals(model, type = "pearson") ^ 2),
+    LCL_dis = 10 ^ m - 10 ^ LCL,
+    UCL_dis = 10 ^ UCL - 10 ^ m,
+    chi_square = sum(residuals(model, type = "pearson") ^ 2),
     df = df.residual(model),
     PGOF_sig = PGOF,
     h = het,
@@ -404,7 +405,7 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
     intercept = b0,
     intercept_se = intercept_se,
     intercept_sig = intercept_sig,
-    z = z.value,
+    z = z_value,
     var_m = var_m)
 
   return(table)
@@ -417,14 +418,14 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
 #' its fiducial confidence limits (CL) using a logit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
 #' @usage LTlogit(formula, data, p = seq(1, 99, 1),
-#' weights = NULL, het.sig = NULL, conf.level = NULL)
+#' weights = NULL, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT is called.
 #' @param p Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.
 #' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.
-#' @param het.sig signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.
-#' @param conf.level  Adjust confidence level as necessary or NULL set at 0.95.
-#' @return Returns a data frame with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCLdis & UCLdis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LT variance.
+#' @param het_sig signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.
+#' @param conf_level  Adjust confidence level as necessary or NULL set at 0.95.
+#' @return Returns a data frame with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCL_dis & UCL_dis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LT variance.
 #' @references
 #'
 #' Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England, ISBN: 052108041X
@@ -455,9 +456,10 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
 
 
 LTlogit <- function(formula, data, p = seq(1, 99, 1),
-                     weights = NULL, het.sig = NULL, conf.level = NULL) {
+                     weights = NULL, het_sig = NULL, conf_level = NULL) {
 
   data$weights <- weights
+
   if(is.null(weights)) {
 
     model <- glm(formula, family = binomial(link = "logit"), data = data)
@@ -475,11 +477,11 @@ LTlogit <- function(formula, data, p = seq(1, 99, 1),
   PGOF <- (1 - pchisq(sum(residuals(model, type = "pearson") ^ 2),
                       df.residual(model)))
 
-  if (is.null(het.sig)) {
-    het.sig = 0.150
+  if (is.null(het_sig)) {
+    het_sig = 0.150
   }
 
-  if (PGOF < het.sig) {
+  if (PGOF < het_sig) {
     het <- sum(residuals(model, type = "pearson") ^ 2) / (df.residual(model))
   }
 
@@ -507,7 +509,7 @@ LTlogit <- function(formula, data, p = seq(1, 99, 1),
   intercept_sig <- summary$coefficients[7]
   slope_se <- summary$coefficients[4]
   slope_sig <- summary$coefficients[8]
-  z.value <- summary$coefficients[6]
+  z_value <- summary$coefficients[6]
   n <- nrow(data)
 
   # variances have to be adjusted for heterogenity
@@ -515,7 +517,7 @@ LTlogit <- function(formula, data, p = seq(1, 99, 1),
   # (Finney 1971 p 72; 'SPSS 24')
   # Intercept variance
 
-  if (PGOF < het.sig) {
+  if (PGOF < het_sig) {
     var_b0 <- het * vcova[2, 2]
   }
 
@@ -525,7 +527,7 @@ LTlogit <- function(formula, data, p = seq(1, 99, 1),
 
   # Slope variance
 
-  if (PGOF < het.sig) {
+  if (PGOF < het_sig) {
     var_b1 <- het * vcova[1, 1]
   }
 
@@ -535,7 +537,7 @@ LTlogit <- function(formula, data, p = seq(1, 99, 1),
 
   # Slope & intercept covariance
 
-  if (PGOF < het.sig) {
+  if (PGOF < het_sig) {
     cov_b0_b1 <- het * vcova[1, 2]
   }
 
@@ -548,12 +550,12 @@ LTlogit <- function(formula, data, p = seq(1, 99, 1),
   # if PGOF returns a signfacnce value less than 0.15
   # (Finney 1971 p 72; 'SPSS 24')
 
-  if (is.null(conf.level)) {
-    conf.level = 0.95
+  if (is.null(conf_level)) {
+    conf_level = 0.95
   }
 
-  t <- (1 - conf.level)
-  if (PGOF < het.sig) {
+  t <- (1 - conf_level)
+  if (PGOF < het_sig) {
     tdis <- (- qt((t / 2), df = df.residual(model)))
   }
 
@@ -578,16 +580,16 @@ LTlogit <- function(formula, data, p = seq(1, 99, 1),
   # (Finney, 1971,# p. 78-79. eq. 4.35)
   # v11 = var_b1 , v22 = var_b0, v12 = cov_b0_b1
 
-  cl1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b0))
-  cl2 <- (tdis / ((1 - g) * b1)) *
-    sqrt((var_b1 + (2 * m * cov_b0_b1) + (m ^ 2 * var_b0) -
-            (g * (var_b1 - cov_b0_b1 ^ 2 / var_b0))))
+  cl_part_1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b0))
+  cl_part_2 <- (var_b1 + (2 * m * cov_b0_b1) + (m ^ 2 * var_b0) -
+            (g * (var_b1 - cov_b0_b1 ^ 2 / var_b0)))
+  cl_part_3 <- (tdis / ((1 - g) * b1)) * sqrt(cl_part_2)
 
   # Calculate the fiducial limit LFL=lower fiducial limit,
   # UFL = upper fiducial limit (Finney, 1971, p. 78-79. eq. 4.35)
 
-  LCL <- (m + (cl1 - cl2))
-  UCL <- (m + (cl1 + cl2))
+  LCL <- (m + (cl_part_1 - cl_part_3))
+  UCL <- (m + (cl_part_1 + cl_part_3))
 
   # Calculate variance for m (Robertson et al., 2007, pg. 27)
 
@@ -601,9 +603,9 @@ LTlogit <- function(formula, data, p = seq(1, 99, 1),
     time = 10 ^ m,
     LCL = 10 ^ LCL,
     UCL = 10 ^ UCL,
-    LCLdis = 10 ^ m - 10 ^ LCL,
-    UCLdis = 10 ^ UCL - 10 ^ m,
-    chisquare = sum(residuals(model, type = "pearson") ^ 2),
+    LCL_dis = 10 ^ m - 10 ^ LCL,
+    UCL_dis = 10 ^ UCL - 10 ^ m,
+    chi_square = sum(residuals(model, type = "pearson") ^ 2),
     df = df.residual(model),
     PGOF_sig = PGOF,
     h = het,
@@ -613,7 +615,7 @@ LTlogit <- function(formula, data, p = seq(1, 99, 1),
     intercept = b0,
     intercept_se = intercept_se,
     intercept_sig = intercept_sig,
-    z = z.value,
+    z = z_value,
     var_m = var_m)
 
   return(table)
