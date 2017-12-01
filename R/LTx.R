@@ -378,7 +378,7 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
   # Calculate the fiducial limit LFL=lower fiducial limit,
   # UFL = upper fiducial limit (Finney, 1971, p. 78-79. eq. 4.35)
 
-  LCL <- (m + (cl_part_1 - cl2_part_3))
+  LCL <- (m + (cl_part_1 - cl_part_3))
   UCL <- (m + (cl_part_1 + cl_part_3))
 
   # Calculate variance for m (Robertson et al., 2007, pg. 27)

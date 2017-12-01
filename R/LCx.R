@@ -9,7 +9,7 @@
 #' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.
 #' @param het_sig signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.
 #' @param conf_level Adjust confidence level as necessary or NULL set at 0.95.
-#' @return Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCLdis & UCLdis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LC variance.
+#' @return Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LC variance.
 #' @references
 #'
 #' Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England, ISBN: 052108041X
@@ -76,7 +76,7 @@
 #' p2 <- ggplot(data = results, aes(x = month, y = dose,
 #'                              group = factor(p), fill = factor(p))) +
 #'   geom_col(position = position_dodge(width = 0.9), colour = "#000000") +
-#'   geom_errorbar(aes(ymin = (dose - LCLdis), ymax = (dose + UCLdis)),
+#'   geom_errorbar(aes(ymin = (dose - LCL_dis), ymax = (dose + UCL_dis)),
 #'                 size = 0.4, width = 0.06,
 #'                 position = position_dodge(width = 0.9))
 #'
@@ -232,8 +232,8 @@ LC <- function(formula, data, p = seq(1, 99, 1),
     dose = 10 ^ m,
     LCL = 10 ^ LCL,
     UCL = 10 ^ UCL,
-    LCLdis = 10 ^ m - 10 ^ LCL,
-    UCLdis = 10 ^ UCL - 10 ^ m,
+    LCL_dis = 10 ^ m - 10 ^ LCL,
+    UCL_dis = 10 ^ UCL - 10 ^ m,
     chisquare = sum(residuals(model, type = "pearson") ^ 2),
     df = df.residual(model),
     PGOF_sig = PGOF,
@@ -256,14 +256,14 @@ LC <- function(formula, data, p = seq(1, 99, 1),
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
 #' @usage LCprobit(formula, data, p = seq(1, 99, 1),
-#'  weights = NULL, het.sig = NULL, conf.level = NULL)
+#'  weights = NULL, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class 'formula' or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LC is called.
 #' @param p Lethal Concentration (LC) values for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector.
 #' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.
-#' @param het.sig signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.
-#' @param conf.level Adjust confidence level as necessary or NULL set at 0.95.
-#' @return Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCLdis & UCLdis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LC variance.
+#' @param het_sig signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.
+#' @param conf_level Adjust confidence level as necessary or NULL set at 0.95.
+#' @return Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LC variance.
 #' @references
 #'
 #' Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England, ISBN: 052108041X
@@ -330,7 +330,7 @@ LC <- function(formula, data, p = seq(1, 99, 1),
 #' p2 <- ggplot(data = results, aes(x = month, y = dose,
 #'                              group = factor(p), fill = factor(p))) +
 #'   geom_col(position = position_dodge(width = 0.9), colour = "#000000") +
-#'   geom_errorbar(aes(ymin = (dose - LCLdis), ymax = (dose + UCLdis)),
+#'   geom_errorbar(aes(ymin = (dose - LCL_dis), ymax = (dose + UCL_dis)),
 #'                 size = 0.4, width = 0.06,
 #'                 position = position_dodge(width = 0.9))
 #'
@@ -589,7 +589,7 @@ LCprobit <- function(formula, data, p = seq(1, 99, 1),
 #' p2 <- ggplot(data = results, aes(x = month, y = dose,
 #'                              group = factor(p), fill = factor(p))) +
 #'   geom_col(position = position_dodge(width = 0.9), colour = "#000000") +
-#'   geom_errorbar(aes(ymin = (dose - LCLdis), ymax = (dose + UCLdis)),
+#'   geom_errorbar(aes(ymin = (dose - LCL_dis), ymax = (dose + UCL_dis)),
 #'                 size = 0.4, width = 0.06,
 #'                 position = position_dodge(width = 0.9))
 #'
