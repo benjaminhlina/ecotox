@@ -4,7 +4,7 @@
 \alias{LC}
 \title{Lethal Concentration}
 \usage{
-LC(formula, data, p = seq(1, 99, 1), weights = NULL, het.sig = NULL, conf.level = NULL)
+LC(formula, data, p = seq(1, 99, 1), weights = NULL, het_sig = NULL, conf_level = NULL)
 }
 \arguments{
 \item{formula}{an object of class 'formula' or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.}
@@ -15,9 +15,9 @@ LC(formula, data, p = seq(1, 99, 1), weights = NULL, het.sig = NULL, conf.level 
 
 \item{weights}{vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.}
 
-\item{het.sig}{signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.}
+\item{het_sig}{signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.}
 
-\item{conf.level}{Adjust confidence level as necessary or NULL set at 0.95.}
+\item{conf_level}{Adjust confidence level as necessary or NULL set at 0.95.}
 }
 \value{
 Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCLdis & UCLdis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LC variance.
