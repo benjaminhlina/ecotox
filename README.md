@@ -66,7 +66,7 @@ m
 
 * When using this package please cite the following  publication:
 
-  Hlina, B.L., Birceanu, O., Tessier, L.R., Robinson, C.,  Muhametsafina, A., Bragg,   L.M, Servos, M.R., Wilkie, M.P., *In Preparation*. Changes in the sensitivity of     piscicide in an invasive species. Environmental Science & Technology.
+  Hlina, B.L., Birceanu, O., Robinson, C.,Thackaray, N., Tessier, L.R., Muhametsafina, A., Bragg,   L.M, Servos, M.R., Wilkie, M.P., *In Preparation*. Changes in the sensitivity of     piscicide in an invasive species. Environmental Science & Technology.
 
 
 

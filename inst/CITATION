@@ -5,8 +5,9 @@ citEntry(entry = "Article",
          an invasive species",
          author       = personList(as.person("Benjamin L. Hlina"),
                                    as.person("Oana Birceanu"),
-                                   as.person("Laura R. Tessier"),
                                    as.person("Christopher Robinson"),
+                                   as.person("Nicole Thackaray"),
+                                   as.person("Laura R. Tessier"),
                                    as.person("Alexandra Muhametsafina,"),
                                    as.person("Leslie M. Bragg"),
                                    as.person("Mark R. Servos,"),
@@ -15,8 +16,9 @@ citEntry(entry = "Article",
          year         = "2017",
 
          textVersion  =
-           paste("Hlina, B.L., Birceanu, O., Robinson, C., Tessier, L.R.,
-                 Muhametsafina, A., Bragg, L.M, Servos, M.R., Wilkie, M.P.",
+           paste("Hlina, B.L., Birceanu, O., Robinson, C., Thackaray, N.,
+           Tessier, L.R., Muhametsafina, A., Bragg, L.M,
+           Servos, M.R., Wilkie, M.P.",
                  "In Preparation.", "Changes in the sensitivity of
                  piscicide in an invasive species.",
                  "Environmental Science & Technology"))
