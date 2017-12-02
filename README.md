@@ -44,7 +44,7 @@ head(lampreytox)
 
 ## calculate LC50 and LC99 for May
 
-m <- LCprobit((dead / total) ~ log10(dose), p = c(50, 99),
+m <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
           weights = lampreytox[c(1:19), ]$total,
           data = lampreytox[c(1:19), ])
 
