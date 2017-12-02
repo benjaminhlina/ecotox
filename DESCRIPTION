@@ -22,10 +22,11 @@ Depends: R (>= 3.3.2)
 Imports:
     ggplot2,
     stats
-Suggests:
+Suggests: 
     dplyr,
     Hmisc,
     tidyr,
+    testthat,
     xlsx
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
