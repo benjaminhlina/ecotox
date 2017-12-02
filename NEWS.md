@@ -1,5 +1,15 @@
 # ecotox v1.2.0.9000
 
+
+### New Features as of 2-Dec-2017
+  * Probit and logit function name conventions have been modified. To call a
+    probit analysis use LC_probit or LT_probit. For logit use LC_logit or 
+    LC_probit.
+  * Agruments within the functions and objects within the function have been
+    renamed based on new naming convention. het.seg is now het_sig and 
+    conf.level is now conf_level. 
+  * Added tests to package 
+
 ### New Features as of 16-Nov-2017
   * Logit function for LC and LT has been added and can be called upon using 
     LClogit or LTlogit
