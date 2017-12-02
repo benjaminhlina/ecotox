@@ -41,7 +41,7 @@
 
 LT <- function(formula, data, p = seq(1, 99, 1),
                weights = NULL, het_sig = NULL, conf_level = NULL) {
-  .Deprecated("LTprobit")
+  .Deprecated("LT_probit")
   data$weights <- weights
   if(is.null(weights)) {
 
@@ -207,7 +207,7 @@ LT <- function(formula, data, p = seq(1, 99, 1),
 #' @description Calculates lethal time (LT) and
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LTprobit(formula, data, p = seq(1, 99, 1),
+#' @usage LT_probit(formula, data, p = seq(1, 99, 1),
 #' weights = NULL, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT is called.
@@ -226,7 +226,7 @@ LT <- function(formula, data, p = seq(1, 99, 1),
 
 #' @examples head(lampreytime)
 #'
-#' results <- LTprobit((dead/total) ~ log10(hour), p = c(50, 99),
+#' results <- LT_probit((dead/total) ~ log10(hour), p = c(50, 99),
 #' weights = lampreytime[c(1:11), ]$total,
 #' data = lampreytime[c(1:11), ])
 #'
@@ -245,7 +245,7 @@ LT <- function(formula, data, p = seq(1, 99, 1),
 
 
 
-LTprobit <- function(formula, data, p = seq(1, 99, 1),
+LT_probit <- function(formula, data, p = seq(1, 99, 1),
                weights = NULL, het_sig = NULL, conf_level = NULL) {
 
   data$weights <- weights
@@ -417,7 +417,7 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
 #' @description Calculates lethal time (LT) and
 #' its fiducial confidence limits (CL) using a logit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LTlogit(formula, data, p = seq(1, 99, 1),
+#' @usage LT_logit(formula, data, p = seq(1, 99, 1),
 #' weights = NULL, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT is called.
@@ -436,7 +436,7 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
 
 #' @examples head(lampreytime)
 #'
-#' results <- LTlogit((dead/total) ~ log10(hour), p = c(50, 99),
+#' results <- LT_logit((dead/total) ~ log10(hour), p = c(50, 99),
 #' weights = lampreytime[c(1:11), ]$total,
 #' data = lampreytime[c(1:11), ])
 #'
@@ -455,7 +455,7 @@ LTprobit <- function(formula, data, p = seq(1, 99, 1),
 
 
 
-LTlogit <- function(formula, data, p = seq(1, 99, 1),
+LT_logit <- function(formula, data, p = seq(1, 99, 1),
                      weights = NULL, het_sig = NULL, conf_level = NULL) {
 
   data$weights <- weights

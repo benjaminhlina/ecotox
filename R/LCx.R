@@ -88,7 +88,7 @@
 
 LC <- function(formula, data, p = seq(1, 99, 1),
                weights = NULL, het_sig = NULL, conf_level = NULL) {
-  .Deprecated("LCprobit")
+  .Deprecated("LC_probit")
   data$weights <- weights
   if(is.null(weights)) {
 
@@ -255,7 +255,7 @@ LC <- function(formula, data, p = seq(1, 99, 1),
 #' @description Calculates lethal concentration (LC) and
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LCprobit(formula, data, p = seq(1, 99, 1),
+#' @usage LC_probit(formula, data, p = seq(1, 99, 1),
 #'  weights = NULL, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class 'formula' or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LC is called.
@@ -280,7 +280,7 @@ LC <- function(formula, data, p = seq(1, 99, 1),
 #'
 #' #calculate LC50 and LC99 for May
 #'
-#' m <- LCprobit((dead / total) ~ log10(dose), p = c(50, 99),
+#' m <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
 #'          weights = lampreytox[c(1:19), ]$total,
 #'          data = lampreytox[c(1:19), ])
 #'
@@ -304,15 +304,15 @@ LC <- function(formula, data, p = seq(1, 99, 1),
 #'
 #' #calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
 #'
-#' j <- LCprobit((dead / total) ~ log10(dose), p = c(50, 99),
+#' j <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
 #'         weights = lampreytox[c(20:38), ]$total,
 #'         data = lampreytox[c(20:38), ])
 #'
-#' a <- LCprobit((dead / total) ~ log10(dose), p = c(50, 99),
+#' a <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
 #'         weights = lampreytox[c(39:51), ]$total,
 #'         data = lampreytox[c(39:51), ])
 #'
-#' s <- LCprobit((dead / total) ~ log10(dose), p = c(50, 99),
+#' s <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
 #'         weights = lampreytox[c(52:64), ]$total,
 #'         data = lampreytox[c(52:64), ])
 #'
@@ -340,7 +340,7 @@ LC <- function(formula, data, p = seq(1, 99, 1),
 #' @export
 
 
-LCprobit <- function(formula, data, p = seq(1, 99, 1),
+LC_probit <- function(formula, data, p = seq(1, 99, 1),
                weights = NULL, het_sig = NULL, conf_level = NULL) {
 
   data$weights <- weights
@@ -514,7 +514,7 @@ LCprobit <- function(formula, data, p = seq(1, 99, 1),
 #' @description Calculates lethal concentration (LC) and
 #' its fiducial confidence limits (CL) using a logit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LClogit(formula, data, p = seq(1, 99, 1),
+#' @usage LC_logit(formula, data, p = seq(1, 99, 1),
 #'  weights = NULL, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class 'formula' or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LC is called.
@@ -539,7 +539,7 @@ LCprobit <- function(formula, data, p = seq(1, 99, 1),
 #'
 #' #calculate LC50 and LC99 for May
 #'
-#' m <- LClogit((dead / total) ~ log10(dose), p = c(50, 99),
+#' m <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
 #'          weights = lampreytox[c(1:19), ]$total,
 #'          data = lampreytox[c(1:19), ])
 #'
@@ -563,15 +563,15 @@ LCprobit <- function(formula, data, p = seq(1, 99, 1),
 #'
 #' #calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
 #'
-#' j <- LClogit((dead / total) ~ log10(dose), p = c(50, 99),
+#' j <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
 #'         weights = lampreytox[c(20:38), ]$total,
 #'         data = lampreytox[c(20:38), ])
 #'
-#' a <- LClogit((dead / total) ~ log10(dose), p = c(50, 99),
+#' a <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
 #'         weights = lampreytox[c(39:51), ]$total,
 #'         data = lampreytox[c(39:51), ])
 #'
-#' s <- LClogit((dead / total) ~ log10(dose), p = c(50, 99),
+#' s <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
 #'         weights = lampreytox[c(52:64), ]$total,
 #'         data = lampreytox[c(52:64), ])
 #'
@@ -599,7 +599,7 @@ LCprobit <- function(formula, data, p = seq(1, 99, 1),
 #' @export
 
 
-LClogit <- function(formula, data, p = seq(1, 99, 1),
+LC_logit <- function(formula, data, p = seq(1, 99, 1),
                      weights = NULL, het_sig = NULL, conf_level = NULL) {
 
   data$weights <- weights
