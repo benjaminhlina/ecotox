@@ -31,11 +31,12 @@ according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
 \examples{
 head(lampreytox)
 
-#within the dataframe used, control dose,
-#unless produced a value during experimentation,
-#are adjusted to 0.01, as glm cannot handle values of infinite.
+# within the dataframe used, control dose, unless produced a value
+# during experimentation, are removed from the dataframe,
+# as glm cannot handle values of infinite. Other statistical programs
+# make note of the control dose but do not include within analysis
 
-#calculate LC50 and LC99 for May
+#calculate LC50 and LC99
 
 m <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
          weights = lampreytox[c(1:19), ]$total,
