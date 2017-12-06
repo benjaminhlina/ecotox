@@ -30,7 +30,7 @@ remotes::install_github("benjaminhlina/ecotox")
 
 ## Example
 
-This is an example which uses the LCprobit function to calculate a LC<sub>50</sub> and LC<sub>99</sub> for a probit analysis : 
+This is an example which uses the LC_probit function to calculate a LC<sub>50</sub> and LC<sub>99</sub> for a probit analysis : 
 
 
 ``` r
