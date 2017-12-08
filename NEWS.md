@@ -1,4 +1,4 @@
-# ecotox v1.2.0.9000
+# ecotox v1.3.0
 
 
 ### New Features as of 2-Dec-2017
@@ -32,6 +32,6 @@
      
 ### Development 
   * Spearman-Karber method is in development  
-  * Parallism test is in development 
+  * Parallism test and equality test is in development 
   * Shiny app 
   * video demo 
