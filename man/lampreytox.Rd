@@ -6,14 +6,14 @@
 \title{Lethal concentration data for seasonal exposure to TFM for larval sea lamprey}
 \format{A data frame containing 64 rows and 7 columns.
 \describe{
-  \item{nominal.dose}{nominal TFM dose (mg/L)}
-  \item{tank}{tank assignment}
-  \item{month}{month in which toxicity test occurred}
-  \item{dose}{averaged measured TFM dose (mg/L) over 12 h of exposures}
-  \item{dead}{number of lamprey that died over 12 h exposure to TFM}
-  \item{survive}{number of lamprey that survived over 12 h exposure to TFM}
-  \item{total}{total number of lamprey that were exposed to TFM over 12 h}
-  }}
+\item{nominal.dose}{nominal TFM dose (mg/L)}
+\item{tank}{tank assignment}
+\item{month}{month in which toxicity test occurred}
+\item{dose}{averaged measured TFM dose (mg/L) over 12 h of exposures}
+\item{dead}{number of lamprey that died over 12 h exposure to TFM}
+\item{survive}{number of lamprey that survived over 12 h exposure to TFM}
+\item{total}{total number of lamprey that were exposed to TFM over 12 h}
+}}
 \source{
 Hlina, B.L., Birceanu, O.,  Tessier, L.R., Robinson, C.,, Muhametsafina, A., Bragg, L.M, Servos, M.R., Wilkie, M.P. In Preparation. Changes in the sensitivity of piscicide in an invasive species. Environmental Science & Technology.
 }
