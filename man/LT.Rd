@@ -23,23 +23,11 @@ LT(formula, data, p = seq(1, 99, 1), weights = NULL, het_sig = NULL, conf_level 
 Returns a data frame with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCL_dis & UCL_dis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LT variance.
 }
 \description{
-Calculates lethal time (LT) and
-its fiducial confidence limits (CL) using a probit analysis
-according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
+Calculates lethal time (LT) and its fiducial confidence limits (CL) using a probit analysis according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007. \code{LT()} is deprecated use \code{LT_probit()} for probit analysis.
 }
 \examples{
-head(lampreytime)
+#This function is deprecated use LT_probit() to calculate lethal times.
 
-results <- LT((dead/total) ~ log10(hour), p = c(50, 99),
-weights = lampreytime[c(1:11), ]$total,
-data = lampreytime[c(1:11), ])
-
-#view calculated LT50 and LT99 for seasonal
-#toxicity of a piscicide, 3-trifluoromethyl-4-nitrophenol, to lamprey in 2011
-
-results
-
-#dose-response curve can be plotted using 'ggplot2'
 }
 \references{
 Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England, ISBN: 052108041X

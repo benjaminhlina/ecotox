@@ -1,7 +1,5 @@
 #' Lethal Time
-#' @description Calculates lethal time (LT) and
-#' its fiducial confidence limits (CL) using a probit analysis
-#' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
+#' @description Calculates lethal time (LT) and its fiducial confidence limits (CL) using a probit analysis according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007. `LT()` is deprecated use `LT_probit()` for probit analysis.
 #' @usage LT(formula, data, p = seq(1, 99, 1), weights = NULL, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT is called.
@@ -18,18 +16,9 @@
 #'
 #' Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press. ISBN: 9780849323317
 
-#' @examples head(lampreytime)
+#' @examples
+#' #This function is deprecated use LT_probit() to calculate lethal times.
 #'
-#' results <- LT((dead/total) ~ log10(hour), p = c(50, 99),
-#' weights = lampreytime[c(1:11), ]$total,
-#' data = lampreytime[c(1:11), ])
-#'
-#' #view calculated LT50 and LT99 for seasonal
-#' #toxicity of a piscicide, 3-trifluoromethyl-4-nitrophenol, to lamprey in 2011
-#'
-#' results
-#'
-#' #dose-response curve can be plotted using 'ggplot2'
 #' @import stats
 #' @export
 

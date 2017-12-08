@@ -1,7 +1,5 @@
 #' Lethal Concentration
-#' @description Calculates lethal concentration (LC) and
-#' its fiducial confidence limits (CL) using a probit analysis
-#' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
+#' @description Calculates lethal concentration (LC) and its fiducial confidence limits (CL) using a probit analysis according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007. `LC()` is deprecated use `LC_probit()` for probit analysis.
 #' @usage LC(formula, data, p = seq(1, 99, 1), weights = NULL, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class 'formula' or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LC is called.
@@ -18,70 +16,8 @@
 #'
 #' Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press. ISBN: 9780849323317
 
-#' @examples head(lampreytox)
-#'
-#' # within the dataframe used, control dose, unless produced a value
-#' # during experimentation, are removed from the dataframe,
-#' # as glm cannot handle values of infinite. Other statistical programs
-#' # make note of the control dose but do not include within analysis
-#'
-#' #calculate LC50 and LC99 for May
-#'
-#' m <- LC((dead / total) ~ log10(dose), p = c(50, 99),
-#'          weights = lampreytox[c(1:19), ]$total,
-#'          data = lampreytox[c(1:19), ])
-#'
-#' #view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
-#' #to lamprey in 2011
-#'
-#' m
-#'
-#' #dose-response curve can be plotted using 'ggplot2'
-#'
-#' library(ggplot2)
-#'
-#' p1 <- ggplot(data = lampreytox[c(1:19), ],
-#'              aes(x = log10(dose), y = (dead / total))) +
-#'   geom_point() +
-#'   geom_smooth(method = "glm",
-#'             method.args = list(family = binomial(link = "probit")),
-#'             aes(weight = total), colour = "#FF0000", se = TRUE)
-#'
-#' p1
-#'
-#' #calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
-#'
-#' j <- LC((dead / total) ~ log10(dose), p = c(50, 99),
-#'         weights = lampreytox[c(20:38), ]$total,
-#'         data = lampreytox[c(20:38), ])
-#'
-#' a <- LC((dead / total) ~ log10(dose), p = c(50, 99),
-#'         weights = lampreytox[c(39:51), ]$total,
-#'         data = lampreytox[c(39:51), ])
-#'
-#' s <- LC((dead / total) ~ log10(dose), p = c(50, 99),
-#'         weights = lampreytox[c(52:64), ]$total,
-#'         data = lampreytox[c(52:64), ])
-#'
-#' #group results together in a dataframe to plot with 'ggplot2'
-#'
-#' results <- rbind(m[, c(1, 3:8, 11)], j[,c(1, 3:8, 11)],
-#'                  a[, c(1, 3:8, 11)], s[, c(1, 3:8, 11)])
-#'
-#' results$month <- with(results, factor(c("May", "May", "June", "June",
-#'                                         "August", "August", "September",
-#'                                         "September"),
-#'                                         levels = c("May", "June",
-#'                                         "August", "September")))
-#'
-#' p2 <- ggplot(data = results, aes(x = month, y = dose,
-#'                              group = factor(p), fill = factor(p))) +
-#'   geom_col(position = position_dodge(width = 0.9), colour = "#000000") +
-#'   geom_errorbar(aes(ymin = (dose - LCL_dis), ymax = (dose + UCL_dis)),
-#'                 size = 0.4, width = 0.06,
-#'                 position = position_dodge(width = 0.9))
-#'
-#' p2
+#' @examples
+#' #Use LC_probit() for probit anlaysis to cacluate leathal concentrations
 #' @import ggplot2
 #' @import stats
 #' @export
