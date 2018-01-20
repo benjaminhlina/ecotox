@@ -1,4 +1,4 @@
-# ecotox <img src="man/figures/logo.png" align="right" />
+# ecotox
 
 [![Build Status](https://travis-ci.org/benjaminhlina/ecotox.svg?branch=master)](https://travis-ci.org/benjaminhlina/ecotox) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/benjaminhlina/ecotox?branch=master&svg=true)](https://ci.appveyor.com/project/benjaminhlina/ecotox) [![CRAN status](http://www.r-pkg.org/badges/version/ecotox)](https://CRAN.R-project.org/package=ecotox) [![](http://cranlogs.r-pkg.org/badges/grand-total/ecotox)](https://CRAN.R-project.org/package=ecotox)
 
