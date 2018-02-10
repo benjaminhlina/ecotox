@@ -290,8 +290,9 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #' #calculate LC50 and LC99 for May
 #'
 #' m <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
-#'          weights = lampreytox[c(1:19), ]$total,
-#'          data = lampreytox[c(1:19), ])
+#'          weights = total,
+#'          data = lampreytox,
+#'          subset = c(month == "May"))
 #'
 #' #view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
 #' #to lamprey in 2011
@@ -314,16 +315,19 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #' #calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
 #'
 #' j <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
-#'         weights = lampreytox[c(20:38), ]$total,
-#'         data = lampreytox[c(20:38), ])
+#'         weights = total,
+#'         data = lampreytox,
+#'         subset = c(month == "June"))
 #'
 #' a <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
-#'         weights = lampreytox[c(39:51), ]$total,
-#'         data = lampreytox[c(39:51), ])
+#'         weights = total,
+#'         data = lampreytox,
+#'         subset = c(month == "August"))
 #'
 #' s <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
-#'         weights = lampreytox[c(52:64), ]$total,
-#'         data = lampreytox[c(52:64), ])
+#'         weights = total,
+#'         data = lampreytox,
+#'         subset = c(month == "September"))
 #'
 #' #group results together in a dataframe to plot with 'ggplot2'
 #'
