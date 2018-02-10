@@ -7,8 +7,8 @@
 #' @param formula an object of class 'formula' or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LC is called.
 #' @param p Lethal Concentration (LC) values for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector.
-#' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.
-#' @param subset allows for the data to be subset if desired.
+#' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.
+#' @param subset allows for the data to be subset if desired. Default set to NULL.
 #' @param het_sig signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.
 #' @param conf_level Adjust confidence level as necessary or NULL set at 0.95.
 #' @return Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LC variance.
@@ -269,8 +269,8 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #' @param formula an object of class 'formula' or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LC is called.
 #' @param p Lethal Concentration (LC) values for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector.
-#' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.
-#' @param subset allows for the data to be subset if desired.
+#' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.
+#' @param subset allows for the data to be subset if desired. Default set to NULL.
 #' @param het_sig signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.
 #' @param conf_level Adjust confidence level as necessary or NULL set at 0.95.
 #' @return Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LC variance.
