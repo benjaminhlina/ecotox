@@ -6,7 +6,10 @@
     no need to use brackets to subset 
   * Weights is no longer an optional agrument and can be specificed 
     just be object name. Again no need to add name of dataframe, 
-    bracket subset and $ to select object used for weights
+    bracket subset and $ to select object used for 
+  * LC_probit and logit and LT_probit and LT_logit might be depreciated as 
+    lc_probit and logit and lt_probit and logit are simpler function calls for 
+    users and are consistent with naming conventions. Thouhgts?? 
 
 ### New Features as of 2-Dec-2017
   * Probit and logit function name conventions have been modified. To call a
