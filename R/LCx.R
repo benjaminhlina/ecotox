@@ -347,21 +347,14 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #' @export
 
 
-LC_logit <- function(formula, data, p = seq(1, 99, 1),
-                     weights = NULL, het_sig = NULL, conf_level = NULL) {
+LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
+                     subset = NULL, het_sig = NULL, conf_level = NULL) {
 
-  data$weights <- weights
-
-  if (is.null(weights)) {
-
-    model <- glm(formula, family = binomial(link = "logit"),
-                 data = data)
-  }
-
-  else {
-    model <- glm(formula, family = binomial(link = "logit"),
-                     weights = weights, data = data)
-  }
+  model <- do.call("glm", list(formula = formula,
+                               family = binomial(link = "logit"),
+                               weights = substitute(weights),
+                               data = data,
+                               subset = substitute(subset)))
 
   # Calculate heterogeneity correction to confidence intervals
   # according to Finney, 1971, (p.72, eq. 4.27; also called "h")
