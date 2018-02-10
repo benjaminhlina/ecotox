@@ -393,50 +393,47 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1),
   # Slope (b1)
   b1 <- summary$coefficients[2]
 
-  # covariance matrix
-  vcova <- vcov(model)
-
-  #determine other important statistics
+  # intercept info
 
   intercept_se <- summary$coefficients[3]
   intercept_sig <- summary$coefficients[7]
+
+  # slope info
+
   slope_se <- summary$coefficients[4]
   slope_sig <- summary$coefficients[8]
+
+  # z value
+
   z_value <- summary$coefficients[6]
+
+  # sample size
+
   n <- nrow(data)
+
+  # covariance matrix
+  if (PGOF < het_sig) {
+    vcova <- vcov(model) * het
+  }
+
+  else {
+    vcova <- vcov(model)
+  }
 
   # variances have to be adjusted for heterogenity
   # if PGOF returns a signfacnce value less than 0.15
   # (Finney 1971 p 72; 'SPSS 24')
   # Intercept variance
 
-  if (PGOF < het_sig) {
-    var_b0 <- het * vcova[2, 2]
-  }
-
-  else {
-    var_b0 <- vcova[2, 2]
-  }
+  var_b0 <- vcova[2, 2]
 
   # Slope variance
 
-  if (PGOF < het_sig) {
-    var_b1 <- het * vcova[1, 1]
-  }
-
-  else {
-    var_b1 <- vcova[1, 1]
-  }
+  var_b1 <- vcova[1, 1]
 
   # Slope & intercept covariance
 
-  if (PGOF < het_sig) {
-    cov_b0_b1 <- het * vcova[1, 2]
-  }
-
-  else {
-    cov_b0_b1 <- vcova[1, 2]
-  }
+  cov_b0_b1 <- vcova[1, 2]
 
   # Adjust distibution depending on heterogeneity (Finney, 1971,  p72,
   # t distubtion used instead of normal distubtion  with appropriate df
@@ -444,12 +441,12 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1),
   # (Finney 1971 p 72; 'SPSS 24')
 
   if (is.null(conf_level)) {
-    conf_level = 0.95
+    conf_level <- 0.95
   }
 
   t <- (1 - conf_level)
   if (PGOF < het_sig) {
-    tdis <- (- qt((t / 2), df = df.residual(model)))
+    tdis <- (- qt ((t / 2), df = df.residual(model)))
   }
 
   else {
@@ -465,7 +462,7 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1),
   # Calculate m for all LC levels based on logits
   # in est (Robertson et al., 2007, pg. 27; or "m" in Finney, 1971, p. 78)
 
-  est <- (log((p / 100) / (1 - (p / 100))))
+  est <- log((p / 100) / (1 - (p / 100)))
   m <- (est - b0) / b1
 
   # Calculate correction of fiducial limits according to Fieller method
@@ -485,8 +482,7 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1),
 
   # Calculate variance for m (Robertson et al., 2007, pg. 27)
 
-  var_m <- (1 / (m ^ 2)) * (var_b1 + 2 * m * cov_b0_b1 +
-                              var_b0 * m ^ 2)
+  var_m <- (1 / (m ^ 2)) * (var_b1 + 2 * m * cov_b0_b1 + var_b0 * m ^ 2)
 
   # Make a data frame from the data at all the different values
   table <- data.frame(
@@ -497,8 +493,8 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1),
     UCL = 10 ^ UCL,
     LCL_dis = 10 ^ m - 10 ^ LCL,
     UCL_dis = 10 ^ UCL - 10 ^ m,
-    chi_square = sum(residuals(model, type = "pearson") ^ 2),
-    df = df.residual(model),
+    chi_square = chi_square,
+    df = df,
     PGOF_sig = PGOF,
     h = het,
     slope = b1,
