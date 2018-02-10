@@ -412,7 +412,7 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1),
 
   # sample size
 
-  n <- nrow(data)
+  n <- df.residual(model) + 2
 
   # covariance matrix
   if (PGOF < het_sig) {
