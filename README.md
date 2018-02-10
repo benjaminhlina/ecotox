@@ -8,7 +8,7 @@
 
 
 ## Installation
-You can install the released version of 'ecotox' from CRAN with:
+You can install the CRAN released version of 'ecotox' from CRAN with:
 
 ``` r 
 install.packages("ecotox")
@@ -66,3 +66,4 @@ m
 
 
 
+* version 1.3.1 written by Benjamin L. Hlina, Wilfrid Laurier University, Waterloo, Ontario, Canada. Written in ['Programming Language R'](https://www.r-project.org/), version 3.4.3 (2017-11-30) -- "Kite-Eating Tree". Run on a PC with Intel(R) Core(TM) I7- Q820 CPU, 1.73 GHz processor, 14.0 GB RAM, and Microsoft Windows 7 Professional operating system, 2009 Service Pack 1. Source code is available at ['ecotox'](https://github.com/benjaminhlina/ecotox) or by contacting Benjamin L. Hlina at benjamin.hlina@gmail.com
