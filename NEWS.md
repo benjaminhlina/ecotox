@@ -1,15 +1,16 @@
 # ecotox v1.3.1
 
 ### New Feature as of 9-Feb-2018
-  * All functions now have subset argument
-  * Data argument can now be just the dataframe of interest 
+  * All functions now have `subset` argument
+  * `Data` argument can now be just the dataframe of interest 
     no need to use brackets to subset 
-  * Weights is no longer an optional argument and can be specified 
+  * `Weights` is no longer an optional argument and can be specified 
     just be object name. Again no need to add name of dataframe, 
-    bracket subset and $ to select object used for 
-  * LC_probit and logit and LT_probit and LT_logit might be depreciated as 
-    lc_probit and logit and lt_probit and logit are simpler function calls for 
-    users and are consistent with naming conventions. Thouhgts?? 
+    bracket to subset `[]` and `$` to select object used for 
+  * `LC_probit` and `LC_logit` and `LT_probit` and `LT_logit` might be 
+    depreciated as `lc_probit` and `lc_logit` and `lt_probit` and `lt_logit`
+    are simpler function calls for users and are consistent with 
+    naming conventions. Thouhgts?? 
 
 ### New Features as of 2-Dec-2017
   * Probit and logit function name conventions have been modified. To call a
