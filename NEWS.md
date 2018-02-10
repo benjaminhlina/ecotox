@@ -1,5 +1,12 @@
-# ecotox v1.3.0
+# ecotox v1.3.1
 
+### New Feature as of 9-Feb-2018
+  * All functions now have subset argument
+  * Data agument can now be just the dataframe of interest 
+    no need to use brackets to subset 
+  * Weights is no longer an optional agrument and can be specificed 
+    just be object name. Again no need to add name of dataframe, 
+    bracket subset and $ to select object used for weights
 
 ### New Features as of 2-Dec-2017
   * Probit and logit function name conventions have been modified. To call a
