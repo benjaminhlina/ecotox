@@ -2,7 +2,7 @@
 
 ### New Feature as of 9-Feb-2018
   * All functions now have subset argument
-  * Data agument can now be just the dataframe of interest 
+  * Data argument can now be just the dataframe of interest 
     no need to use brackets to subset 
   * Weights is no longer an optional agrument and can be specificed 
     just be object name. Again no need to add name of dataframe, 
