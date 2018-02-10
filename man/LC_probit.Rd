@@ -4,8 +4,7 @@
 \alias{LC_probit}
 \title{Lethal Concentration Probit}
 \usage{
-LC_probit(formula, data, p = seq(1, 99, 1),
- weights = NULL, het_sig = NULL, conf_level = NULL)
+LC_probit(formula, data, p = seq(1, 99, 1), weights, subset,  het_sig = NULL, conf_level = NULL)
 }
 \arguments{
 \item{formula}{an object of class 'formula' or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.}
@@ -15,6 +14,8 @@ LC_probit(formula, data, p = seq(1, 99, 1),
 \item{p}{Lethal Concentration (LC) values for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector.}
 
 \item{weights}{vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.}
+
+\item{subset}{allows for the data to be subset if desired.}
 
 \item{het_sig}{signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.}
 
@@ -39,8 +40,9 @@ head(lampreytox)
 #calculate LC50 and LC99
 
 m <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
-         weights = lampreytox[c(1:19), ]$total,
-         data = lampreytox[c(1:19), ])
+         weights = total,
+         data = lampreytox,
+         subset = c(month == "May"))
 
 #view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
 #to lamprey in 2011
@@ -63,16 +65,19 @@ p1
 #calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
 
 j <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
-        weights = lampreytox[c(20:38), ]$total,
-        data = lampreytox[c(20:38), ])
+        weights = total,
+        data = lampreytox,
+        subset = c(month == "June"))
 
 a <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
-        weights = lampreytox[c(39:51), ]$total,
-        data = lampreytox[c(39:51), ])
+        weights = total,
+        data = lampreytox,
+        subset = c(month == "August"))
 
 s <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
-        weights = lampreytox[c(52:64), ]$total,
-        data = lampreytox[c(52:64), ])
+        weights = total,
+        data = lampreytox,
+        subset = c(month == "September"))
 
 #group results together in a dataframe to plot with 'ggplot2'
 
