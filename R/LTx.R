@@ -2,12 +2,13 @@
 #' @description Calculates lethal time (LT) and
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LT_probit(formula, data, p = seq(1, 99, 1),
-#' weights = NULL, het_sig = NULL, conf_level = NULL)
+#' @usage LT_probit(formula, data, p = seq(1, 99, 1), weights,
+#' subset = NULL, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT is called.
 #' @param p Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.
-#' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.
+#' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.
+#' @param subset allows for the data to be subset if desired. Default set to NULL.
 #' @param het_sig signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.
 #' @param conf_level  Adjust confidence level as necessary or NULL set at 0.95.
 #' @return Returns a data frame with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCL_dis & UCL_dis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LT variance.
@@ -21,9 +22,10 @@
 
 #' @examples head(lampreytime)
 #'
-#' results <- LT_probit((dead/total) ~ log10(hour), p = c(50, 99),
-#' weights = lampreytime[c(1:11), ]$total,
-#' data = lampreytime[c(1:11), ])
+#' results <- LT_probit((dead / total) ~ log10(hour), p = c(50, 99),
+#' weights = total,
+#' data = lampreytime,
+#' subset = c(month == "May"))
 #'
 #' #view calculated LT50 and LT99 for seasonal
 #' #toxicity of a piscicide, 3-trifluoromethyl-4-nitrophenol, to lamprey in 2011
@@ -211,12 +213,13 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 #' @description Calculates lethal time (LT) and
 #' its fiducial confidence limits (CL) using a logit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LT_logit(formula, data, p = seq(1, 99, 1),
-#' weights = NULL, het_sig = NULL, conf_level = NULL)
+#' @usage LT_logit(formula, data, p = seq(1, 99, 1), weights = NULL,
+#' subset = NULL, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT is called.
 #' @param p Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.
-#' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.
+#' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.
+#' @param subset allows for the data to be subset if desired. Default set to NULL.
 #' @param het_sig signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.
 #' @param conf_level  Adjust confidence level as necessary or NULL set at 0.95.
 #' @return Returns a data frame with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCL_dis & UCL_dis; important for creating a plot), Pearson's goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LT variance.
@@ -230,9 +233,10 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 
 #' @examples head(lampreytime)
 #'
-#' results <- LT_logit((dead/total) ~ log10(hour), p = c(50, 99),
-#' weights = lampreytime[c(1:11), ]$total,
-#' data = lampreytime[c(1:11), ])
+#' results <- LT_logit((dead / total) ~ log10(hour), p = c(50, 99),
+#' weights = total,
+#' data = lampreytime,
+#' subset = c(month == "May"))
 #'
 #' #view calculated LT50 and LT99 for seasonal
 #' #toxicity of a piscicide, 3-trifluoromethyl-4-nitrophenol, to lamprey in 2011
@@ -405,7 +409,4 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
     var_m = var_m)
 
   return(table)
-
 }
-
-

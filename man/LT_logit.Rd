@@ -4,8 +4,8 @@
 \alias{LT_logit}
 \title{Lethal Time Logit}
 \usage{
-LT_logit(formula, data, p = seq(1, 99, 1),
-weights = NULL, het_sig = NULL, conf_level = NULL)
+LT_logit(formula, data, p = seq(1, 99, 1), weights = NULL,
+subset = NULL, het_sig = NULL, conf_level = NULL)
 }
 \arguments{
 \item{formula}{an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.}
@@ -14,7 +14,9 @@ weights = NULL, het_sig = NULL, conf_level = NULL)
 
 \item{p}{Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.}
 
-\item{weights}{vector of 'prior weights' to be used in the fitting process. Should be a numeric vector, if set to NULL weights will not be used.}
+\item{weights}{vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.}
+
+\item{subset}{allows for the data to be subset if desired. Default set to NULL.}
 
 \item{het_sig}{signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.}
 
@@ -31,9 +33,10 @@ according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
 \examples{
 head(lampreytime)
 
-results <- LT_logit((dead/total) ~ log10(hour), p = c(50, 99),
-weights = lampreytime[c(1:11), ]$total,
-data = lampreytime[c(1:11), ])
+results <- LT_logit((dead / total) ~ log10(hour), p = c(50, 99),
+weights = total,
+data = lampreytime,
+subset = c(month == "May"))
 
 #view calculated LT50 and LT99 for seasonal
 #toxicity of a piscicide, 3-trifluoromethyl-4-nitrophenol, to lamprey in 2011
