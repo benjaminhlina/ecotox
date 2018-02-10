@@ -361,8 +361,8 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
 
   model <- do.call("glm", list(formula = formula,
                                family = binomial(link = "logit"),
-                               weights = substitute(weights),
                                data = data,
+                               weights = substitute(weights),
                                subset = substitute(subset)))
 
   # Calculate heterogeneity correction to confidence intervals
