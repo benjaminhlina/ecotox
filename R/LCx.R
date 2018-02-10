@@ -414,7 +414,11 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
 
   # sample size
 
-  n <- df.residual(model) + 2
+  n <- df + 2
+
+  # variances have to be adjusted for heterogenity
+  # if PGOF returns a signfacnce value less than 0.15
+  # (Finney 1971 p 72; 'SPSS 24')
 
   # covariance matrix
   if (PGOF < het_sig) {
@@ -425,9 +429,6 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
     vcova <- vcov(model)
   }
 
-  # variances have to be adjusted for heterogenity
-  # if PGOF returns a signfacnce value less than 0.15
-  # (Finney 1971 p 72; 'SPSS 24')
   # Intercept variance
 
   var_b0 <- vcova[2, 2]
@@ -451,7 +452,7 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
 
   t <- (1 - conf_level)
   if (PGOF < het_sig) {
-    tdis <- (- qt ((t / 2), df = df.residual(model)))
+    tdis <- (- qt((t / 2), df = df))
   }
 
   else {
@@ -475,9 +476,10 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
   # v11 = var_b1 , v22 = var_b0, v12 = cov_b0_b1
 
   cl_part_1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b0))
-  cl_part_2 <- (var_b1 + (2 * m * cov_b0_b1) + (m ^ 2 * var_b0) -
+  cl_part_2 <- (var_b1 + (2  * cov_b0_b1 * m) + (m ^ 2 * var_b0) -
                   (g * (var_b1 - cov_b0_b1 ^ 2 / var_b0)))
-  cl_part_3 <- (tdis / ((1 - g) * b1)) * sqrt(cl_part_2)
+  cl_part_3 <- (tdis / ((1 - g) * abs(b1))) * sqrt(cl_part_2)
+
 
   # Calculate the fiducial limit LFL=lower fiducial limit,
   # UFL = upper fiducial limit (Finney, 1971, p. 78-79. eq. 4.35)
