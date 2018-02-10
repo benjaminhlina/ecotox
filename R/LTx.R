@@ -41,32 +41,32 @@
 
 
 LT_probit <- function(formula, data, p = seq(1, 99, 1),
-               weights = NULL, het_sig = NULL, conf_level = NULL) {
+               weights, subset = NULL, het_sig = NULL, conf_level = NULL) {
 
-  data$weights <- weights
-  if(is.null(weights)) {
+  model <- do.call("glm", list(formula = formula,
+                               family = binomial(link = "probit"),
+                               data = data,
+                               weights = substitute(weights),
+                               subset = substitute(subset)))
 
-    model <- glm(formula, family = binomial(link = "probit"), data = data)
-  }
 
-  else {model <- glm(formula, family = binomial(link = "probit"),
-                     weights = weights, data = data)
-  }
   # Calculate heterogeneity correction to confidence intervals
   # according to Finney, 1971, (p.72, eq. 4.27; also called "h")
   # Heterogeneity correction factor is used if
   # pearson's goodness of fit test returns a sigficance
   # value less than 0.150 (source: 'SPSS 24')
 
-  PGOF <- (1 - pchisq(sum(residuals(model, type = "pearson") ^ 2),
-                      df.residual(model)))
+  chi_square <- sum(residuals(model, type = "pearson") ^ 2)
+  df <- df.residual(model)
+
+  PGOF <- pchisq(chi_square, df, lower.tail = FALSE)
 
   if (is.null(het_sig)) {
-    het_sig = 0.150
+    het_sig <- 0.150
   }
 
   if (PGOF < het_sig) {
-    het <- sum(residuals(model, type = "pearson") ^ 2) / (df.residual(model))
+    het <- chi_square / df
   }
 
   else {
@@ -249,34 +249,32 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 
 
 
-LT_logit <- function(formula, data, p = seq(1, 99, 1),
-                     weights = NULL, het_sig = NULL, conf_level = NULL) {
+LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
+                     subset = NULL, het_sig = NULL, conf_level = NULL) {
 
-  data$weights <- weights
+  model <- do.call("glm", list(formula = formula,
+                               family = binomial(link = "logit"),
+                               data = data,
+                               weights = substitute(weights),
+                               subset = substitute(subset)))
 
-  if(is.null(weights)) {
 
-    model <- glm(formula, family = binomial(link = "logit"), data = data)
-  }
-
-  else {model <- glm(formula, family = binomial(link = "logit"),
-                     weights = weights, data = data)
-  }
   # Calculate heterogeneity correction to confidence intervals
   # according to Finney, 1971, (p.72, eq. 4.27; also called "h")
   # Heterogeneity correction factor is used if
   # pearson's goodness of fit test returns a sigficance
   # value less than 0.150 (source: 'SPSS 24')
 
-  PGOF <- (1 - pchisq(sum(residuals(model, type = "pearson") ^ 2),
-                      df.residual(model)))
+  chi_square <- sum(residuals(model, type = "pearson") ^ 2)
+  df <- df.residual(model)
+  PGOF <- pchisq(chi_square, df.residual(model), lower.tail = FALSE)
 
   if (is.null(het_sig)) {
-    het_sig = 0.150
+    het_sig <- 0.150
   }
 
   if (PGOF < het_sig) {
-    het <- sum(residuals(model, type = "pearson") ^ 2) / (df.residual(model))
+    het <- chi_square / df
   }
 
   else {
