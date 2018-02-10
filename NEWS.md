@@ -10,7 +10,7 @@
   * `LC_probit` and `LC_logit` and `LT_probit` and `LT_logit` might be 
     depreciated as `lc_probit` and `lc_logit` and `lt_probit` and `lt_logit`
     are simpler function calls for users and are consistent with 
-    naming conventions. Thouhgts?? 
+    naming conventions. Thoughts?? 
 
 ### New Features as of 2-Dec-2017
   * Probit and logit function name conventions have been modified. To call a
