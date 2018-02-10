@@ -18,7 +18,7 @@ LC_logit(formula, data, p = seq(1, 99, 1), weights,
 
 \item{subset}{allows for the data to be subset if desired. Default set to NULL.}
 
-\item{het_sig}{signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.}
+\item{het_sig}{significance level from person's goodness-of-fit test that is used to decide if a heterogeneity factor is used. NULL is set to 0.15.}
 
 \item{conf_level}{Adjust confidence level as necessary or NULL set at 0.95.}
 }

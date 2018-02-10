@@ -8,7 +8,7 @@ LT_logit(formula, data, p = seq(1, 99, 1), weights = NULL,
 subset = NULL, het_sig = NULL, conf_level = NULL)
 }
 \arguments{
-\item{formula}{an object of class formula or one that can be coerced to that class: a symbolic description of the model to be fitted.}
+\item{formula}{an object of class \code{formula} or one that can be coerced to that class: a symbolic description of the model to be fitted.}
 
 \item{data}{an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT is called.}
 
@@ -18,7 +18,7 @@ subset = NULL, het_sig = NULL, conf_level = NULL)
 
 \item{subset}{allows for the data to be subset if desired. Default set to NULL.}
 
-\item{het_sig}{signficance level from person's goodness-of-fit test that is used to decide if a hetrogentiy factor is used. NULL is set to 0.15.}
+\item{het_sig}{significance level from person's goodness-of-fit test that is used to decide if a heterogeneity factor is used. NULL is set to 0.15.}
 
 \item{conf_level}{Adjust confidence level as necessary or NULL set at 0.95.}
 }
