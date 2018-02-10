@@ -211,10 +211,10 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1),
 
   cl_part_1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b0))
 
-  cl_part_2 <- (var_b1 + (2 * m * cov_b0_b1) + (m ^ 2 * var_b0) -
+  cl_part_2 <- (var_b1 + (2 *  cov_b0_b1 * m) + (m ^ 2 * var_b0) -
                   (g * (var_b1 - cov_b0_b1 ^ 2 / var_b0)))
 
-  cl_part_3 <- (tdis / ((1 - g) * b1)) * sqrt(cl_part_2)
+  cl_part_3 <- (tdis / ((1 - g) * abs(b1))) * sqrt(cl_part_2)
 
   # Calculate the fiducial limit LFL=lower fiducial limit,
   # UFL = upper fiducial limit (Finney, 1971, p. 78-79. eq. 4.35)
