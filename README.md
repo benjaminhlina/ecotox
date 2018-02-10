@@ -23,13 +23,6 @@ install.packages("devtools")
 devtools::install_github("benjaminhlina/ecotox")
 ```
 
-or 
-
-``` r
-source("https://raw.githubusercontent.com/MangoTheCat/remotes/master/install-github.R")$value("mangothecat/remotes")
-remotes::install_github("benjaminhlina/ecotox")
-```
-
 ## Example
 
 This is an example which uses the LC_probit function to calculate a LC<sub>50</sub> and LC<sub>99</sub> for a probit analysis : 
