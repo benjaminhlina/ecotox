@@ -2,7 +2,8 @@
 #' @description Calculates lethal concentration (LC) and
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LC_probit(formula, data, p = seq(1, 99, 1), weights, subset,  het_sig = NULL, conf_level = NULL)
+#' @usage LC_probit(formula, data, p = seq(1, 99, 1), weights,
+#'           subset,  het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class 'formula' or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LC is called.
 #' @param p Lethal Concentration (LC) values for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector.
