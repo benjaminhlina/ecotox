@@ -40,8 +40,9 @@ head(lampreytox)
 ## calculate LC50 and LC99 for May
 
 m <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
-          weights = lampreytox[c(1:19), ]$total,
-          data = lampreytox[c(1:19), ])
+          weights = total,
+          data = lampreytox,
+          subset = c(month == "May"))
 
 ## view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
 ## 3-trifluoromethyl-4-nitrophenol (TFM) to lamprey in 2011
