@@ -4,7 +4,7 @@
   * All functions now have subset argument
   * Data argument can now be just the dataframe of interest 
     no need to use brackets to subset 
-  * Weights is no longer an optional agrument and can be specificed 
+  * Weights is no longer an optional argument and can be specified 
     just be object name. Again no need to add name of dataframe, 
     bracket subset and $ to select object used for 
   * LC_probit and logit and LT_probit and LT_logit might be depreciated as 
