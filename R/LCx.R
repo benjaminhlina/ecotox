@@ -153,9 +153,14 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 
   # sample size
 
-  n <- df.residual(model) + 2
+  n <- df + 2
+
+  # variances have to be adjusted for heterogenity
+  # if PGOF returns a signfacnce value less than 0.15
+  # (Finney 1971 p 72; 'SPSS 24')
 
   # covariance matrix
+
   if (PGOF < het_sig) {
     vcova <- vcov(model) * het
   }
@@ -163,9 +168,7 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
   else {
     vcova <- vcov(model)
   }
-  # variances have to be adjusted for heterogenity
-  # if PGOF returns a signfacnce value less than 0.15
-  # (Finney 1971 p 72; 'SPSS 24')
+
   # Intercept variance
 
     var_b0 <- vcova[2, 2]
@@ -189,7 +192,7 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 
   t <- (1 - conf_level)
   if (PGOF < het_sig) {
-    tdis <- (- qt ((t / 2), df = df.residual(model)))
+    tdis <- (- qt((t / 2), df = df))
   }
 
   else {
