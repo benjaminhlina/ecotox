@@ -98,8 +98,8 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 
     model <- do.call("glm", list(formula = formula,
                                  family = binomial(link = "probit"),
-                                 weights = substitute(weights),
                                  data = data,
+                                 weights = substitute(weights),
                                  subset = substitute(subset)))
 
   # Calculate heterogeneity correction to confidence intervals
