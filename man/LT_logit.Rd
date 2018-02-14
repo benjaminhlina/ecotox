@@ -4,7 +4,7 @@
 \alias{LT_logit}
 \title{Lethal Time Logit}
 \usage{
-LT_logit(formula, data, p = seq(1, 99, 1), weights = NULL,
+LT_logit(formula, data, p = seq(1, 99, 1), weights,
 subset = NULL, het_sig = NULL, conf_level = NULL)
 }
 \arguments{
