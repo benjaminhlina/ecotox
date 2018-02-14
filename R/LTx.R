@@ -119,13 +119,13 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
     vcova <- vcov(model)
   }
 
-  # Intercept variance
-
-    var_b0 <- vcova[2, 2]
-
   # Slope variance
 
-    var_b1 <- vcova[1, 1]
+    var_b1 <- vcova[2, 2]
+
+  # Intercept variance
+
+    var_b0 <- vcova[1, 1]
 
   # intercept and slope covariance
 
@@ -153,7 +153,7 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
   # all good sets of data, g will be substantially smaller
   # than 1.0 and ## seldom greater than 0.4."
 
-  g <- ((tdis ^ 2 * var_b0) / b1 ^ 2)
+  g <- ((tdis ^ 2 * var_b1) / b1 ^ 2)
 
   # Calculate m for all LC levels based on probits
   # in est (Robertson et al., 2007, pg. 27; or "m" in Finney, 1971, p. 78)
@@ -166,9 +166,9 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
   # (Finney, 1971,# p. 78-79. eq. 4.35)
   # v11 = var_b1 , v22 = var_b0, v12 = cov_b0_b1
 
-  cl_part_1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b0))
-  cl_part_2 <- (var_b1 + (2 * cov_b0_b1 * m) + (m ^ 2 * var_b0) -
-            (g * (var_b1 - cov_b0_b1 ^ 2 / var_b0)))
+  cl_part_1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b1))
+  cl_part_2 <- (var_b0 + (2 * cov_b0_b1 * m) + (m ^ 2 * var_b1) -
+            (g * (var_b0 - cov_b0_b1 ^ 2 / var_b1)))
 
   cl_part_3 <- (tdis / ((1 - g) * abs(b1))) * sqrt(cl_part_2)
 
@@ -180,7 +180,7 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 
   # Calculate variance for m (Robertson et al., 2007, pg. 27)
 
-  var_m <- (1 / (m ^ 2)) * (var_b1 + 2 * m * cov_b0_b1 + var_b0 * m ^ 2)
+  var_m <- (1 / (m ^ 2)) * (var_b0 + 2 * m * cov_b0_b1 + var_b1 * m ^ 2)
 
   # Make a data frame from the data at all the different values
   table <- data.frame(
@@ -324,13 +324,13 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
   vcova <- vcov(model) * het
   }
 
+  # Slope variance
+
+  var_b1 <- vcova[2, 2]
+
   # Intercept variance
 
-  var_b0 <- vcova[2, 2]
-
-  # Slope variance
-  #
-  var_b1 <- vcova[1, 1]
+  var_b0 <- vcova[1, 1]
 
   # intercept and slope covariance
 
@@ -358,7 +358,7 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
   # all good sets of data, g will be substantially smaller
   # than 1.0 and ## seldom greater than 0.4."
 
-  g <- ((tdis ^ 2 * var_b0) / b1 ^ 2)
+  g <- ((tdis ^ 2 * var_b1) / b1 ^ 2)
 
   # Calculate m for all LC levels based on logits
   # in est (Robertson et al., 2007, pg. 27; or "m" in Finney, 1971, p. 78)
@@ -371,9 +371,9 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
   # (Finney, 1971,# p. 78-79. eq. 4.35)
   # v11 = var_b1 , v22 = var_b0, v12 = cov_b0_b1
 
-  cl_part_1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b0))
-  cl_part_2 <- (var_b1 + (2 * cov_b0_b1 * m) + (m ^ 2 * var_b0) -
-            (g * (var_b1 - cov_b0_b1 ^ 2 / var_b0)))
+  cl_part_1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b1))
+  cl_part_2 <- (var_b0 + (2 * cov_b0_b1 * m) + (m ^ 2 * var_b1) -
+            (g * (var_b0 - cov_b0_b1 ^ 2 / var_b1)))
   cl_part_3 <- (tdis / ((1 - g) * abs(b1))) * sqrt(cl_part_2)
 
   # Calculate the fiducial limit LFL=lower fiducial limit,
@@ -384,7 +384,7 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
 
   # Calculate variance for m (Robertson et al., 2007, pg. 27)
 
-  var_m <- (1 / (m ^ 2)) * (var_b1 + 2 * m * cov_b0_b1 + var_b0 * m ^ 2)
+  var_m <- (1 / (m ^ 2)) * (var_b0 + 2 * m * cov_b0_b1 + var_b1 * m ^ 2)
 
   # Make a data frame from the data at all the different values
   table <- data.frame(
