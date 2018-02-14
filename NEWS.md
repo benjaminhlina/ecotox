@@ -11,6 +11,17 @@
     depreciated as `lc_probit` and `lc_logit` and `lt_probit` and `lt_logit`
     are simpler function calls for users and are consistent with 
     naming conventions. Thoughts?? 
+    
+    
+### Suggested Features 
+
+* `ecotox` has now been up in operation for about 3 months. I've made some recent improvements, e.g. `subset` feature, and am still working on a `spearman_karber` function which I hope to implement within the next month or so. I have three other functions I want to implement: 
+
+* 1) Ratio comparison test for comparing LCs and LTs following Wheeler et al. 2006 
+* 2) A parallelism test following Robertson et al. 2007
+* 3) A equality test following Robertson et al. 2007. 
+
+What features or functions do people want to see? What do people think of current functions and those that are currently under development? 
 
 ### New Features as of 2-Dec-2017
   * Probit and logit function name conventions have been modified. To call a
