@@ -57,7 +57,9 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
   # pearson's goodness of fit test returns a sigficance
   # value less than 0.150 (source: 'SPSS 24')
 
-  chi_square <- sum(residuals(model, type = "pearson") ^ 2)
+  chi_square <- residuals(model, type = "pearson") ^ 2 %>%
+                  sum()
+
   df <- df.residual(model)
 
   PGOF <- pchisq(chi_square, df, lower.tail = FALSE)
@@ -243,14 +245,12 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 #' results
 #'
 #' #dose-response curve can be plotted using 'ggplot2'
+#'
+#' @import magrittr
 #' @import stats
 #' @export
 
-
-
-
-
-
+# Function  LC_logit ----
 
 LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
                      subset = NULL, het_sig = NULL, conf_level = NULL) {
@@ -268,7 +268,9 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
   # pearson's goodness of fit test returns a sigficance
   # value less than 0.150 (source: 'SPSS 24')
 
-  chi_square <- sum(residuals(model, type = "pearson") ^ 2)
+  chi_square <- residuals(model, type = "pearson") ^ 2 %>%
+                  sum()
+
   df <- df.residual(model)
   PGOF <- pchisq(chi_square, df.residual(model), lower.tail = FALSE)
 
