@@ -21,6 +21,7 @@ Description: A simple approach to using a probit or logit analysis to calculate
 Depends: R (>= 3.3.2)
 Imports:
     ggplot2,
+    magrittr,
     stats
 Suggests: 
     dplyr,
