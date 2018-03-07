@@ -143,23 +143,23 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 
   t <- (1 - conf_level)
   if (PGOF < het_sig) {
-    tdis <- (-qt((t / 2), df = df))
+    tdis <- -qt((t / 2), df = df)
   }
 
   else {
-    tdis <- (-qnorm(t / 2))
+    tdis <- -qnorm(t / 2)
   }
 
   # Calculate g (Finney, 1971, p 78, eq. 4.36) "With almost
   # all good sets of data, g will be substantially smaller
   # than 1.0 and ## seldom greater than 0.4."
 
-  g <- ((tdis ^ 2 * var_b1) / b1 ^ 2)
+  g <- (tdis ^ 2 * var_b1) / b1 ^ 2
 
   # Calculate m for all LC levels based on probits
   # in est (Robertson et al., 2007, pg. 27; or "m" in Finney, 1971, p. 78)
 
-  est <- (qnorm(p / 100))
+  est <- qnorm(p / 100)
   m <- (est - b0) / b1
 
   # Calculate correction of fiducial confidence limits according to
@@ -168,8 +168,8 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
   # v11 = var_b1 , v22 = var_b0, v12 = cov_b0_b1
 
   cl_part_1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b1))
-  cl_part_2 <- (var_b0 + (2 * cov_b0_b1 * m) + (m ^ 2 * var_b1) -
-            (g * (var_b0 - cov_b0_b1 ^ 2 / var_b1)))
+  cl_part_2 <- var_b0 + (2 * cov_b0_b1 * m) + (m ^ 2 * var_b1) -
+            (g * (var_b0 - cov_b0_b1 ^ 2 / var_b1))
 
   cl_part_3 <- (tdis / ((1 - g) * abs(b1))) * sqrt(cl_part_2)
 
@@ -348,18 +348,18 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
 
   t <- (1 - conf_level)
   if (PGOF < het_sig) {
-    tdis <- (-qt((t / 2), df = df))
+    tdis <- -qt((t / 2), df = df)
   }
 
   else {
-    tdis <- (-qnorm(t / 2))
+    tdis <- -qnorm(t / 2)
   }
 
   # Calculate g (Finney, 1971, p 78, eq. 4.36) "With almost
   # all good sets of data, g will be substantially smaller
   # than 1.0 and ## seldom greater than 0.4."
 
-  g <- ((tdis ^ 2 * var_b1) / b1 ^ 2)
+  g <- (tdis ^ 2 * var_b1) / b1 ^ 2
 
   # Calculate m for all LC levels based on logits
   # in est (Robertson et al., 2007, pg. 27; or "m" in Finney, 1971, p. 78)
@@ -373,8 +373,8 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
   # v11 = var_b1 , v22 = var_b0, v12 = cov_b0_b1
 
   cl_part_1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b1))
-  cl_part_2 <- (var_b0 + (2 * cov_b0_b1 * m) + (m ^ 2 * var_b1) -
-            (g * (var_b0 - cov_b0_b1 ^ 2 / var_b1)))
+  cl_part_2 <- var_b0 + (2 * cov_b0_b1 * m) + (m ^ 2 * var_b1) -
+            (g * (var_b0 - cov_b0_b1 ^ 2 / var_b1))
   cl_part_3 <- (tdis / ((1 - g) * abs(b1))) * sqrt(cl_part_2)
 
   # Calculate the fiducial limit LFL=lower fiducial limit,
@@ -388,26 +388,25 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
   var_m <- (1 / (m ^ 2)) * (var_b0 + 2 * m * cov_b0_b1 + var_b1 * m ^ 2)
 
   # Make a data frame from the data at all the different values
-  table <- data.frame(
-    p = p,
-    n = n,
-    time = 10 ^ m,
-    LCL = 10 ^ LCL,
-    UCL = 10 ^ UCL,
-    LCL_dis = 10 ^ m - 10 ^ LCL,
-    UCL_dis = 10 ^ UCL - 10 ^ m,
-    chi_square = chi_square,
-    df = df,
-    PGOF_sig = PGOF,
-    h = het,
-    slope = b1,
-    slope_se = slope_se,
-    slope_sig = slope_sig,
-    intercept = b0,
-    intercept_se = intercept_se,
-    intercept_sig = intercept_sig,
-    z = z_value,
-    var_m = var_m)
+  table <- data.frame(p = p,
+                      n = n,
+                      time = 10 ^ m,
+                      LCL = 10 ^ LCL,
+                      UCL = 10 ^ UCL,
+                      LCL_dis = 10 ^ m - 10 ^ LCL,
+                      UCL_dis = 10 ^ UCL - 10 ^ m,
+                      chi_square = chi_square,
+                      df = df,
+                      PGOF_sig = PGOF,
+                      h = het,
+                      slope = b1,
+                      slope_se = slope_se,
+                      slope_sig = slope_sig,
+                      intercept = b0,
+                      intercept_se = intercept_se,
+                      intercept_sig = intercept_sig,
+                      z = z_value,
+                      var_m = var_m)
 
   return(table)
 }
