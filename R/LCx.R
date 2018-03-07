@@ -174,17 +174,17 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
     vcova <- vcov(model)
   }
 
-
   # Intercept variance
 
-    var_b0 <- vcova[1, 1]
+  var_b0 <- vcova[1, 1]
 
   # Slope variance
-    var_b1 <- vcova[2, 2]
+
+  var_b1 <- vcova[2, 2]
 
   # Slope & intercept covariance
 
-    cov_b0_b1 <- vcova[1, 2]
+  cov_b0_b1 <- vcova[1, 2]
 
   # Adjust distibution depending on heterogeneity (Finney, 1971,  p72,
   # t distubtion used instead of normal distubtion  with appropriate df
@@ -197,11 +197,11 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 
   t <- (1 - conf_level)
   if (PGOF < het_sig) {
-    tdis <- (- qt((t / 2), df = df))
+    tdis <- -qt((t / 2), df = df)
   }
 
   else {
-    tdis <- (- qnorm(t / 2))
+    tdis <- -qnorm(t / 2)
   }
 
   # Calculate g (Finney, 1971, p 78, eq. 4.36) "With almost
@@ -213,7 +213,7 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
   # Calculate m for all LC levels based on probits
   # in est (Robertson et al., 2007, pg. 27; or "m" in Finney, 1971, p. 78)
 
-  est <- (qnorm(p / 100))
+  est <- qnorm(p / 100)
   m <- (est - b0) / b1
 
   # Calculate correction of fiducial limits according to Fieller method
@@ -463,11 +463,11 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
 
   t <- (1 - conf_level)
   if (PGOF < het_sig) {
-    tdis <- (- qt((t / 2), df = df))
+    tdis <- -qt((t / 2), df = df)
   }
 
   else {
-    tdis <- (- qnorm(t / 2))
+    tdis <- -qnorm(t / 2)
   }
 
   # Calculate g (Finney, 1971, p 78, eq. 4.36) "With almost
@@ -503,26 +503,25 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
   var_m <- (1 / (m ^ 2)) * (var_b0 + 2 * m * cov_b0_b1 + var_b1 * m ^ 2)
 
   # Make a data frame from the data at all the different values
-  table <- data.frame(
-    p = p,
-    n = n,
-    dose = 10 ^ m,
-    LCL = 10 ^ LCL,
-    UCL = 10 ^ UCL,
-    LCL_dis = 10 ^ m - 10 ^ LCL,
-    UCL_dis = 10 ^ UCL - 10 ^ m,
-    chi_square = chi_square,
-    df = df,
-    PGOF_sig = PGOF,
-    h = het,
-    slope = b1,
-    slope_se = slope_se,
-    slope_sig = slope_sig,
-    intercept = b0,
-    intercept_se = intercept_se,
-    intercept_sig = intercept_sig,
-    z = z_value,
-    var_m = var_m)
+  table <- data.frame(p = p,
+                      n = n,
+                      dose = 10 ^ m,
+                      LCL = 10 ^ LCL,
+                      UCL = 10 ^ UCL,
+                      LCL_dis = 10 ^ m - 10 ^ LCL,
+                      UCL_dis = 10 ^ UCL - 10 ^ m,
+                      chi_square = chi_square,
+                      df = df,
+                      PGOF_sig = PGOF,
+                      h = het,
+                      slope = b1,
+                      slope_se = slope_se,
+                      slope_sig = slope_sig,
+                      ntercept = b0,
+                      intercept_se = intercept_se,
+                      intercept_sig = intercept_sig,
+                      z = z_value,
+                      var_m = var_m)
 
   return(table)
 
