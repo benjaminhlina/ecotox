@@ -6,10 +6,10 @@
     no need to use brackets to subset 
   * `Weights` is no longer an optional argument and can be specified 
     just by object name. Again no need to add name of dataframe, 
-    bracket to subset `[]` and `$` to select object used for `weights`.
+    bracket to subset `[]` and `$` to select object used for `weights`. 
   * `LC_probit` and `LC_logit` and `LT_probit` and `LT_logit` might be 
-    depreciated as `lc_probit` and `lc_logit` and `lt_probit` and `lt_logit`
-    are simpler function calls for users and are consistent with 
+    depreciated as `lc_probit` and `lc_logit` and `lt_probit` and `lt_logit` 
+    are simpler function calls for users and are consistent with
     naming conventions. Thoughts?? 
     
     
@@ -56,4 +56,3 @@ What features or functions do people want to see? What do people think of curren
   * Spearman-Karber method is in development  
   * Parallism test and equality test is in development 
   * Shiny app 
-  * video demo 
