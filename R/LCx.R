@@ -91,18 +91,19 @@
 #'
 #' p2
 #' @import ggplot2
+#' @import magrittr
 #' @import stats
 #' @export
 
-
+# Function  LC_probit ----
 LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
                       subset = NULL, het_sig = NULL, conf_level = NULL) {
 
-    model <- do.call("glm", list(formula = formula,
-                                 family = binomial(link = "probit"),
-                                 data = data,
-                                 weights = substitute(weights),
-                                 subset = substitute(subset)))
+  model <- do.call("glm", list(formula = formula,
+                               family = binomial(link = "probit"),
+                               data = data,
+                               weights = substitute(weights),
+                               subset = substitute(subset)))
 
   # Calculate heterogeneity correction to confidence intervals
   # according to Finney, 1971, (p.72, eq. 4.27; also called "h")
@@ -110,7 +111,9 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
   # pearson's goodness of fit test returns a sigficance
   # value less than 0.150 (source: 'SPSS 24')
 
-  chi_square <- sum(residuals.glm(model, type = "pearson") ^ 2)
+  chi_square <- residuals.glm(model, type = "pearson") ^ 2 %>%
+                  sum()
+
   df <- df.residual(model)
 
   PGOF <- pchisq(chi_square, df, lower.tail = FALSE)
@@ -357,10 +360,11 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #'
 #' p2
 #' @import ggplot2
+#' @import magrittr
 #' @import stats
 #' @export
 
-
+# Function  LC_logit ----
 LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
                      subset = NULL, het_sig = NULL, conf_level = NULL) {
 
@@ -376,7 +380,9 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
   # pearson's goodness of fit test returns a sigficance
   # value less than 0.150 (source: 'SPSS 24')
 
-  chi_square <- sum(residuals.glm(model, type = "pearson") ^ 2)
+  chi_square <- residuals.glm(model, type = "pearson") ^ 2 %>%
+                  sum()
+
   df <- df.residual(model)
 
   PGOF <- pchisq(chi_square, df, lower.tail = FALSE)
