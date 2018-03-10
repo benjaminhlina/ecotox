@@ -5,7 +5,7 @@
 \title{Lethal Concentration Probit}
 \usage{
 LC_probit(formula, data, p = seq(1, 99, 1), weights,
-          subset,  het_sig = NULL, conf_level = NULL)
+          subset = NULL,  het_sig = NULL, conf_level = NULL)
 }
 \arguments{
 \item{formula}{an object of class \code{formula} or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.}
@@ -40,7 +40,7 @@ head(lampreytox)
 
 #calculate LC50 and LC99
 
-m <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
+m <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
          weights = total,
          data = lampreytox,
          subset = c(month == "May"))
@@ -55,7 +55,7 @@ m
 library(ggplot2)
 
 p1 <- ggplot(data = lampreytox[c(1:19), ],
-             aes(x = log10(dose), y = (dead / total))) +
+             aes(x = log10(dose), y = (response / total))) +
   geom_point() +
   geom_smooth(method = "glm",
             method.args = list(family = binomial(link = "probit")),
@@ -65,17 +65,17 @@ p1
 
 #calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
 
-j <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
+j <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
         weights = total,
         data = lampreytox,
         subset = c(month == "June"))
 
-a <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
+a <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
         weights = total,
         data = lampreytox,
         subset = c(month == "August"))
 
-s <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
+s <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
         weights = total,
         data = lampreytox,
         subset = c(month == "September"))

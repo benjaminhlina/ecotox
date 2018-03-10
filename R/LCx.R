@@ -5,7 +5,7 @@
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
 #' @usage LC_probit(formula, data, p = seq(1, 99, 1), weights,
-#'           subset,  het_sig = NULL, conf_level = NULL)
+#'           subset = NULL,  het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class `formula` or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LC_probit is called.
 #' @param p Lethal Concentration (LC) value for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector.
@@ -31,7 +31,7 @@
 #'
 #' #calculate LC50 and LC99
 #'
-#' m <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
+#' m <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
 #'          weights = total,
 #'          data = lampreytox,
 #'          subset = c(month == "May"))
@@ -46,7 +46,7 @@
 #' library(ggplot2)
 #'
 #' p1 <- ggplot(data = lampreytox[c(1:19), ],
-#'              aes(x = log10(dose), y = (dead / total))) +
+#'              aes(x = log10(dose), y = (response / total))) +
 #'   geom_point() +
 #'   geom_smooth(method = "glm",
 #'             method.args = list(family = binomial(link = "probit")),
@@ -56,17 +56,17 @@
 #'
 #' #calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
 #'
-#' j <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
+#' j <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
 #'         weights = total,
 #'         data = lampreytox,
 #'         subset = c(month == "June"))
 #'
-#' a <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
+#' a <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
 #'         weights = total,
 #'         data = lampreytox,
 #'         subset = c(month == "August"))
 #'
-#' s <- LC_probit((dead / total) ~ log10(dose), p = c(50, 99),
+#' s <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
 #'         weights = total,
 #'         data = lampreytox,
 #'         subset = c(month == "September"))
@@ -196,12 +196,15 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
   }
 
   t <- (1 - conf_level)
+
+  t_2 <- (t / 2)
+
   if (PGOF < het_sig) {
-    tdis <- -qt((t / 2), df = df)
+    tdis <- -qt(t_2, df = df)
   }
 
   else {
-    tdis <- -qnorm(t / 2)
+    tdis <- -qnorm(t_2)
   }
 
   # Calculate g (Finney, 1971, p 78, eq. 4.36) "With almost
@@ -300,7 +303,7 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #'
 #' #calculate LC50 and LC99 for May
 #'
-#' m <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
+#' m <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
 #'          weights = total,
 #'          data = lampreytox,
 #'          subset = c(month == "May"))
@@ -315,7 +318,7 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #' library(ggplot2)
 #'
 #' p1 <- ggplot(data = lampreytox[c(1:19), ],
-#'              aes(x = log10(dose), y = (dead / total))) +
+#'              aes(x = log10(dose), y = (response / total))) +
 #'   geom_point() +
 #'   geom_smooth(method = "glm",
 #'             method.args = list(family = binomial(link = "logit")),
@@ -325,17 +328,17 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #'
 #' #calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
 #'
-#' j <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
+#' j <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
 #'         weights = total,
 #'         data = lampreytox,
 #'         subset = c(month == "June"))
 #'
-#' a <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
+#' a <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
 #'         weights = total,
 #'         data = lampreytox,
 #'         subset = c(month == "August"))
 #'
-#' s <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
+#' s <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
 #'         weights = total,
 #'         data = lampreytox,
 #'         subset = c(month == "September"))
@@ -462,12 +465,15 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
   }
 
   t <- (1 - conf_level)
+
+  t_2 <- (t / 2)
+
   if (PGOF < het_sig) {
-    tdis <- -qt((t / 2), df = df)
+    tdis <- -qt(t_2, df = df)
   }
 
   else {
-    tdis <- -qnorm(t / 2)
+    tdis <- -qnorm(t_2)
   }
 
   # Calculate g (Finney, 1971, p 78, eq. 4.36) "With almost

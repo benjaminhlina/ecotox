@@ -41,7 +41,7 @@ head(lampreytox)
 
 #calculate LC50 and LC99 for May
 
-m <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
+m <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
          weights = total,
          data = lampreytox,
          subset = c(month == "May"))
@@ -56,7 +56,7 @@ m
 library(ggplot2)
 
 p1 <- ggplot(data = lampreytox[c(1:19), ],
-             aes(x = log10(dose), y = (dead / total))) +
+             aes(x = log10(dose), y = (response / total))) +
   geom_point() +
   geom_smooth(method = "glm",
             method.args = list(family = binomial(link = "logit")),
@@ -66,17 +66,17 @@ p1
 
 #calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
 
-j <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
+j <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
         weights = total,
         data = lampreytox,
         subset = c(month == "June"))
 
-a <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
+a <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
         weights = total,
         data = lampreytox,
         subset = c(month == "August"))
 
-s <- LC_logit((dead / total) ~ log10(dose), p = c(50, 99),
+s <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
         weights = total,
         data = lampreytox,
         subset = c(month == "September"))

@@ -24,7 +24,7 @@
 
 #' @examples head(lampreytime)
 #'
-#' results <- LT_probit((dead / total) ~ log10(hour),
+#' results <- LT_probit((response / total) ~ log10(hour),
 #' p = c(50, 99),
 #' weights = total,
 #' data = lampreytime,
@@ -234,7 +234,8 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 
 #' @examples head(lampreytime)
 #'
-#' results <- LT_logit((dead / total) ~ log10(hour), p = c(50, 99),
+#' results <- LT_logit((response / total) ~ log10(hour),
+#' p = c(50, 99),
 #' weights = total,
 #' data = lampreytime,
 #' subset = c(month == "May"))

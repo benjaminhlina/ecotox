@@ -33,7 +33,7 @@ according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
 \examples{
 head(lampreytime)
 
-results <- LT_probit((dead / total) ~ log10(hour),
+results <- LT_probit((response / total) ~ log10(hour),
 p = c(50, 99),
 weights = total,
 data = lampreytime,
