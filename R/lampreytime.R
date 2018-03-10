@@ -8,7 +8,7 @@
 #'   \item{dose}{averaged measured TFM dose (mg/L) over 12 h of exposures}
 #'   \item{month}{month in which toxicity test occurred}
 #'   \item{hour}{duration of exposure in hours}
-#'   \item{dead}{number of lamprey that died over 12 h exposure to TFM}
+#'   \item{response}{number of lamprey that responded over 12 h exposure to TFM}
 #'   \item{survive}{number of lamprey that survived over 12 h exposure to TFM}
 #'   \item{total}{total number of lamprey that were exposed to TFM over 12 h}
 #'   }
