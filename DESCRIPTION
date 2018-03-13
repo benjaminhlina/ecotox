@@ -29,8 +29,7 @@ Suggests:
     Hmisc,
     tidyr,
     testthat,
-    xlsx,
-    
+    xlsx
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
