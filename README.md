@@ -63,8 +63,7 @@ m
 
 * When using this package please cite the following  publication:
 
-  Hlina, B.L., Birceanu, O., Robinson, C., Thackaray, N., Tessier, L.R., Muhametsafina, A., Bragg,   L.M, Servos, M.R., Wilkie, M.P., *In Preparation*. Changes in the sensitivity of     piscicide in an invasive species. Environmental Science & Technology.
-
+  Hlina, B.L., Birceanu, O., Robinson, C., Thackeray, N., Tessier, L.R., Muhametsafina, A., Bragg, L.M., Servos, M.R., Wilkie, M.P., *In Preparation*. Changes in the sensitivity of piscicide in an invasive species. Environmental Science & Technology.
 
 
 * version 1.3.1 written by Benjamin L. Hlina, Wilfrid Laurier University, Waterloo, Ontario, Canada. Written in ['Programming Language R'](https://www.r-project.org/), version 3.4.3 (2017-11-30) -- "Kite-Eating Tree". Run on a PC with Intel&reg; Core&trade; I7 - Q820 CPU, 1.73 GHz processor, 14.0 GB RAM, and Microsoft Windows 7 Professional operating system, 2009 Service Pack 1. Source code is available at ['ecotox'](https://github.com/benjaminhlina/ecotox) or by contacting Benjamin L. Hlina at benjamin.hlina@gmail.com
