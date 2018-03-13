@@ -36,8 +36,6 @@
 #' results
 #'
 #' #dose-response curve can be plotted using 'ggplot2'
-#' @import magrittr
-#' @import stats
 #' @export
 
 # Function  LT_probit ----
@@ -247,8 +245,6 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 #'
 #' #dose-response curve can be plotted using 'ggplot2'
 #'
-#' @import magrittr
-#' @import stats
 #' @export
 
 # Function  LC_logit ----

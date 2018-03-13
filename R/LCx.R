@@ -362,9 +362,6 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #'                 position = position_dodge(width = 0.9))
 #'
 #' p2
-#' @import ggplot2
-#' @import magrittr
-#' @import stats
 #' @export
 
 # Function  LC_logit ----
