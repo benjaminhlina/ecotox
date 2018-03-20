@@ -1,16 +1,20 @@
-## New Version Submission - v1.3.0
+## New Version Submission - v1.3.1
 This is an updated version of 'ecotox' . In this version I have:
 
-* added new functions LC_logit and LT_logit
-* LC and LT have been deprecated and are now LC_probit and LT_probit
-* updated naming conventions for functions, function arguments, and 
-  within functions object names. 
-* added AppVeyor 
+* LC and LT have been removed
+* All functions now have `subset` argument
+* `Data` argument can now be just the dataframe of interest 
+  no need to use brackets to subset 
+* `Weights` is no longer an optional argument and can be specified 
+    just by object name. Again no need to add the name of dataframe, 
+    bracket to subset `[]` and `$` to select object used for `weights`. 
+* Tests have been updated are now functional to testing the functions within 
+  'ecotox'.
 
 ## Test environments
-* local Windows 7, SP1 install, R 3.4.3
-* ubuntu 14.04 (on travis-ci), R 3.4.3
-* local macOS 10.12.2, Sierra install, R 3.4.2
+* local Windows 7, SP1 install, R 3.4.4
+* ubuntu 14.04 (on travis-ci), R 3.4.4
+* local macOS 10.12.2, Sierra install, R 3.4.4
 * win-builder (devel and release)
 
 ## R CMD check results
