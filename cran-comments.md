@@ -1,4 +1,4 @@
-## New Version Submission - v1.3.1
+## New Version Submission - v1.3.1.9000
 This is an updated version of 'ecotox' . In this version I have:
 
 * LC and LT have been removed
@@ -18,7 +18,11 @@ This is an updated version of 'ecotox' . In this version I have:
 * win-builder (devel and release)
 
 ## R CMD check results
-There were no ERRORs, WARNINGs, or NOTEs. 
+There were no ERRORs, WARNINGs. 
+
+* R CMD check returned 1 NOTE regarding an adjustment to the Maintainer's 
+  name. I realized I'd like my middle initla, L, to be included which it 
+  hasn't been in previous version on CRAN, Thanks. 
 
 ## Downstream dependencies
 I have ran R CMD check on downstream dependencies of 'ecotox'

@@ -18,7 +18,7 @@ Description: A simple approach to using a probit or logit analysis to calculate
         Wheeler, M.W., Park, R.M., and Bailer, A.J. (2006) <doi:10.1897/05-320R.1>;
         Robertson, J.L., Savin, N.E., Russell, R.M., and Preisler, H.K.
         (2007, ISBN: 0849323312).
-Depends: R (>= 3.3.2)
+Depends: R (>= 3.3.0)
 Imports:
     ggplot2,
     magrittr,
