@@ -11,9 +11,9 @@
 #' @param p Lethal Concentration (LC) value for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector.
 #' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.
 #' @param subset allows for the data to be subset if desired. Default set to NULL.
-#' @param het_sig significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. NULL is set to 0.15.
+#' @param het_sig significance level from person's chi square goodness-of-fit test (pgof) that is used to decide if a heterogeneity factor is used. NULL is set to 0.15.
 #' @param conf_level Adjust confidence level as necessary or NULL set at 0.95.
-#' @return Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LC variance.
+#' @return Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
 #' @references
 #'
 #' Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England, ISBN: 052108041X
@@ -284,7 +284,7 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #' @param subset allows for the data to be subset if desired. Default set to NULL.
 #' @param het_sig significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. NULL is set to 0.15.
 #' @param conf_level Adjust confidence level as necessary or NULL set at 0.95.
-#' @return Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test, slope, intercept, slope and intercept p values and standard error, and LC variance.
+#' @return Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
 #' @references
 #'
 #' Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England, ISBN: 052108041X
