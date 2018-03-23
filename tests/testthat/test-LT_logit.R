@@ -11,5 +11,5 @@ test_that("Determine if LT_logit calculations are correct", {
   expect_equal(m$LCL, expected = 8.851, tolerance = 0.001)
   expect_equal(m$UCL, expected = 11.901, tolerance = 0.001)
   expect_equal(m$chi_square, expected = 16.616, tolerance = 0.001)
-  expect_equal(m$PGOF_sig, expected = 0.055, tolerance = 0.001)
+  expect_equal(m$pgof_sig, expected = 0.055, tolerance = 0.001)
 })

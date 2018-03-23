@@ -11,5 +11,5 @@ test_that("Determine if LT_probit runs properly", {
   expect_equal(m$LCL, expected = 8.934, tolerance = 0.001)
   expect_equal(m$UCL, expected = 11.742, tolerance = 0.001)
   expect_equal(m$chi_square, expected = 13.499, tolerance = 0.001)
-  expect_equal(m$PGOF_sig, expected = 0.1412, tolerance = 0.0001)
+  expect_equal(m$pgof_sig, expected = 0.1412, tolerance = 0.0001)
 })
