@@ -52,7 +52,7 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
   # Calculate heterogeneity correction to confidence intervals
   # according to Finney, 1971, (p.72, eq. 4.27; also called "h")
   # Heterogeneity correction factor is used if
-  # pearson's goodness of fit test returns a sigficance
+  # pearson's goodness of fit test (pgof) returns a sigficance
   # value less than 0.150 (source: 'SPSS 24')
 
   chi_square <- residuals(model, type = "pearson") ^ 2 %>%
@@ -60,13 +60,13 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 
   df <- df.residual(model)
 
-  PGOF <- pchisq(chi_square, df, lower.tail = FALSE)
+  pgof <- pchisq(chi_square, df, lower.tail = FALSE)
 
   if (is.null(het_sig)) {
     het_sig <- 0.150
   }
 
-  if (PGOF < het_sig) {
+  if (pgof < het_sig) {
     het <- chi_square / df
   }
 
@@ -104,12 +104,12 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
   n <- df + 2
 
   # variances have to be adjusted for heterogenity
-  # if PGOF returns a signfacnce value less than 0.15
+  # if pgof returns a signfacnce value less than 0.15
   # (Finney 1971 p 72; 'SPSS 24')
 
   # covariance matrix
 
-  if (PGOF < het_sig) {
+  if (pgof < het_sig) {
 
   vcova <- vcov(model) * het
   }
@@ -132,7 +132,7 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 
   # Adjust distibution depending on heterogeneity (Finney, 1971,  p72,
   # t distubtion used instead of normal distubtion  with appropriate df
-  # if PGOF returns a signfacnce value less than 0.15
+  # if pgof returns a signfacnce value less than 0.15
   # (Finney 1971 p 72; 'SPSS 24')
 
   if (is.null(conf_level)) {
@@ -140,7 +140,7 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
   }
 
   t <- (1 - conf_level)
-  if (PGOF < het_sig) {
+  if (pgof < het_sig) {
     tdis <- -qt((t / 2), df = df)
   }
 
@@ -191,7 +191,7 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
                       UCL_dis = 10 ^ UCL - 10 ^ m,
                       chi_square = chi_square,
                       df = df,
-                      PGOF_sig = PGOF,
+                      pgof_sig = pgof,
                       h = het,
                       slope = b1,
                       slope_se = slope_se,
@@ -262,20 +262,20 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
   # Calculate heterogeneity correction to confidence intervals
   # according to Finney, 1971, (p.72, eq. 4.27; also called "h")
   # Heterogeneity correction factor is used if
-  # pearson's goodness of fit test returns a sigficance
+  # pearson's goodness of fit test (pgof) returns a sigficance
   # value less than 0.150 (source: 'SPSS 24')
 
   chi_square <- residuals(model, type = "pearson") ^ 2 %>%
                   sum()
 
   df <- df.residual(model)
-  PGOF <- pchisq(chi_square, df.residual(model), lower.tail = FALSE)
+  pgof <- pchisq(chi_square, df.residual(model), lower.tail = FALSE)
 
   if (is.null(het_sig)) {
     het_sig <- 0.150
   }
 
-  if (PGOF < het_sig) {
+  if (pgof < het_sig) {
     het <- chi_square / df
   }
 
@@ -314,11 +314,11 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
   n <- df + 2
 
   # variances have to be adjusted for heterogenity
-  # if PGOF returns a signfacnce value less than 0.15
+  # if pgof returns a signfacnce value less than 0.15
   # (Finney 1971 p 72; 'SPSS 24')
 
   # covariance matrix
-  if (PGOF < het_sig) {
+  if (pgof < het_sig) {
   vcova <- vcov(model) * het
   }
 
@@ -336,7 +336,7 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
 
   # Adjust distibution depending on heterogeneity (Finney, 1971,  p72,
   # t distubtion used instead of normal distubtion  with appropriate df
-  # if PGOF returns a signfacnce value less than 0.15
+  # if pgof returns a signfacnce value less than 0.15
   # (Finney 1971 p 72; 'SPSS 24')
 
   if (is.null(conf_level)) {
@@ -344,7 +344,7 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
   }
 
   t <- (1 - conf_level)
-  if (PGOF < het_sig) {
+  if (pgof < het_sig) {
     tdis <- -qt((t / 2), df = df)
   }
 
@@ -394,7 +394,7 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
                       UCL_dis = 10 ^ UCL - 10 ^ m,
                       chi_square = chi_square,
                       df = df,
-                      PGOF_sig = PGOF,
+                      pgof_sig = pgof,
                       h = het,
                       slope = b1,
                       slope_se = slope_se,
