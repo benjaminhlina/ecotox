@@ -246,16 +246,16 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
     dose <- 10 ^ m
     LCL <- 10 ^ LCL
     UCL <- 10 ^ UCL
-    LCL_dis <- 10 ^ m - 10 ^ LCL
-    UCL_dis <- 10 ^ UCL - 10 ^ m
+    LCL_dis <- dose - LCL
+    UCL_dis <- UCL - dose
   }
 
   if (log_x == FALSE) {
   dose <- m
   LCL <- LCL
   UCL <- UCL
-  LCL_dis <-  m - LCL
-  UCL_dis <- UCL - m
+  LCL_dis <-  dose - LCL
+  UCL_dis <- UCL - dose
   }
 
 
@@ -525,16 +525,16 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
     dose <- 10 ^ m
     LCL <- 10 ^ LCL
     UCL <- 10 ^ UCL
-    LCL_dis <- 10 ^ m - 10 ^ LCL
-    UCL_dis <- 10 ^ UCL - 10 ^ m
+    LCL_dis <- dose - LCL
+    UCL_dis <- UCL - dose
   }
 
   if (log_x == FALSE) {
     dose <- m
     LCL <- LCL
     UCL <- UCL
-    LCL_dis <-  m - LCL
-    UCL_dis <- UCL - m
+    LCL_dis <-  dose - LCL
+    UCL_dis <- UCL - dose
   }
   # Make a data frame from the data at all the different values
   table <- data.frame(p = p,
