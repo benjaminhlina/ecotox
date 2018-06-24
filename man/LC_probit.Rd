@@ -56,7 +56,7 @@ m
 
 library(ggplot2)
 
-p1 <- ggplot(data = lampreytox[c(1:19), ],
+p1 <- ggplot(data = subset(lampreytox, month \%in\% c("May")),
              aes(x = log10(dose), y = (response / total))) +
   geom_point() +
   geom_smooth(method = "glm",

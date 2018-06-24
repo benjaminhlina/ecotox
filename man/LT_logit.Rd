@@ -5,7 +5,7 @@
 \title{Lethal Time Logit}
 \usage{
 LT_logit(formula, data, p = seq(1, 99, 1), weights,
-subset = NULL, het_sig = NULL, conf_level = NULL)
+subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL)
 }
 \arguments{
 \item{formula}{an object of class \code{formula} or one that can be coerced to that class: a symbolic description of the model to be fitted.}

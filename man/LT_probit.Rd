@@ -5,7 +5,7 @@
 \title{Lethal Time Probit}
 \usage{
 LT_probit(formula, data, p = seq(1, 99, 1), weights,
-subset = NULL, het_sig = NULL, conf_level = NULL)
+subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL)
 }
 \arguments{
 \item{formula}{an object of class \code{formula} or one that can be coerced to that class: a symbolic description of the model to be fitted.}
@@ -17,6 +17,8 @@ subset = NULL, het_sig = NULL, conf_level = NULL)
 \item{weights}{vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.}
 
 \item{subset}{allows for the data to be subset if desired. Default set to NULL.}
+
+\item{log_x}{Default is TRUE and will calculate results using the antilog10 given that the x varaible has been log10 tranformed. If FALSE results will not be back transformed.}
 
 \item{het_sig}{significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. NULL is set to 0.15.}
 
