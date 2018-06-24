@@ -5,7 +5,7 @@
 \title{Lethal Concentration Logit}
 \usage{
 LC_logit(formula, data, p = seq(1, 99, 1), weights,
-         subset = NULL, het_sig = NULL, conf_level = NULL)
+         subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL)
 }
 \arguments{
 \item{formula}{an object of class \code{formula} or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.}
@@ -21,6 +21,8 @@ LC_logit(formula, data, p = seq(1, 99, 1), weights,
 \item{het_sig}{significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. NULL is set to 0.15.}
 
 \item{conf_level}{Adjust confidence level as necessary or NULL set at 0.95.}
+
+\item{log_x}{Default is TRUE and will calculate results using the antilog10 given that the x varaible has been log10 tranformed. If FALSE results will not be back transformed.}
 }
 \value{
 Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
