@@ -18,6 +18,8 @@ subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL)
 
 \item{subset}{allows for the data to be subset if desired. Default set to NULL.}
 
+\item{log_x}{Default is TRUE and will calculate results using the antilog10 given that the x varaible has been log10 tranformed. If FALSE results will not be back transformed.}
+
 \item{het_sig}{significance level from person's chi sqaure goodness-of-fit test that is used to decide if a heterogeneity factor is used. NULL is set to 0.15.}
 
 \item{conf_level}{Adjust confidence level as necessary or NULL set at 0.95.}

@@ -238,6 +238,7 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT_logit is called.
 #' @param p Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.
 #' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.
+#' @param log_x Default is TRUE and will calculate results using the antilog10 given that the x varaible has been log10 tranformed. If FALSE results will not be back transformed.
 #' @param subset allows for the data to be subset if desired. Default set to NULL.
 #' @param het_sig significance level from person's chi sqaure goodness-of-fit test that is used to decide if a heterogeneity factor is used. NULL is set to 0.15.
 #' @param conf_level  Adjust confidence level as necessary or NULL set at 0.95.
