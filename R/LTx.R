@@ -5,12 +5,14 @@
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
 #' @usage LT_probit(formula, data, p = seq(1, 99, 1), weights,
-#' subset = NULL, het_sig = NULL, conf_level = NULL)
+#' subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class `formula` or one that can be coerced to that class: a symbolic description of the model to be fitted.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT_probit is called.
 #' @param p Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.
+#'
 #' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.
 #' @param subset allows for the data to be subset if desired. Default set to NULL.
+#' @param log_x Default is TRUE and will calculate results using the antilog10 given that the x varaible has been log10 tranformed. If FALSE results will not be back transformed.
 #' @param het_sig significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. NULL is set to 0.15.
 #' @param conf_level  Adjust confidence level as necessary or NULL set at 0.95.
 #' @return Returns a data frame with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LT variance.
@@ -181,14 +183,31 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 
   var_m <- (1 / (m ^ 2)) * (var_b0 + 2 * m * cov_b0_b1 + var_b1 * m ^ 2)
 
+  if (log_x == TRUE) {
+    time <- 10 ^ m
+    LCL <- 10 ^ LCL
+    UCL <- 10 ^ UCL
+    LCL_dis <- 10 ^ m - 10 ^ LCL
+    UCL_dis <- 10 ^ UCL - 10 ^ m
+  }
+
+  if (log_x == FALSE) {
+    time <- m
+    LCL <- LCL
+    UCL <- UCL
+    LCL_dis <-  m - LCL
+    UCL_dis <- UCL - m
+  }
+
+
   # Make a data frame from the data at all the different values
   table <- data.frame(p = p,
                       n = n,
-                      time = 10 ^ m,
-                      LCL = 10 ^ LCL,
-                      UCL = 10 ^ UCL,
-                      LCL_dis = 10 ^ m - 10 ^ LCL,
-                      UCL_dis = 10 ^ UCL - 10 ^ m,
+                      time = time,
+                      LCL =  LCL,
+                      UCL =  UCL,
+                      LCL_dis = LCL_dis,
+                      UCL_dis =  UCL_dis,
                       chi_square = chi_square,
                       df = df,
                       pgof_sig = pgof,
@@ -213,7 +232,7 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 #' its fiducial confidence limits (CL) using a logit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
 #' @usage LT_logit(formula, data, p = seq(1, 99, 1), weights,
-#' subset = NULL, het_sig = NULL, conf_level = NULL)
+#' subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class `formula` or one that can be coerced to that class: a symbolic description of the model to be fitted.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LT_logit is called.
 #' @param p Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.
@@ -250,7 +269,8 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 # Function  LC_logit ----
 
 LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
-                     subset = NULL, het_sig = NULL, conf_level = NULL) {
+                     subset = NULL, log_x = TRUE, het_sig = NULL,
+                     conf_level = NULL) {
 
   model <- do.call("glm", list(formula = formula,
                                family = binomial(link = "logit"),
@@ -384,14 +404,31 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
 
   var_m <- (1 / (m ^ 2)) * (var_b0 + 2 * m * cov_b0_b1 + var_b1 * m ^ 2)
 
+  if (log_x == TRUE) {
+    time <- 10 ^ m
+    LCL <- 10 ^ LCL
+    UCL <- 10 ^ UCL
+    LCL_dis <- 10 ^ m - 10 ^ LCL
+    UCL_dis <- 10 ^ UCL - 10 ^ m
+  }
+
+  if (log_x == FALSE) {
+    time <- m
+    LCL <- LCL
+    UCL <- UCL
+    LCL_dis <-  m - LCL
+    UCL_dis <- UCL - m
+  }
+
+
   # Make a data frame from the data at all the different values
   table <- data.frame(p = p,
                       n = n,
-                      time = 10 ^ m,
-                      LCL = 10 ^ LCL,
-                      UCL = 10 ^ UCL,
-                      LCL_dis = 10 ^ m - 10 ^ LCL,
-                      UCL_dis = 10 ^ UCL - 10 ^ m,
+                      time = time,
+                      LCL = LCL,
+                      UCL = UCL,
+                      LCL_dis = LCL_dis,
+                      UCL_dis = UCL_dis,
                       chi_square = chi_square,
                       df = df,
                       pgof_sig = pgof,
