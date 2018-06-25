@@ -271,7 +271,8 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 # Function  LT_logit ----
 
 LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
-                     subset = NULL, log_x = TRUE, het_sig = NULL,
+                     subset = NULL, log_x = TRUE,
+                     het_sig = NULL,
                      conf_level = NULL) {
 
   model <- do.call("glm", list(formula = formula,
@@ -422,9 +423,10 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
     time <- m
     LCL <- LCL
     UCL <- UCL
-    LCL_dis <- time - LCL
+    LCL_dis <-  time - LCL
     UCL_dis <- UCL - time
   }
+
 
   # Make a data frame from the data at all the different values
   table <- data.frame(p = p,
