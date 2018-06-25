@@ -344,6 +344,10 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
   vcova <- vcov(model) * het
   }
 
+  else {
+    vcova <- vcov(model)
+  }
+
   # Slope variance
 
   var_b1 <- vcova[2, 2]
