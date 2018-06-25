@@ -7,13 +7,13 @@
 #' @usage LC_probit(formula, data, p = seq(1, 99, 1), weights,
 #'           subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class `formula` or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
-#' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LC_probit is called.
+#' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which `LC_probit` is called.
 #' @param p Lethal Concentration (LC) value for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector.
 #' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.
-#' @param subset allows for the data to be subset if desired. Default set to NULL.
-#' @param log_x Default is TRUE and will calculate results using the antilog10 given that the x varaible has been log10 tranformed. If FALSE results will not be back transformed.
-#' @param het_sig significance level from person's chi square goodness-of-fit test (pgof) that is used to decide if a heterogeneity factor is used. NULL is set to 0.15.
-#' @param conf_level Adjust confidence level as necessary or NULL set at 0.95.
+#' @param subset allows for the data to be subset if desired. Default set to `NULL`.
+#' @param log_x default is `TRUE` and will calculate results using the antilog10 given that the x varaible has been `log10` tranformed. If `FALSE` results will not be back transformed.
+#' @param het_sig significance level from person's chi square goodness-of-fit test (pgof) that is used to decide if a heterogeneity factor is used. `NULL` is set to 0.15.
+#' @param conf_level adjust confidence level as necessary or `NULL` set at 0.95.
 #' @return Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
 #' @references
 #'
@@ -292,13 +292,13 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #' @usage LC_logit(formula, data, p = seq(1, 99, 1), weights,
 #'          subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL)
 #' @param formula an object of class `formula` or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
-#' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LC_logit is called.
+#' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which `LC_logit` is called.
 #' @param p Lethal Concentration (LC) values for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector.
 #' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.
-#' @param log_x Default is TRUE and will calculate results using the antilog10 given that the x varaible has been log10 tranformed. If FALSE results will not be back transformed.
-#' @param subset allows for the data to be subset if desired. Default set to NULL.
-#' @param het_sig significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. NULL is set to 0.15.
-#' @param conf_level Adjust confidence level as necessary or NULL set at 0.95.
+#' @param log_x default is `TRUE` and will calculate results using the antilog10 given that the x varaible has been `log10` tranformed. If `FALSE` results will not be back transformed.
+#' @param subset allows for the data to be subset if desired. Default set to `NULL`.
+#' @param het_sig significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. `NULL` is set to 0.15.
+#' @param conf_level adjust confidence level as necessary or `NULL` set at 0.95.
 #' @return Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
 #' @references
 #'

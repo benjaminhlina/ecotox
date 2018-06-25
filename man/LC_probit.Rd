@@ -10,19 +10,19 @@ LC_probit(formula, data, p = seq(1, 99, 1), weights,
 \arguments{
 \item{formula}{an object of class \code{formula} or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.}
 
-\item{data}{an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which LC_probit is called.}
+\item{data}{an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which \code{LC_probit} is called.}
 
 \item{p}{Lethal Concentration (LC) value for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector.}
 
 \item{weights}{vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.}
 
-\item{subset}{allows for the data to be subset if desired. Default set to NULL.}
+\item{subset}{allows for the data to be subset if desired. Default set to \code{NULL}.}
 
-\item{log_x}{Default is TRUE and will calculate results using the antilog10 given that the x varaible has been log10 tranformed. If FALSE results will not be back transformed.}
+\item{log_x}{default is \code{TRUE} and will calculate results using the antilog10 given that the x varaible has been \code{log10} tranformed. If \code{FALSE} results will not be back transformed.}
 
-\item{het_sig}{significance level from person's chi square goodness-of-fit test (pgof) that is used to decide if a heterogeneity factor is used. NULL is set to 0.15.}
+\item{het_sig}{significance level from person's chi square goodness-of-fit test (pgof) that is used to decide if a heterogeneity factor is used. \code{NULL} is set to 0.15.}
 
-\item{conf_level}{Adjust confidence level as necessary or NULL set at 0.95.}
+\item{conf_level}{adjust confidence level as necessary or \code{NULL} set at 0.95.}
 }
 \value{
 Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
