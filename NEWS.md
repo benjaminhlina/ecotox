@@ -10,7 +10,7 @@
     created if the analysis required a heterogenitity correction factor.
     This has been fixed and a variance co-variance matrix is produced whether 
     or not a hetrogenity correction factor is needed. 
-  * Tests have been updated to be more comprehensive for 'ecotox'.
+  * Tests have been updated to be more comprehensive for 'ecotox'
 
 ### New Feature as of 9-Feb-2018
   * All functions now have `subset` argument
