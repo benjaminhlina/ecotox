@@ -1,10 +1,16 @@
-# ecotox v1.3.1.9000
+# ecotox v1.3.2
 
 
-
-### New Feature as of 23-Jun-2018
+### New Feature as of 24-Jun-2018
   * All functions now have `log_x` argument which allows the user to specify if 
-    the x variable was `log10` transformed. 
+    the x variable was `log10` transformed or not. Default is `TRUE` which will 
+    output back transformed results. If `FALSE` results will not be back 
+    transformed. 
+  * LT_logit was producing error as variance co-variance matrix was only being 
+    created if the analysis required a heterogenitity correction factor.
+    This has been fixed and a variance co-variance matrix is produced whether 
+    or not a hetrogenity correction factor is needed. 
+  * Tests have been updated to be more comprehensive for 'ecotox'.
 
 ### New Feature as of 9-Feb-2018
   * All functions now have `subset` argument
