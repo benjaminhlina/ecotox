@@ -3,7 +3,7 @@ This is an updated version of 'ecotox'. In this version I have:
 
 * All functions now have `log_x` argument which allows the user to calculate
   results on whether not the x variable is `log10` transformed. 
-  Default is `TRUE` which will output results. 
+  Default is `TRUE` which will output results that have been back transfomred. 
 * LT_logit was producing error as variance co-variance matrix was only being
   created if the analysis required a heterogenitity correction factor. 
   This has been fixed and a variance co-variance matrix is produced whether 
