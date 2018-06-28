@@ -1,7 +1,7 @@
 Package: ecotox
 Type: Package
 Title: Analysis of Ecotoxicology
-Version: 1.3.1.9000
+Version: 1.3.2
 Authors@R: person("Benjamin L", "Hlina", email = "benjamin.hlina@gmail.com",
   role = c("aut", "cre"))
 Description: A simple approach to using a probit or logit analysis to calculate
@@ -27,8 +27,8 @@ Suggests:
     covr,
     dplyr,
     Hmisc,
-    tidyr,
     testthat,
+    tidyr,
     xlsx
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
