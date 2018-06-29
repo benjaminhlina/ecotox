@@ -16,9 +16,9 @@ subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL)
 
 \item{weights}{vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.}
 
-\item{subset}{allows for the data to be subset if desired. Default set to \code{NULL}.}
+\item{subset}{allows for the data to be subseted if desired. Default set to \code{NULL}.}
 
-\item{log_x}{Default is \code{TRUE} and will calculate results using the antilog10 given that the x varaible has been \code{log10} tranformed. If \code{FALSE} results will not be back transformed.}
+\item{log_x}{Default is \code{TRUE} and will calculate results using the antilog10 given that the x variable has been \code{log10} tranformed. If \code{FALSE} results will not be back transformed.}
 
 \item{het_sig}{significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. \code{NULL} is set to 0.15.}
 

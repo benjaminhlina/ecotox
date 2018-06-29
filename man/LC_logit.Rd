@@ -16,9 +16,9 @@ LC_logit(formula, data, p = seq(1, 99, 1), weights,
 
 \item{weights}{vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.}
 
-\item{subset}{allows for the data to be subset if desired. Default set to \code{NULL}.}
+\item{subset}{allows for the data to be subseted if desired. Default set to \code{NULL}.}
 
-\item{log_x}{default is \code{TRUE} and will calculate results using the antilog10 given that the x varaible has been \code{log10} tranformed. If \code{FALSE} results will not be back transformed.}
+\item{log_x}{default is \code{TRUE} and will calculate results using the antilog10 given that the x variable has been \code{log10} tranformed. If \code{FALSE} results will not be back transformed.}
 
 \item{het_sig}{significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. \code{NULL} is set to 0.15.}
 
