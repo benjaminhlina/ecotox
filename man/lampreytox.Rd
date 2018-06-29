@@ -9,7 +9,7 @@
 \item{nominal.dose}{nominal TFM dose (mg/L)}
 \item{tank}{tank assignment}
 \item{month}{month in which toxicity test occurred}
-\item{dose}{averaged measured TFM dose (mg/L) over 12 h of exposures}
+\item{dose}{averaged measured TFM dose (mg/L) over 12 h of exposure}
 \item{response}{number of lamprey that responded over 12 h exposure to TFM}
 \item{survive}{number of lamprey that survived over 12 h exposure to TFM}
 \item{total}{total number of lamprey that were exposed to TFM over 12 h}
@@ -24,6 +24,6 @@ lampreytox
 This dataset contains 2011 seasonal larval sea lamprey exposed to the piscicide, 3-trifluoromethyl-4-nitrophenol (TFM) toxicity data.
 }
 \details{
-For each month, new lamprey were collected from the deer creek, MI, and were randomly assigned to a tank for exposure to varying doses of the piscicide, 3-trifluoromethyl-4-nitrophenol (TFM).
+For each month, new lamprey were collected from the Deer Creek, MI, and were randomly assigned to a tank for exposure to varying doses of the piscicide, 3-trifluoromethyl-4-nitrophenol (TFM).
 }
 \keyword{datasets}
