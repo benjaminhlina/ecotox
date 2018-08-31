@@ -25,7 +25,7 @@ LC_probit(formula, data, p = seq(1, 99, 1), weights,
 \item{conf_level}{adjust confidence level as necessary or \code{NULL} set at 0.95.}
 }
 \value{
-Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
+Returns a tibble with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
 }
 \description{
 Calculates lethal concentration (LC) and
