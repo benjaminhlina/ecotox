@@ -14,7 +14,7 @@
 #' @param log_x default is `TRUE` and will calculate results using the antilog10 given that the x variable has been `log10` tranformed. If `FALSE` results will not be back transformed.
 #' @param het_sig significance level from person's chi square goodness-of-fit test (pgof) that is used to decide if a heterogeneity factor is used. `NULL` is set to 0.15.
 #' @param conf_level adjust confidence level as necessary or `NULL` set at 0.95.
-#' @return Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
+#' @return Returns a tibble with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
 #' @references
 #'
 #' Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England, ISBN: 052108041X
@@ -94,6 +94,7 @@
 #' @import ggplot2
 #' @import magrittr
 #' @import stats
+#' @import tibble
 #' @export
 
 # Function  LC_probit ----
@@ -260,25 +261,25 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
   }
 
   # Make a data frame from the data at all the different values
-  table <- data.frame(p = p,
-                      n = n,
-                      dose = dose,
-                      LCL = LCL,
-                      UCL = UCL,
-                      LCL_dis = LCL_dis,
-                      UCL_dis = UCL_dis,
-                      chi_square = chi_square,
-                      df = df,
-                      pgof_sig = pgof,
-                      h = het,
-                      slope = b1,
-                      slope_se = slope_se,
-                      slope_sig = slope_sig,
-                      intercept = b0,
-                      intercept_se = intercept_se,
-                      intercept_sig = intercept_sig,
-                      z = z_value,
-                      var_m = var_m)
+  table <- tibble(p = p,
+                  n = n,
+                  dose = dose,
+                  LCL = LCL,
+                  UCL = UCL,
+                  LCL_dis = LCL_dis,
+                  UCL_dis = UCL_dis,
+                  chi_square = chi_square,
+                  df = df,
+                  pgof_sig = pgof,
+                  h = het,
+                  slope = b1,
+                  slope_se = slope_se,
+                  slope_sig = slope_sig,
+                  intercept = b0,
+                  intercept_se = intercept_se,
+                  intercept_sig = intercept_sig,
+                  z = z_value,
+                  var_m = var_m)
 
   return(table)
 
@@ -299,7 +300,7 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #' @param subset allows for the data to be subseted if desired. Default set to `NULL`.
 #' @param het_sig significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. `NULL` is set to 0.15.
 #' @param conf_level adjust confidence level as necessary or `NULL` set at 0.95.
-#' @return Returns a data frame with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
+#' @return Returns a tibble with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
 #' @references
 #'
 #' Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England, ISBN: 052108041X
@@ -539,25 +540,25 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
 
 
   # Make a data frame from the data at all the different values
-  table <- data.frame(p = p,
-                      n = n,
-                      dose = dose,
-                      LCL = LCL,
-                      UCL = UCL,
-                      LCL_dis = LCL_dis,
-                      UCL_dis = UCL_dis,
-                      chi_square = chi_square,
-                      df = df,
-                      pgof_sig = pgof,
-                      h = het,
-                      slope = b1,
-                      slope_se = slope_se,
-                      slope_sig = slope_sig,
-                      intercept = b0,
-                      intercept_se = intercept_se,
-                      intercept_sig = intercept_sig,
-                      z = z_value,
-                      var_m = var_m)
+  table <- tibble(p = p,
+                  n = n,
+                  dose = dose,
+                  LCL = LCL,
+                  UCL = UCL,
+                  LCL_dis = LCL_dis,
+                  UCL_dis = UCL_dis,
+                  chi_square = chi_square,
+                  df = df,
+                  pgof_sig = pgof,
+                  h = het,
+                  slope = b1,
+                  slope_se = slope_se,
+                  slope_sig = slope_sig,
+                  intercept = b0,
+                  intercept_se = intercept_se,
+                  intercept_sig = intercept_sig,
+                  z = z_value,
+                  var_m = var_m)
 
   return(table)
 
