@@ -25,7 +25,7 @@ subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL)
 \item{conf_level}{Adjust confidence level as necessary or \code{NULL} set at 0.95.}
 }
 \value{
-Returns a data frame with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LT variance.
+Returns a tibble with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LT variance.
 }
 \description{
 Calculates lethal time (LT) and
