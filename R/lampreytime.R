@@ -2,7 +2,7 @@
 #'
 #' This dataset contains the amount of responding/dead lamprey from 1 to 12 h of exposure to the piscicide, 3-trifluoromethyl-4-nitrophenol (TFM), for the calculated LC50s at each month for the 2011 seasonal larval sea lamprey TFM toxicity data.
 #' @usage lampreytime
-#' @format A data frame containing 64 rows and 7 columns.
+#' @format A tibble containing 64 rows and 7 columns.
 #' \describe{
 #'   \item{nominal.dose}{nominal TFM dose(mg/L)}
 #'   \item{dose}{averaged measured TFM dose (mg/L) over 12 h of exposures}

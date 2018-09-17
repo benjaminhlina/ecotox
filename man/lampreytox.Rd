@@ -4,7 +4,7 @@
 \name{lampreytox}
 \alias{lampreytox}
 \title{Lethal concentration data for seasonal exposure to TFM for larval sea lamprey}
-\format{A data frame containing 64 rows and 7 columns.
+\format{A tibble containing 64 rows and 7 columns.
 \describe{
 \item{nominal.dose}{nominal TFM dose (mg/L)}
 \item{tank}{tank assignment}

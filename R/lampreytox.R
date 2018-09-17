@@ -2,7 +2,7 @@
 #'
 #' This dataset contains 2011 seasonal larval sea lamprey exposed to the piscicide, 3-trifluoromethyl-4-nitrophenol (TFM) toxicity data.
 #' @usage lampreytox
-#' @format A data frame containing 64 rows and 7 columns.
+#' @format A tibble containing 64 rows and 7 columns.
 #' \describe{
 #'   \item{nominal.dose}{nominal TFM dose (mg/L)}
 #'   \item{tank}{tank assignment}
