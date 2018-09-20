@@ -287,8 +287,8 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 # Function  LT_logit ----
 
 LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
-                     subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL,
-                     long_output = TRUE) {
+                     subset = NULL, log_x = TRUE, het_sig = NULL,
+                     conf_level = NULL, long_output = TRUE) {
 
   model <- do.call("glm", list(formula = formula,
                                family = binomial(link = "logit"),
