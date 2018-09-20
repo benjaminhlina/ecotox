@@ -1,6 +1,9 @@
 # ecotox v1.3.2
 
-
+### New Feature as of 20-Sep-2018
+   * All functions now have `long_output` argument which allows the user to
+     decide whether or not a short or long output is displayed. Default is `TRUE`      which will display long output of all 19 variables. If `FALSE` is used only 7      variables will be displayed.  
+     
 ### New Feature as of 24-Jun-2018
   * All functions now have `log_x` argument which allows the user to specify if 
     the x variable was `log10` transformed or not. Default is `TRUE` which will 
