@@ -56,5 +56,34 @@ test_that("Determine if LC_logit calculations are correct", {
   expect_equal(s$chi_square, expected = 7.717, tolerance = 0.001)
   expect_equal(s$pgof_sig, expected = 0.656, tolerance = 0.001)
 
+  mm <- LC_logit((response / total) ~ dose, p = c(50),
+                  weights = total,
+                  data = lampreytox,
+                  log_x = FALSE,
+                  subset = c(month == "May"))
+  expect_equal(mm$dose, expected = 1.279, tolerance = 0.001)
+  expect_equal(mm$LCL, expected = 1.215, tolerance = 0.001)
+  expect_equal(mm$UCL, expected = 1.335, tolerance = 0.001)
+  expect_equal(mm$LCL_dis, expected = 0.0644, tolerance = 0.0001)
+  expect_equal(mm$UCL_dis, expected = 0.0553, tolerance = 0.0001)
+  expect_equal(mm$chi_square, expected = 16.593, tolerance = 0.001)
+  expect_equal(mm$pgof_sig, expected =  0.412, tolerance = 0.001)
+
+  ma <- LC_logit((response / total) ~ log10(dose), p = c(50),
+                  weights = total,
+                  data = lampreytox,
+                  subset = c(month == "May"),
+                  long_output = FALSE)
+  expect_equal(ncol(ma), 7)
+  expect_equal(nrow(ma), 1)
+
+  may <- LC_logit((response / total) ~ log10(dose), p = c(50),
+                   weights = total,
+                   data = lampreytox,
+                   subset = c(month == "May"),
+                   long_output = TRUE)
+  expect_equal(ncol(may), 19)
+  expect_equal(nrow(may), 1)
+
 
 })

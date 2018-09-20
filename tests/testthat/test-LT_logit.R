@@ -58,7 +58,37 @@ test_that("Determine if LT_logit calculations are correct", {
   expect_equal(s$pgof_sig, expected = 0.926, tolerance = 0.001)
 
 
+  mm <- LT_logit((response / total) ~ hour, p = c(50),
+                  weights = total,
+                  data = lampreytime,
+                  log_x = FALSE,
+                  subset = c(month == "May"))
 
+  expect_equal(mm$time, expected = 10.082, tolerance = 0.001)
+  expect_equal(mm$LCL, expected =  8.843, tolerance = 0.001)
+  expect_equal(mm$UCL, expected = 12.298, tolerance = 0.001)
+  expect_equal(mm$LCL_dis, expected = 1.239, tolerance = 0.001)
+  expect_equal(mm$UCL_dis, expected = 2.215, tolerance = 0.001)
+  expect_equal(mm$chi_square, expected = 34.577, tolerance = 0.001)
+  expect_equal(mm$pgof_sig, expected = 0.0000707, tolerance = 0.000001)
+
+
+
+  ma <- LT_logit((response / total) ~ log(hour), p = c(50),
+                  weights = total,
+                  data = lampreytime,
+                  subset = c(month == "May"),
+                  long_output = FALSE)
+  expect_equal(ncol(ma), 7)
+  expect_equal(nrow(ma), 1)
+
+  may <- LT_logit((response / total) ~ log10(hour), p = c(50),
+                   weights = total,
+                   data = lampreytime,
+                   subset = c(month == "May"),
+                   long_output = TRUE)
+  expect_equal(ncol(may), 19)
+  expect_equal(nrow(may), 1)
 
 
 })

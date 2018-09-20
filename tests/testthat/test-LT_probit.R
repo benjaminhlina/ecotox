@@ -57,5 +57,36 @@ test_that("Determine if LT_probit runs properly", {
   expect_equal(s$chi_square, expected = 3.030, tolerance = 0.001)
   expect_equal(s$pgof_sig, expected = 0.9630, tolerance = 0.0001)
 
+  mm <- LT_probit((response / total) ~ hour, p = c(50),
+                  weights = total,
+                  data = lampreytime,
+                  log_x = FALSE,
+                  subset = c(month == "May"))
+
+  expect_equal(mm$time, expected = 10.071, tolerance = 0.001)
+  expect_equal(mm$LCL, expected = 8.898, tolerance = 0.001)
+  expect_equal(mm$UCL, expected = 12.048, tolerance = 0.001)
+  expect_equal(mm$LCL_dis, expected = 1.173, tolerance = 0.001)
+  expect_equal(mm$UCL_dis, expected = 1.976, tolerance = 0.001)
+  expect_equal(mm$chi_square, expected = 30.313, tolerance = 0.001)
+  expect_equal(mm$pgof_sig, expected = 0.000388, tolerance = 0.000001)
+
+
+  ma <- LT_probit((response / total) ~ log(hour), p = c(50),
+                  weights = total,
+                  data = lampreytime,
+                  subset = c(month == "May"),
+                  long_output = FALSE)
+  expect_equal(ncol(ma), 7)
+  expect_equal(nrow(ma), 1)
+
+  may <- LT_probit((response / total) ~ log10(hour), p = c(50),
+                   weights = total,
+                   data = lampreytime,
+                   subset = c(month == "May"),
+                   long_output = TRUE)
+  expect_equal(ncol(may), 19)
+  expect_equal(nrow(may), 1)
+
 
 })
