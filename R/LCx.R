@@ -100,7 +100,7 @@
 # Function  LC_probit ----
 LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
                       subset = NULL, log_x = TRUE, het_sig = NULL,
-                      conf_level = NULL) {
+                      conf_level = NULL, long_output = TRUE) {
 
   model <- do.call("glm", list(formula = formula,
                                family = binomial(link = "probit"),
@@ -261,26 +261,36 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
   }
 
   # Make a data frame from the data at all the different values
-  table <- tibble(p = p,
-                  n = n,
-                  dose = dose,
-                  LCL = LCL,
-                  UCL = UCL,
-                  LCL_dis = LCL_dis,
-                  UCL_dis = UCL_dis,
-                  chi_square = chi_square,
-                  df = df,
-                  pgof_sig = pgof,
-                  h = het,
-                  slope = b1,
-                  slope_se = slope_se,
-                  slope_sig = slope_sig,
-                  intercept = b0,
-                  intercept_se = intercept_se,
-                  intercept_sig = intercept_sig,
-                  z = z_value,
-                  var_m = var_m)
-
+  if (long_output == TRUE) {
+   table <- tibble(p = p,
+                   n = n,
+                   dose = dose,
+                   LCL = LCL,
+                   UCL = UCL,
+                   LCL_dis = LCL_dis,
+                   UCL_dis = UCL_dis,
+                   chi_square = chi_square,
+                   df = df,
+                   pgof_sig = pgof,
+                   h = het,
+                   slope = b1,
+                   slope_se = slope_se,
+                   slope_sig = slope_sig,
+                   intercept = b0,
+                   intercept_se = intercept_se,
+                   intercept_sig = intercept_sig,
+                   z = z_value,
+                   var_m = var_m)
+  }
+  if (long_output == FALSE) {
+    table <- tibble(p = p,
+                    n = n,
+                    dose = dose,
+                    LCL = LCL,
+                    UCL = UCL,
+                    LCL_dis = LCL_dis,
+                    UCL_dis = UCL_dis)
+  }
   return(table)
 
 }
@@ -291,7 +301,8 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #' its fiducial confidence limits (CL) using a logit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
 #' @usage LC_logit(formula, data, p = seq(1, 99, 1), weights,
-#'          subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL)
+#'          subset = NULL, log_x = TRUE, het_sig = NULL,
+#'          conf_level = NULL, long_output = TRUE)
 #' @param formula an object of class `formula` or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which `LC_logit` is called.
 #' @param p Lethal Concentration (LC) values for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector.
@@ -300,6 +311,7 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #' @param subset allows for the data to be subseted if desired. Default set to `NULL`.
 #' @param het_sig significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. `NULL` is set to 0.15.
 #' @param conf_level adjust confidence level as necessary or `NULL` set at 0.95.
+#' @param long_output default is `TRUE` and tibble returned will include all 19 variabless. If `FALSE` the tibble returned will consist the p level, n, the predicted LC for given p level, lower and upper confidence limits and their distances.
 #' @return Returns a tibble with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
 #' @references
 #'
@@ -383,7 +395,8 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 # Function  LC_logit ----
 LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
                      subset = NULL, log_x = TRUE,
-                     het_sig = NULL, conf_level = NULL) {
+                     het_sig = NULL, conf_level = NULL,
+                     long_output = TRUE) {
 
   model <- do.call("glm", list(formula = formula,
                                family = binomial(link = "logit"),
@@ -540,25 +553,36 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
 
 
   # Make a data frame from the data at all the different values
-  table <- tibble(p = p,
-                  n = n,
-                  dose = dose,
-                  LCL = LCL,
-                  UCL = UCL,
-                  LCL_dis = LCL_dis,
-                  UCL_dis = UCL_dis,
-                  chi_square = chi_square,
-                  df = df,
-                  pgof_sig = pgof,
-                  h = het,
-                  slope = b1,
-                  slope_se = slope_se,
-                  slope_sig = slope_sig,
-                  intercept = b0,
-                  intercept_se = intercept_se,
-                  intercept_sig = intercept_sig,
-                  z = z_value,
-                  var_m = var_m)
+  if (long_output == TRUE) {
+    table <- tibble(p = p,
+                    n = n,
+                    dose = dose,
+                    LCL = LCL,
+                    UCL = UCL,
+                    LCL_dis = LCL_dis,
+                    UCL_dis = UCL_dis,
+                    chi_square = chi_square,
+                    df = df,
+                    pgof_sig = pgof,
+                    h = het,
+                    slope = b1,
+                    slope_se = slope_se,
+                    slope_sig = slope_sig,
+                    intercept = b0,
+                    intercept_se = intercept_se,
+                    intercept_sig = intercept_sig,
+                    z = z_value,
+                    var_m = var_m)
+  }
+  if (long_output == FALSE) {
+    table <- tibble(p = p,
+                    n = n,
+                    dose = dose,
+                    LCL = LCL,
+                    UCL = UCL,
+                    LCL_dis = LCL_dis,
+                    UCL_dis = UCL_dis)
+  }
 
   return(table)
 

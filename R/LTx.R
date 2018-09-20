@@ -43,7 +43,8 @@
 # Function  LT_probit ----
 LT_probit <- function(formula, data, p = seq(1, 99, 1),
                weights, subset = NULL, log_x = TRUE,
-               het_sig = NULL, conf_level = NULL) {
+               het_sig = NULL, conf_level = NULL,
+               long_output = TRUE) {
 
   model <- do.call("glm", list(formula = formula,
                                family = binomial(link = "probit"),
@@ -202,26 +203,37 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 
 
   # Make a data frame from the data at all the different values
-  table <- tibble(p = p,
-                  n = n,
-                  time = time,
-                  LCL =  LCL,
-                  UCL =  UCL,
-                  LCL_dis = LCL_dis,
-                  UCL_dis =  UCL_dis,
-                  chi_square = chi_square,
-                  df = df,
-                  pgof_sig = pgof,
-                  h = het,
-                  slope = b1,
-                  slope_se = slope_se,
-                  slope_sig = slope_sig,
-                  intercept = b0,
-                  intercept_se = intercept_se,
-                  intercept_sig = intercept_sig,
-                  z = z_value,
-                  var_m = var_m)
+  if (long_output == TRUE) {
+    table <- tibble(p = p,
+                    n = n,
+                    time = time,
+                    LCL =  LCL,
+                    UCL =  UCL,
+                    LCL_dis = LCL_dis,
+                    UCL_dis =  UCL_dis,
+                    chi_square = chi_square,
+                    df = df,
+                    pgof_sig = pgof,
+                    h = het,
+                    slope = b1,
+                    slope_se = slope_se,
+                    slope_sig = slope_sig,
+                    intercept = b0,
+                    intercept_se = intercept_se,
+                    intercept_sig = intercept_sig,
+                    z = z_value,
+                    var_m = var_m)
+  }
 
+  if (long_output == FALSE) {
+    table <- tibble(p = p,
+                    n = n,
+                    time = time,
+                    LCL =  LCL,
+                    UCL =  UCL,
+                    LCL_dis = LCL_dis,
+                    UCL_dis =  UCL_dis)
+  }
   return(table)
 
 }
@@ -272,8 +284,8 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 
 LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
                      subset = NULL, log_x = TRUE,
-                     het_sig = NULL,
-                     conf_level = NULL) {
+                     het_sig = NULL, conf_level = NULL,
+                     long_output = TRUE) {
 
   model <- do.call("glm", list(formula = formula,
                                family = binomial(link = "logit"),
@@ -429,25 +441,36 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
 
 
   # Make a data frame from the data at all the different values
-  table <- tibble(p = p,
-                  n = n,
-                  time = time,
-                  LCL = LCL,
-                  UCL = UCL,
-                  LCL_dis = LCL_dis,
-                  UCL_dis = UCL_dis,
-                  chi_square = chi_square,
-                  df = df,
-                  pgof_sig = pgof,
-                  h = het,
-                  slope = b1,
-                  slope_se = slope_se,
-                  slope_sig = slope_sig,
-                  intercept = b0,
-                  intercept_se = intercept_se,
-                  intercept_sig = intercept_sig,
-                  z = z_value,
-                  var_m = var_m)
+  if (long_output == TRUE) {
+    table <- tibble(p = p,
+                    n = n,
+                    time = time,
+                    LCL = LCL,
+                    UCL = UCL,
+                    LCL_dis = LCL_dis,
+                    UCL_dis = UCL_dis,
+                    chi_square = chi_square,
+                    df = df,
+                    pgof_sig = pgof,
+                    h = het,
+                    slope = b1,
+                    slope_se = slope_se,
+                    slope_sig = slope_sig,
+                    intercept = b0,
+                    intercept_se = intercept_se,
+                    intercept_sig = intercept_sig,
+                    z = z_value,
+                    var_m = var_m)
+  }
 
+  if (long_output == FALSE) {
+    table <- tibble(p = p,
+                    n = n,
+                    time = time,
+                    LCL = LCL,
+                    UCL = UCL,
+                    LCL_dis = LCL_dis,
+                    UCL_dis = UCL_dis)
+  }
   return(table)
 }
