@@ -257,7 +257,7 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 #' @param log_x Default is `TRUE` and will calculate results using the antilog10 given that the x variable has been `log10` tranformed. If `FALSE` results will not be back transformed.
 #' @param het_sig significance level from person's chi sqaure goodness-of-fit test that is used to decide if a heterogeneity factor is used. `NULL` is set to 0.15.
 #' @param conf_level  Adjust confidence level as necessary or `NULL` set at 0.95.
-#' @param long_output default is `TRUE` and tibble returned will include all 19 variabless. If `FALSE` the tibble returned will consist the p level, n, the predicted LC for given p level, lower and upper confidence limits and their distances.
+#' @param long_output default is `TRUE` which will return a tibble with all 19 variabless. If `FALSE` the tibble returned will consist of the p level, n, the predicted LC for given p level, lower and upper confidence limits and their distances.
 #' @return Returns a tibble with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi sqaure goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LT variance.
 #' @references
 #'
@@ -287,8 +287,7 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 # Function  LT_logit ----
 
 LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
-                     subset = NULL, log_x = TRUE,
-                     het_sig = NULL, conf_level = NULL,
+                     subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL,
                      long_output = TRUE) {
 
   model <- do.call("glm", list(formula = formula,

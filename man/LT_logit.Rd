@@ -5,7 +5,8 @@
 \title{Lethal Time Logit}
 \usage{
 LT_logit(formula, data, p = seq(1, 99, 1), weights,
-subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL)
+          subset = NULL, log_x = TRUE, het_sig = NULL,
+          conf_level = NULL, long_output = TRUE)
 }
 \arguments{
 \item{formula}{an object of class \code{formula} or one that can be coerced to that class: a symbolic description of the model to be fitted.}
@@ -23,6 +24,8 @@ subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL)
 \item{het_sig}{significance level from person's chi sqaure goodness-of-fit test that is used to decide if a heterogeneity factor is used. \code{NULL} is set to 0.15.}
 
 \item{conf_level}{Adjust confidence level as necessary or \code{NULL} set at 0.95.}
+
+\item{long_output}{default is \code{TRUE} which will return a tibble with all 19 variabless. If \code{FALSE} the tibble returned will consist of the p level, n, the predicted LC for given p level, lower and upper confidence limits and their distances.}
 }
 \value{
 Returns a tibble with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi sqaure goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LT variance.
