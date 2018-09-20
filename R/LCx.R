@@ -15,7 +15,7 @@
 #' @param log_x default is `TRUE` and will calculate results using the antilog10 given that the x variable has been `log10` tranformed. If `FALSE` results will not be back transformed.
 #' @param het_sig significance level from person's chi square goodness-of-fit test (pgof) that is used to decide if a heterogeneity factor is used. `NULL` is set to 0.15.
 #' @param conf_level adjust confidence level as necessary or `NULL` set at 0.95.
-#' @param long_output default is `TRUE` and tibble returned will include all 19 variabless. If `FALSE` the tibble returned will consist the p level, n, the predicted LC for given p level, lower and upper confidence limits and their distances.
+#' @param long_output default is `TRUE` which will return a tibble with all 19 variabless. If `FALSE` the tibble returned will consist of the p level, n, the predicted LC for given p level, lower and upper confidence limits and their distances.
 #' @return Returns a tibble with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
 #' @references
 #'
@@ -313,7 +313,7 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #' @param subset allows for the data to be subseted if desired. Default set to `NULL`.
 #' @param het_sig significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. `NULL` is set to 0.15.
 #' @param conf_level adjust confidence level as necessary or `NULL` set at 0.95.
-#' @param long_output default is `TRUE` and tibble returned will include all 19 variabless. If `FALSE` the tibble returned will consist the p level, n, the predicted LC for given p level, lower and upper confidence limits and their distances.
+#' @param long_output default is `TRUE` which will return a tibble with all 19 variabless. If `FALSE` the tibble returned will consist of the p level, n, the predicted LC for given p level, lower and upper confidence limits and their distances.
 #' @return Returns a tibble with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
 #' @references
 #'

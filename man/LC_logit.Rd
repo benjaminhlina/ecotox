@@ -25,7 +25,7 @@ LC_logit(formula, data, p = seq(1, 99, 1), weights,
 
 \item{conf_level}{adjust confidence level as necessary or \code{NULL} set at 0.95.}
 
-\item{long_output}{default is \code{TRUE} and tibble returned will include all 19 variabless. If \code{FALSE} the tibble returned will consist the p level, n, the predicted LC for given p level, lower and upper confidence limits and their distances.}
+\item{long_output}{default is \code{TRUE} which will return a tibble with all 19 variabless. If \code{FALSE} the tibble returned will consist of the p level, n, the predicted LC for given p level, lower and upper confidence limits and their distances.}
 }
 \value{
 Returns a tibble with predicted LC for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LC (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LC variance.
