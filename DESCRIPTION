@@ -28,6 +28,7 @@ Suggests:
     covr,
     dplyr,
     Hmisc,
+    readr,
     testthat,
     tidyr,
     xlsx
