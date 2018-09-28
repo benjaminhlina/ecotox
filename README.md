@@ -49,7 +49,22 @@ m <- LC_probit((response / total) ~ log10(dose),
 ## 3-trifluoromethyl-4-nitrophenol (TFM) to lamprey in 2011
 
 m
-```
+
+## several new features include 1) being able to change the output length 
+## 2) you can indicate whether the x variable has been log10 transformed or 
+## not if it has the output will take that into consideration
+
+m_2 <- LC_probit((response / total) ~ dose,
+                  p = c(50, 99),
+                  weights = total,
+                  data = lampreytox,
+                  subset = c(month == "May"), 
+                  log_x = TRUE, 
+                  long_output = FALSE)
+## view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
+## 3-trifluoromethyl-4-nitrophenol (TFM) to lamprey in 2011.  
+m_2
+``` 
 
 ## References 
 
