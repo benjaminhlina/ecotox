@@ -61,8 +61,7 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
   # pearson's goodness of fit test (pgof) returns a sigficance
   # value less than 0.150 (source: 'SPSS 24')
 
-  chi_square <- residuals(model, type = "pearson") ^ 2 %>%
-                  sum()
+  chi_square <- sum(residuals(model, type = "pearson") ^ 2)
 
   df <- df.residual(model)
 
@@ -303,8 +302,7 @@ LT_logit <- function(formula, data, p = seq(1, 99, 1), weights = NULL,
   # pearson's goodness of fit test (pgof) returns a sigficance
   # value less than 0.150 (source: 'SPSS 24')
 
-  chi_square <- residuals(model, type = "pearson") ^ 2 %>%
-                  sum()
+  chi_square <- sum(residuals(model, type = "pearson") ^ 2)
 
   df <- df.residual(model)
   pgof <- pchisq(chi_square, df.residual(model), lower.tail = FALSE)

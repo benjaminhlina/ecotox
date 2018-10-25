@@ -61,9 +61,12 @@ m_2 <- LC_probit((response / total) ~ dose,
                   subset = c(month == "May"), 
                   log_x = FALSE, 
                   long_output = FALSE)
+                  
 ## view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
-## 3-trifluoromethyl-4-nitrophenol (TFM) to lamprey in 2011.  
+## 3-trifluoromethyl-4-nitrophenol (TFM) to lamprey in 2011.
+
 m_2
+
 ``` 
 
 ## References 

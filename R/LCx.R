@@ -94,7 +94,6 @@
 #'
 #' p2
 #' @import ggplot2
-#' @import magrittr
 #' @import stats
 #' @import tibble
 #' @export
@@ -116,8 +115,7 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
   # pearson's goodness of fit test (pgof) returns a sigficance
   # value less than 0.150 (source: 'SPSS 24')
 
-  chi_square <- residuals.glm(model, type = "pearson") ^ 2 %>%
-                  sum()
+  chi_square <- sum(residuals.glm(model, type = "pearson") ^ 2)
 
   df <- df.residual(model)
 
@@ -412,8 +410,7 @@ LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
   # pearson's goodness of fit test (pgof) returns a sigficance
   # value less than 0.150 (source: 'SPSS 24')
 
-  chi_square <- residuals.glm(model, type = "pearson") ^ 2 %>%
-                  sum()
+  chi_square <- sum(residuals.glm(model, type = "pearson") ^ 2)
 
   df <- df.residual(model)
 
