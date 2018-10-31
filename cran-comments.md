@@ -1,18 +1,13 @@
-## New Version Submission - v1.3.2
+## New Version Submission - v1.3.3
 This is an updated version of 'ecotox'. In this version I have:
 
-* All functions now have `log_x` argument which allows the user to calculate
-  results on whether not the x variable is `log10` transformed. 
-  Default is `TRUE` which will output results that have been back transfomred. 
-* LT_logit was producing error as variance co-variance matrix was only being
-  created if the analysis required a heterogenitity correction factor. 
-  This has been fixed and a variance co-variance matrix is produced whether 
-  or not a hetrogenity correction factor is needed. 
+* All functions now have `long_output` argument which allows the user to change the   output from being long and including a suite of statistical values or short and     including the most important 7 variables. Default is `TRUE` which will output the   entire long output. 
+* Outputs are no longer dataframes but instead are tibbles 
 * Tests have been updated to be more comprehensive for 'ecotox'.
 
 ## Test environments
-* local Windows 7, SP1 install, R 3.5.0
-* ubuntu 14.04 (on travis-ci), R 3.5.0
+* local Windows 7, SP1 install, R 3.5.1
+* ubuntu 14.04 (on travis-ci), R 3.5.1
 * win-builder (devel and release)
 
 ## R CMD check results
