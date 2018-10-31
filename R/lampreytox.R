@@ -1,7 +1,7 @@
 #' Lethal concentration data for seasonal exposure to TFM for larval sea lamprey
 #'
 #' This dataset contains 2011 seasonal larval sea lamprey exposed to the piscicide, 3-trifluoromethyl-4-nitrophenol (TFM) toxicity data.
-#' @usage lampreytox
+#' @usage lamprey_tox
 #' @format A tibble containing 64 rows and 7 columns.
 #' \describe{
 #'   \item{nominal.dose}{nominal TFM dose (mg/L)}
@@ -16,4 +16,4 @@
 #' @source Hlina, B.L., Birceanu, O., Robinson, C.S., Thackeray, N., Tessier, L.R., Muhametsafina, A., Bragg, L.M., Servos, M.R., Wilkie, M.P. *In Preparation*. Changes in the sensitivity of piscicide in an invasive species. Environmental Science & Technology.
 
 
-"lampreytox"
+"lamprey_tox"

@@ -26,12 +26,12 @@
 #'
 #' Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press. ISBN: 9780849323317
 
-#' @examples head(lampreytime)
+#' @examples head(lamprey_time)
 #'
 #' results <- LT_probit((response / total) ~ log10(hour),
 #' p = c(50, 99),
 #' weights = total,
-#' data = lampreytime,
+#' data = lamprey_time,
 #' subset = c(month == "May"))
 #'
 #' #view calculated LT50 and LT99 for seasonal
@@ -266,12 +266,12 @@ LT_probit <- function(formula, data, p = seq(1, 99, 1),
 #'
 #' Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press. ISBN: 9780849323317
 
-#' @examples head(lampreytime)
+#' @examples head(lamprey_time)
 #'
 #' results <- LT_logit((response / total) ~ log10(hour),
 #' p = c(50, 99),
 #' weights = total,
-#' data = lampreytime,
+#' data = lamprey_time,
 #' subset = c(month == "May"))
 #'
 #' #view calculated LT50 and LT99 for seasonal

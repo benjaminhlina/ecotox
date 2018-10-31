@@ -36,7 +36,7 @@ its fiducial confidence limits (CL) using a probit analysis
 according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
 }
 \examples{
-head(lampreytox)
+head(lamprey_tox)
 
 # within the dataframe used, control dose, unless produced a value
 # during experimentation, are removed from the dataframe,
@@ -47,7 +47,7 @@ head(lampreytox)
 
 m <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
          weights = total,
-         data = lampreytox,
+         data = lamprey_tox,
          subset = c(month == "May"))
 
 #view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
@@ -59,7 +59,7 @@ m
 
 library(ggplot2)
 
-p1 <- ggplot(data = subset(lampreytox, month \%in\% c("May")),
+p1 <- ggplot(data = subset(lamprey_tox, month \%in\% c("May")),
              aes(x = log10(dose), y = (response / total))) +
   geom_point() +
   geom_smooth(method = "glm",
@@ -72,17 +72,17 @@ p1
 
 j <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
         weights = total,
-        data = lampreytox,
+        data = lamprey_tox,
         subset = c(month == "June"))
 
 a <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
         weights = total,
-        data = lampreytox,
+        data = lamprey_tox,
         subset = c(month == "August"))
 
 s <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
         weights = total,
-        data = lampreytox,
+        data = lamprey_tox,
         subset = c(month == "September"))
 
 #group results together in a dataframe to plot with 'ggplot2'

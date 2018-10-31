@@ -4,7 +4,7 @@ test_that("Determine if LT_logit calculations are correct", {
   m <- LT_logit((response / total) ~ log10(hour),
            p = c(50),
            weights = total,
-           data = lampreytime,
+           data = lamprey_time,
            subset = c(month == "May"))
 
   expect_equal(m$time, expected = 9.967, tolerance = 0.001)
@@ -18,7 +18,7 @@ test_that("Determine if LT_logit calculations are correct", {
   j <- LT_logit((response / total) ~ log10(hour),
                 p = c(50),
                 weights = total,
-                data = lampreytime,
+                data = lamprey_time,
                 subset = c(month == "June"))
 
   expect_equal(j$time, expected = 13.738, tolerance = 0.001)
@@ -32,7 +32,7 @@ test_that("Determine if LT_logit calculations are correct", {
   a <- LT_logit((response / total) ~ log10(hour),
                 p = c(50),
                 weights = total,
-                data = lampreytime,
+                data = lamprey_time,
                 subset = c(month == "August"))
 
   expect_equal(a$time, expected = 8.169, tolerance = 0.001)
@@ -46,7 +46,7 @@ test_that("Determine if LT_logit calculations are correct", {
   s <- LT_logit((response / total) ~ log10(hour),
                 p = c(50),
                 weights = total,
-                data = lampreytime,
+                data = lamprey_time,
                 subset = c(month == "September"))
 
   expect_equal(s$time, expected = 12.445, tolerance = 0.001)
@@ -60,7 +60,7 @@ test_that("Determine if LT_logit calculations are correct", {
 
   mm <- LT_logit((response / total) ~ hour, p = c(50),
                   weights = total,
-                  data = lampreytime,
+                  data = lamprey_time,
                   log_x = FALSE,
                   subset = c(month == "May"))
 
@@ -76,7 +76,7 @@ test_that("Determine if LT_logit calculations are correct", {
 
   ma <- LT_logit((response / total) ~ log(hour), p = c(50),
                   weights = total,
-                  data = lampreytime,
+                  data = lamprey_time,
                   subset = c(month == "May"),
                   long_output = FALSE)
   expect_equal(ncol(ma), 7)
@@ -84,7 +84,7 @@ test_that("Determine if LT_logit calculations are correct", {
 
   may <- LT_logit((response / total) ~ log10(hour), p = c(50),
                    weights = total,
-                   data = lampreytime,
+                   data = lamprey_time,
                    subset = c(month == "May"),
                    long_output = TRUE)
   expect_equal(ncol(may), 19)

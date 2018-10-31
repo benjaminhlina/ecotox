@@ -30,7 +30,7 @@ This is an example which uses the LC_probit function to calculate a LC<sub>50</s
 
 ``` r
 ## Calculate LC50 and LC99
-head(lampreytox)
+head(lamprey_tox)
 
 ## within the dataframe used, control dose, unless produced a value
 ## during experimentation, are removed from the dataframe,
@@ -42,7 +42,7 @@ head(lampreytox)
 m <- LC_probit((response / total) ~ log10(dose),
                 p = c(50, 99),
                 weights = total,
-                data = lampreytox,
+                data = lamprey_tox,
                 subset = c(month == "May"))
 
 ## view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
@@ -57,7 +57,7 @@ m
 m_2 <- LC_probit((response / total) ~ dose,
                   p = c(50, 99),
                   weights = total,
-                  data = lampreytox,
+                  data = lamprey_tox,
                   subset = c(month == "May"), 
                   log_x = FALSE, 
                   long_output = FALSE)

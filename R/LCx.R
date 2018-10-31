@@ -25,7 +25,7 @@
 #'
 #' Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press. ISBN: 9780849323317
 
-#' @examples head(lampreytox)
+#' @examples head(lamprey_tox)
 #'
 #' # within the dataframe used, control dose, unless produced a value
 #' # during experimentation, are removed from the dataframe,
@@ -36,7 +36,7 @@
 #'
 #' m <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
 #'          weights = total,
-#'          data = lampreytox,
+#'          data = lamprey_tox,
 #'          subset = c(month == "May"))
 #'
 #' #view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
@@ -48,7 +48,7 @@
 #'
 #' library(ggplot2)
 #'
-#' p1 <- ggplot(data = subset(lampreytox, month %in% c("May")),
+#' p1 <- ggplot(data = subset(lamprey_tox, month %in% c("May")),
 #'              aes(x = log10(dose), y = (response / total))) +
 #'   geom_point() +
 #'   geom_smooth(method = "glm",
@@ -61,17 +61,17 @@
 #'
 #' j <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
 #'         weights = total,
-#'         data = lampreytox,
+#'         data = lamprey_tox,
 #'         subset = c(month == "June"))
 #'
 #' a <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
 #'         weights = total,
-#'         data = lampreytox,
+#'         data = lamprey_tox,
 #'         subset = c(month == "August"))
 #'
 #' s <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
 #'         weights = total,
-#'         data = lampreytox,
+#'         data = lamprey_tox,
 #'         subset = c(month == "September"))
 #'
 #' #group results together in a dataframe to plot with 'ggplot2'
@@ -321,7 +321,7 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #'
 #' Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press. ISBN: 9780849323317
 
-#' @examples head(lampreytox)
+#' @examples head(lamprey_tox)
 #'
 #' # within the dataframe used, control dose, unless produced a value
 #' # during experimentation, are removed from the dataframe,
@@ -333,7 +333,7 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #'
 #' m <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
 #'          weights = total,
-#'          data = lampreytox,
+#'          data = lamprey_tox,
 #'          subset = c(month == "May"))
 #'
 #' #view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
@@ -345,7 +345,7 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #'
 #' library(ggplot2)
 #'
-#' p1 <- ggplot(data = lampreytox[c(1:19), ],
+#' p1 <- ggplot(data = lamprey_tox[c(1:19), ],
 #'              aes(x = log10(dose), y = (response / total))) +
 #'   geom_point() +
 #'   geom_smooth(method = "glm",
@@ -358,17 +358,17 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #'
 #' j <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
 #'         weights = total,
-#'         data = lampreytox,
+#'         data = lamprey_tox,
 #'         subset = c(month == "June"))
 #'
 #' a <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
 #'         weights = total,
-#'         data = lampreytox,
+#'         data = lamprey_tox,
 #'         subset = c(month == "August"))
 #'
 #' s <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
 #'         weights = total,
-#'         data = lampreytox,
+#'         data = lamprey_tox,
 #'         subset = c(month == "September"))
 #'
 #' #group results together in a dataframe to plot with 'ggplot2'

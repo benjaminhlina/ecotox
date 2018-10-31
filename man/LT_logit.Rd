@@ -36,12 +36,12 @@ its fiducial confidence limits (CL) using a logit analysis
 according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
 }
 \examples{
-head(lampreytime)
+head(lamprey_time)
 
 results <- LT_logit((response / total) ~ log10(hour),
 p = c(50, 99),
 weights = total,
-data = lampreytime,
+data = lamprey_time,
 subset = c(month == "May"))
 
 #view calculated LT50 and LT99 for seasonal

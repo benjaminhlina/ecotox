@@ -4,7 +4,7 @@ test_that("Determine if LT_probit runs properly", {
   m <- LT_probit((response / total) ~ log10(hour),
             p = c(50),
             weights = total,
-            data = lampreytime,
+            data = lamprey_time,
             subset = c(month == "May"))
 
   expect_equal(m$time, expected = 9.991, tolerance = 0.001)
@@ -18,7 +18,7 @@ test_that("Determine if LT_probit runs properly", {
   j <- LT_probit((response / total) ~ log10(hour),
                  p = c(50),
                  weights = total,
-                 data = lampreytime,
+                 data = lamprey_time,
                  subset = c(month == "June"))
 
   expect_equal(j$time, expected = 14.128, tolerance = 0.001)
@@ -32,7 +32,7 @@ test_that("Determine if LT_probit runs properly", {
   a <- LT_probit((response / total) ~ log10(hour),
                  p = c(50),
                  weights = total,
-                 data = lampreytime,
+                 data = lamprey_time,
                  subset = c(month == "August"))
 
   expect_equal(a$time, expected = 8.184, tolerance = 0.001)
@@ -46,7 +46,7 @@ test_that("Determine if LT_probit runs properly", {
   s <- LT_probit((response / total) ~ log10(hour),
                  p = c(50),
                  weights = total,
-                 data = lampreytime,
+                 data = lamprey_time,
                  subset = c(month == "September"))
 
   expect_equal(s$time, expected = 12.611, tolerance = 0.001)
@@ -59,7 +59,7 @@ test_that("Determine if LT_probit runs properly", {
 
   mm <- LT_probit((response / total) ~ hour, p = c(50),
                   weights = total,
-                  data = lampreytime,
+                  data = lamprey_time,
                   log_x = FALSE,
                   subset = c(month == "May"))
 
@@ -74,7 +74,7 @@ test_that("Determine if LT_probit runs properly", {
 
   ma <- LT_probit((response / total) ~ log(hour), p = c(50),
                   weights = total,
-                  data = lampreytime,
+                  data = lamprey_time,
                   subset = c(month == "May"),
                   long_output = FALSE)
   expect_equal(ncol(ma), 7)
@@ -82,7 +82,7 @@ test_that("Determine if LT_probit runs properly", {
 
   may <- LT_probit((response / total) ~ log10(hour), p = c(50),
                    weights = total,
-                   data = lampreytime,
+                   data = lamprey_time,
                    subset = c(month == "May"),
                    long_output = TRUE)
   expect_equal(ncol(may), 19)

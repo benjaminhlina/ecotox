@@ -3,7 +3,7 @@ context("Test LC_probit")
 test_that("Determine if LC_probit calculations are correct", {
   m <- LC_probit((response / total) ~ log10(dose), p = c(50),
                weights = total,
-               data = lampreytox,
+               data = lamprey_tox,
                subset = c(month == "May"))
   expect_equal(m$dose, expected = 1.250, tolerance = 0.001)
   expect_equal(m$LCL, expected = 1.184, tolerance = 0.001)
@@ -16,7 +16,7 @@ test_that("Determine if LC_probit calculations are correct", {
   j <- LC_probit((response / total) ~ log10(dose),
                  p = c(50),
                  weights = total,
-                 data = lampreytox,
+                 data = lamprey_tox,
                  subset = c(month == "June"))
   expect_equal(j$dose, expected = 2.659, tolerance = 0.001)
   expect_equal(j$LCL, expected = 2.590, tolerance = 0.001)
@@ -30,7 +30,7 @@ test_that("Determine if LC_probit calculations are correct", {
 
   a <- LC_probit((response / total) ~ log10(dose), p = c(50),
                weights = total,
-               data = lampreytox,
+               data = lamprey_tox,
                subset = c(month == "August"))
 
   expect_equal(a$dose, expected = 4.009, tolerance = 0.001)
@@ -45,7 +45,7 @@ test_that("Determine if LC_probit calculations are correct", {
   s <- LC_probit((response / total) ~ log10(dose),
                  p = c(50),
                  weights = total,
-                 data = lampreytox,
+                 data = lamprey_tox,
                  subset = c(month == "September"))
 
   expect_equal(s$dose, expected = 2.120, tolerance = 0.001)
@@ -58,7 +58,7 @@ test_that("Determine if LC_probit calculations are correct", {
 
   mm <- LC_probit((response / total) ~ dose, p = c(50),
                          weights = total,
-                         data = lampreytox,
+                         data = lamprey_tox,
                          log_x = FALSE,
                          subset = c(month == "May"))
   expect_equal(mm$dose, expected = 1.282, tolerance = 0.001)
@@ -71,7 +71,7 @@ test_that("Determine if LC_probit calculations are correct", {
 
   ma <- LC_probit((response / total) ~ log10(dose), p = c(50),
                  weights = total,
-                 data = lampreytox,
+                 data = lamprey_tox,
                  subset = c(month == "May"),
                  long_output = FALSE)
   expect_equal(ncol(ma), 7)
@@ -79,7 +79,7 @@ test_that("Determine if LC_probit calculations are correct", {
 
   may <- LC_probit((response / total) ~ log10(dose), p = c(50),
                   weights = total,
-                  data = lampreytox,
+                  data = lamprey_tox,
                   subset = c(month == "May"),
                   long_output = TRUE)
   expect_equal(ncol(may), 19)
