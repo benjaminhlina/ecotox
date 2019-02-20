@@ -32,23 +32,25 @@
 #' # as glm cannot handle values of infinite. Other statistical programs
 #' # make note of the control dose but do not include within analysis
 #'
-#' #calculate LC50 and LC99
+#' # calculate LC50 and LC99
 #'
 #' m <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
 #'          weights = total,
 #'          data = lamprey_tox,
 #'          subset = c(month == "May"))
 #'
-#' #view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
-#' #to lamprey in 2011
+#' # view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
+#' # to lamprey in 2011
 #'
 #' m
 #'
-#' #dose-response curve can be plotted using 'ggplot2'
+#' # dose-response curve can be plotted using 'ggplot2'
 #'
 #' library(ggplot2)
 #'
-#' p1 <- ggplot(data = subset(lamprey_tox, month %in% c("May")),
+#' lc_may <- subset(lamprey_tox, month %in% c("May"))
+#'
+#' p1 <- ggplot(data = lc_may,
 #'              aes(x = log10(dose), y = (response / total))) +
 #'   geom_point() +
 #'   geom_smooth(method = "glm",
@@ -57,7 +59,7 @@
 #'
 #' p1
 #'
-#' #calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
+#' # calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
 #'
 #' j <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
 #'         weights = total,
@@ -74,16 +76,13 @@
 #'         data = lamprey_tox,
 #'         subset = c(month == "September"))
 #'
-#' #group results together in a dataframe to plot with 'ggplot2'
+#' # group results together in a dataframe to plot with 'ggplot2'
 #'
 #' results <- rbind(m[, c(1, 3:8, 11)], j[,c(1, 3:8, 11)],
 #'                  a[, c(1, 3:8, 11)], s[, c(1, 3:8, 11)])
-#'
-#' results$month <- with(results, factor(c("May", "May", "June", "June",
-#'                                         "August", "August", "September",
-#'                                         "September"),
-#'                                         levels = c("May", "June",
-#'                                         "August", "September")))
+#' results$month <- factor(c(rep("May", 2), rep("June", 2),
+#'                           rep("August", 2), rep("September", 2)),
+#'                         levels = c("May", "June", "August", "September"))
 #'
 #' p2 <- ggplot(data = results, aes(x = month, y = dose,
 #'                              group = factor(p), fill = factor(p))) +
@@ -108,6 +107,9 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
                                data = data,
                                weights = substitute(weights),
                                subset = substitute(subset)))
+
+
+
 
   # Calculate heterogeneity to correct confidence intervals
   # according to Finney, 1971, (p.72, eq. 4.27; also called "h")
@@ -329,14 +331,14 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #' # make note of the control dose but do not include within analysis
 #'
 #'
-#' #calculate LC50 and LC99 for May
+#' # calculate LC50 and LC99 for May
 #'
 #' m <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
 #'          weights = total,
 #'          data = lamprey_tox,
 #'          subset = c(month == "May"))
 #'
-#' #view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
+#' # view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
 #' #to lamprey in 2011
 #'
 #' m
@@ -345,7 +347,9 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #'
 #' library(ggplot2)
 #'
-#' p1 <- ggplot(data = lamprey_tox[c(1:19), ],
+#' lc_may <- subset(lamprey_tox, month %in% c("May"))
+#'
+#' p1 <- ggplot(data = lc_may,
 #'              aes(x = log10(dose), y = (response / total))) +
 #'   geom_point() +
 #'   geom_smooth(method = "glm",
@@ -354,7 +358,7 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #'
 #' p1
 #'
-#' #calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
+#' # calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
 #'
 #' j <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
 #'         weights = total,
@@ -371,16 +375,14 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #'         data = lamprey_tox,
 #'         subset = c(month == "September"))
 #'
-#' #group results together in a dataframe to plot with 'ggplot2'
+#' # group results together in a dataframe to plot with 'ggplot2'
 #'
 #' results <- rbind(m[, c(1, 3:8, 11)], j[,c(1, 3:8, 11)],
 #'                  a[, c(1, 3:8, 11)], s[, c(1, 3:8, 11)])
+#' results$month <- factor(c(rep("May", 2), rep("June", 2),
+#'                           rep("August", 2), rep("September", 2)),
+#'                         levels = c("May", "June", "August", "September"))
 #'
-#' results$month <- with(results, factor(c("May", "May", "June", "June",
-#'                                         "August", "August", "September",
-#'                                         "September"),
-#'                                         levels = c("May", "June",
-#'                                         "August", "September")))
 #'
 #' p2 <- ggplot(data = results, aes(x = month, y = dose,
 #'                              group = factor(p), fill = factor(p))) +

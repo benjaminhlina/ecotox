@@ -60,7 +60,9 @@ m
 
 library(ggplot2)
 
-p1 <- ggplot(data = lamprey_tox[c(1:19), ],
+lc_may <- subset(lamprey_tox, month \%in\% c("May"))
+
+p1 <- ggplot(data = lc_may,
              aes(x = log10(dose), y = (response / total))) +
   geom_point() +
   geom_smooth(method = "glm",
@@ -90,12 +92,10 @@ s <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
 
 results <- rbind(m[, c(1, 3:8, 11)], j[,c(1, 3:8, 11)],
                  a[, c(1, 3:8, 11)], s[, c(1, 3:8, 11)])
+results$month <- factor(c(rep("May", 2), rep("June", 2),
+                          rep("August", 2), rep("September", 2)),
+                        levels = c("May", "June", "August", "September"))
 
-results$month <- with(results, factor(c("May", "May", "June", "June",
-                                        "August", "August", "September",
-                                        "September"),
-                                        levels = c("May", "June",
-                                        "August", "September")))
 
 p2 <- ggplot(data = results, aes(x = month, y = dose,
                              group = factor(p), fill = factor(p))) +
