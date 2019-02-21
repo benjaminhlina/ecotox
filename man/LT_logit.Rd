@@ -44,12 +44,12 @@ weights = total,
 data = lamprey_time,
 subset = c(month == "May"))
 
-#view calculated LT50 and LT99 for seasonal
-#toxicity of a piscicide, 3-trifluoromethyl-4-nitrophenol, to lamprey in 2011
+# view calculated LT50 and LT99 for seasonal
+# toxicity of a piscicide, 3-trifluoromethyl-4-nitrophenol, to lamprey in 2011
 
 results
 
-#dose-response curve can be plotted using 'ggplot2'
+# dose-response curve can be plotted using 'ggplot2'
 
 }
 \references{

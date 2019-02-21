@@ -44,14 +44,14 @@ head(lamprey_tox)
 # make note of the control dose but do not include within analysis
 
 
-#calculate LC50 and LC99 for May
+# calculate LC50 and LC99 for May
 
 m <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
          weights = total,
          data = lamprey_tox,
          subset = c(month == "May"))
 
-#view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
+# view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
 #to lamprey in 2011
 
 m
@@ -71,7 +71,7 @@ p1 <- ggplot(data = lc_may,
 
 p1
 
-#calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
+# calculate LC50s and LC99s for multiple toxicity tests, June, August, and September
 
 j <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
         weights = total,
@@ -88,7 +88,7 @@ s <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
         data = lamprey_tox,
         subset = c(month == "September"))
 
-#group results together in a dataframe to plot with 'ggplot2'
+# group results together in a dataframe to plot with 'ggplot2'
 
 results <- rbind(m[, c(1, 3:8, 11)], j[,c(1, 3:8, 11)],
                  a[, c(1, 3:8, 11)], s[, c(1, 3:8, 11)])
