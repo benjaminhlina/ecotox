@@ -4,7 +4,7 @@
 \alias{LT_logit}
 \title{Lethal Time Logit}
 \usage{
-LT_logit(formula, data, p = seq(1, 99, 1), weights,
+LT_logit(formula, data, p = seq(0.1, 99.9, 0.1), weights,
           subset = NULL, log_x = TRUE, het_sig = NULL,
           conf_level = NULL, long_output = TRUE)
 }
@@ -13,7 +13,7 @@ LT_logit(formula, data, p = seq(1, 99, 1), weights,
 
 \item{data}{an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which \code{LT_logit} is called.}
 
-\item{p}{Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector.}
+\item{p}{Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value desired specify by creating a vector. LT values can be calculated down to the 0.1 of a percentage (e.g. LT75.5)}
 
 \item{weights}{vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.}
 
