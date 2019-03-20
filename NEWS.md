@@ -1,4 +1,10 @@
-# ecotox v1.3.2
+# ecotox v1.3.4
+
+
+### New Feature as of 20-Mar-2018
+  *  All functions now output a `tibble` instead of dataframe
+  *  All functions now allow for an LC or LT value to be calculated down to the 
+     0.1 of a percent (e.g. LC75.5)
 
 ### New Feature as of 20-Sep-2018
    * All functions now have `long_output` argument which allows the user to
