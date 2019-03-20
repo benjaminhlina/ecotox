@@ -98,7 +98,7 @@
 #' @export
 
 # Function  LC_probit ----
-LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
+LC_probit <- function(formula, data, p = seq(0.1, 99.9, 0.1), weights,
                       subset = NULL, log_x = TRUE, het_sig = NULL,
                       conf_level = NULL, long_output = TRUE) {
 
@@ -395,7 +395,7 @@ LC_probit <- function(formula, data, p = seq(1, 99, 1), weights,
 #' @export
 
 # Function  LC_logit ----
-LC_logit <- function(formula, data, p = seq(1, 99, 1), weights,
+LC_logit <- function(formula, data, p = seq(0.1, 99.9, 0.1), weights,
                      subset = NULL, log_x = TRUE,
                      het_sig = NULL, conf_level = NULL,
                      long_output = TRUE) {
