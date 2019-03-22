@@ -55,7 +55,7 @@ LT_probit <- function(formula, data, p = NULL,
 
   # error message for missing weights argument in function call
   if(missing(weights)) {
-    stop("Model need the total of test organsim per dose to weight the model properly",
+    stop("Model needs the total of test organsim per dose to weight the model properly",
          call. = FALSE)
   }
 
@@ -310,7 +310,7 @@ LT_logit <- function(formula, data, p = NULL, weights = NULL,
 
   # error message for missing weights argument in function call
   if(missing(weights)) {
-    stop("Model need the total of test organsim per dose to weight the model properly",
+    stop("Model needs the total of test organsim per dose to weight the model properly",
          call. = FALSE)
   }
 
