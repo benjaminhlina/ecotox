@@ -4,7 +4,7 @@
 \alias{LC_probit}
 \title{Lethal Concentration Probit}
 \usage{
-LC_probit(formula, data, p = seq(0.1, 99.9, 0.1), weights,
+LC_probit(formula, data, p = NULL, weights,
           subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL,
           long_output = TRUE)
 }
@@ -13,7 +13,7 @@ LC_probit(formula, data, p = seq(0.1, 99.9, 0.1), weights,
 
 \item{data}{an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which \code{LC_probit} is called.}
 
-\item{p}{Lethal Concentration (LC) value for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector. LC values can be calculated down to the 0.1 of a percentage (e.g. LC75.5)}
+\item{p}{Lethal Concentration (LC) values for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector. LC values can be calculated down to the 1e-16 of a percentage (e.g. LC99.99). However, the tibble produced can round to nearest whole number.}
 
 \item{weights}{vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.}
 

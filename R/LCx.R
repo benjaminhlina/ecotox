@@ -98,7 +98,8 @@
 #' @export
 
 # Function  LC_probit ----
-LC_probit <- function(formula, data, p = seq(0.1, 99.9, 0.1), weights,
+LC_probit <- function(formula, data, p = NULL,
+                      weights,
                       subset = NULL, log_x = TRUE, het_sig = NULL,
                       conf_level = NULL, long_output = TRUE) {
 
@@ -108,8 +109,17 @@ LC_probit <- function(formula, data, p = seq(0.1, 99.9, 0.1), weights,
                                weights = substitute(weights),
                                subset = substitute(subset)))
 
+  # error message for missing weights argument in function call
+  if(missing(weights)) {
+    stop("Model need the total of test organsim per dose to weight the model properly",
+         call. = FALSE)
+  }
 
-
+  # make p a null object and create warning message if p isn't supplied
+  if (is.null(p)) {
+    p <- seq(1, 99, 1)
+    warning("`p`argument has to be supplied otherwise LC values for 1-99 will be displayed", call. = FALSE)
+  }
 
   # Calculate heterogeneity to correct confidence intervals
   # according to Finney, 1971, (p.72, eq. 4.27; also called "h")
@@ -395,7 +405,7 @@ LC_probit <- function(formula, data, p = seq(0.1, 99.9, 0.1), weights,
 #' @export
 
 # Function  LC_logit ----
-LC_logit <- function(formula, data, p = seq(0.1, 99.9, 0.1), weights,
+LC_logit <- function(formula, data, p = NULL, weights,
                      subset = NULL, log_x = TRUE,
                      het_sig = NULL, conf_level = NULL,
                      long_output = TRUE) {
@@ -406,6 +416,18 @@ LC_logit <- function(formula, data, p = seq(0.1, 99.9, 0.1), weights,
                                weights = substitute(weights),
                                subset = substitute(subset)))
 
+  # error message for missing weights argument in function call
+  if(missing(weights)) {
+    stop("Model need the total of test organsim per dose to weight the model properly",
+         call. = FALSE)
+  }
+
+
+  # make p a null object and create warning message if p isn't supplied
+    if (is.null(p)) {
+      p <- seq(1, 99, 1)
+      warning(call. = FALSE, "`p`argument has to be supplied otherwise LC values for 1-99 will be displayed")
+    }
   # Calculate heterogeneity correction to confidence intervals
   # according to Finney, 1971, (p.72, eq. 4.27; also called "h")
   # Heterogeneity correction factor is used if
@@ -588,3 +610,4 @@ LC_logit <- function(formula, data, p = seq(0.1, 99.9, 0.1), weights,
   return(table)
 
 }
+
