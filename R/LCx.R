@@ -5,14 +5,16 @@
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
 #' @usage LC_probit(formula, data, p = NULL, weights,
-#'           subset = NULL, log_x = TRUE, het_sig = NULL, conf_level = NULL,
+#'           subset = NULL, log_base = NULL, log_x = TRUE,
+#'           het_sig = NULL, conf_level = NULL,
 #'           long_output = TRUE)
 #' @param formula an object of class `formula` or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which `LC_probit` is called.
 #' @param p Lethal Concentration (LC) values for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector. LC values can be calculated down to the 1e-16 of a percentage (e.g. LC99.99). However, the tibble produced can round to nearest whole number.
 #' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.
 #' @param subset allows for the data to be subseted if desired. Default set to `NULL`.
-#' @param log_x default is `TRUE` and will calculate results using the antilog10 given that the x variable has been `log10` tranformed. If `FALSE` results will not be back transformed.
+#' @param log_base default is `10` and will be used to  calculate results using the anti of `log10()` given that the x variable has been `log10` tranformed. If `FALSE` results will not be back transformed.
+#' @param log_x default is `TRUE` and will calculate results using the antilog of determined by `log_base` given that the x variable has been `log()` tranformed. If `FALSE` results will not be back transformed.
 #' @param het_sig significance level from person's chi square goodness-of-fit test (pgof) that is used to decide if a heterogeneity factor is used. `NULL` is set to 0.15.
 #' @param conf_level adjust confidence level as necessary or `NULL` set at 0.95.
 #' @param long_output default is `TRUE` which will return a tibble with all 19 variabless. If `FALSE` the tibble returned will consist of the p level, n, the predicted LC for given p level, lower and upper confidence limits and their distances.
@@ -327,13 +329,15 @@ LC_probit <- function(formula, data, p = NULL,
 #' its fiducial confidence limits (CL) using a logit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
 #' @usage LC_logit(formula, data, p = NULL, weights,
-#'          subset = NULL, log_x = TRUE, het_sig = NULL,
+#'          subset = NULL, log_base = NULL,
+#'          log_x = TRUE, het_sig = NULL,
 #'          conf_level = NULL, long_output = TRUE)
 #' @param formula an object of class `formula` or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which `LC_logit` is called.
 #' @param p Lethal Concentration (LC) values for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector. LC values can be calculated down to the 1e-16 of a percentage (e.g. LC99.99). However, the tibble produced can round to nearest whole number.
 #' @param weights vector of 'prior weights' to be used in the fitting process. Should be a numeric vector and is required for analysis.
-#' @param log_x default is `TRUE` and will calculate results using the antilog10 given that the x variable has been `log10` tranformed. If `FALSE` results will not be back transformed.
+#' @param log_base default is `10` and will be used to  calculate results using the anti of `log10()` given that the x variable has been `log10` tranformed. If `FALSE` results will not be back transformed.
+#' @param log_x default is `TRUE` and will calculate results using the antilog of determined by `log_base` given that the x variable has been `log()` tranformed. If `FALSE` results will not be back transformed.
 #' @param subset allows for the data to be subseted if desired. Default set to `NULL`.
 #' @param het_sig significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. `NULL` is set to 0.15.
 #' @param conf_level adjust confidence level as necessary or `NULL` set at 0.95.

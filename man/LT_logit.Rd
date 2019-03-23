@@ -5,7 +5,7 @@
 \title{Lethal Time Logit}
 \usage{
 LT_logit(formula, data, p = NULL, weights,
-          subset = NULL, log_x = TRUE, het_sig = NULL,
+          subset = NULL, log_base = NULL, log_x = TRUE, het_sig = NULL,
           conf_level = NULL, long_output = TRUE)
 }
 \arguments{
@@ -19,7 +19,9 @@ LT_logit(formula, data, p = NULL, weights,
 
 \item{subset}{allows for the data to be subseted if desired. Default set to \code{NULL}.}
 
-\item{log_x}{Default is \code{TRUE} and will calculate results using the antilog10 given that the x variable has been \code{log10} tranformed. If \code{FALSE} results will not be back transformed.}
+\item{log_base}{default is \code{10} and will be used to  calculate results using the anti of \code{log10()} given that the x variable has been \code{log10} tranformed. If \code{FALSE} results will not be back transformed.}
+
+\item{log_x}{default is \code{TRUE} and will calculate results using the antilog of determined by \code{log_base} given that the x variable has been \code{log()} tranformed. If \code{FALSE} results will not be back transformed.}
 
 \item{het_sig}{significance level from person's chi sqaure goodness-of-fit test that is used to decide if a heterogeneity factor is used. \code{NULL} is set to 0.15.}
 
