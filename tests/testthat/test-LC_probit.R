@@ -1,7 +1,7 @@
 context("Test LC_probit")
 
 test_that("Determine if LC_probit calculations are correct", {
-  m <- LC_probit((response / total) ~ log10(dose), p = c(50),
+  m <- LC_probit((response / total) ~ log10(dose), p = 50,
                weights = total,
                data = lamprey_tox,
                subset = c(month == "May"))
