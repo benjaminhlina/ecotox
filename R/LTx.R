@@ -43,7 +43,8 @@
 
 # Function  LT_probit ----
 LT_probit <- function(formula, data, p = NULL,
-               weights, subset = NULL, log_x = TRUE,
+               weights, subset = NULL, log_base = NULL,
+               log_x = TRUE,
                het_sig = NULL, conf_level = NULL,
                long_output = TRUE) {
 
@@ -299,7 +300,8 @@ LT_probit <- function(formula, data, p = NULL,
 # Function  LT_logit ----
 
 LT_logit <- function(formula, data, p = NULL, weights = NULL,
-                     subset = NULL, log_x = TRUE, het_sig = NULL,
+                     subset = NULL, log_base = NULL,
+                     log_x = TRUE, het_sig = NULL,
                      conf_level = NULL, long_output = TRUE) {
 
   model <- do.call("glm", list(formula = formula,
@@ -450,9 +452,13 @@ LT_logit <- function(formula, data, p = NULL, weights = NULL,
   var_m <- (1 / (m ^ 2)) * (var_b0 + 2 * m * cov_b0_b1 + var_b1 * m ^ 2)
 
   if (log_x == TRUE) {
-    time <- 10 ^ m
-    LCL <- 10 ^ LCL
-    UCL <- 10 ^ UCL
+    if(is.null(log_base)) {
+      log_base <- 10
+    }
+
+    time <- log_base ^ m
+    LCL <- log_base ^ LCL
+    UCL <- log_base ^ UCL
     LCL_dis <- time - LCL
     UCL_dis <- UCL - time
   }

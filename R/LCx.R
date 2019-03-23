@@ -100,7 +100,9 @@
 # Function  LC_probit ----
 LC_probit <- function(formula, data, p = NULL,
                       weights,
-                      subset = NULL, log_x = TRUE, het_sig = NULL,
+                      subset = NULL, log_base = NULL,
+                      log_x = TRUE,
+                      het_sig = NULL,
                       conf_level = NULL, long_output = TRUE) {
 
   model <- do.call("glm", list(formula = formula,
@@ -256,10 +258,22 @@ LC_probit <- function(formula, data, p = NULL,
   var_m <- (1 / (m ^ 2)) * (var_b0 + 2 * m * cov_b0_b1 +
                               m ^ 2 * var_b1)
 
+  # if(is.null(log_base)) {
+  #   ex <- 10
+  #
+  # }
+
+
+
+
   if (log_x == TRUE) {
-    dose <- 10 ^ m
-    LCL <- 10 ^ LCL
-    UCL <- 10 ^ UCL
+
+    if(is.null(log_base)) {
+      log_base <- 10
+      }
+    dose <- log_base ^ m
+    LCL <- log_base ^ LCL
+    UCL <- log_base ^ UCL
     LCL_dis <- dose - LCL
     UCL_dis <- UCL - dose
   }
@@ -406,7 +420,8 @@ LC_probit <- function(formula, data, p = NULL,
 
 # Function  LC_logit ----
 LC_logit <- function(formula, data, p = NULL, weights,
-                     subset = NULL, log_x = TRUE,
+                     subset = NULL, log_base = NULL,
+                     log_x = TRUE,
                      het_sig = NULL, conf_level = NULL,
                      long_output = TRUE) {
 
@@ -558,10 +573,18 @@ LC_logit <- function(formula, data, p = NULL, weights,
 
   var_m <- (1 / (m ^ 2)) * (var_b0 + 2 * m * cov_b0_b1 + var_b1 * m ^ 2)
 
+
+
   if (log_x == TRUE) {
-    dose <- 10 ^ m
-    LCL <- 10 ^ LCL
-    UCL <- 10 ^ UCL
+
+    if(is.null(log_base)) {
+      log_base <- 10
+    }
+
+
+    dose <- log_base ^ m
+    LCL <- log_base ^ LCL
+    UCL <- log_base ^ UCL
     LCL_dis <- dose - LCL
     UCL_dis <- UCL - dose
   }
