@@ -16,9 +16,9 @@ ratio_test(model_1, model_2, percentage = NULL,
 
 \item{type}{Link type needs to be specfied to either \code{"probit"} which will return and used in calculations for a probit model for the desired LCs or LTs. If specified to \code{"logit"} then \code{ratio_test} will return and calcuate using a logit model for the desired LCs or LTs.}
 
-\item{log_x}{default is \code{TRUE} and will calculate results using the antilog of determined by \code{log_base} given that the x variable has been \code{log()} tranformed. If \code{FALSE} results will not be back transformed.}
-
 \item{log_base}{default is \code{10} and will be used to  calculate results using the anti of \code{log10()} given that the x variable has been \code{log10} tranformed. If \code{FALSE} results will not be back transformed.}
+
+\item{log_x}{default is \code{TRUE} and will calculate results using the antilog of determined by \code{log_base} given that the x variable has been \code{log()} tranformed. If \code{FALSE} results will not be back transformed.}
 }
 \value{
 A tibble with \code{percentage} for the LC or LT value desired for the above percentage argument, \code{dose_1} and \code{dose_2} displayed calculated backtransformed or untransformed doses for the desired LC or LT values. Standard Error (\code{se}), Z test statistic (\code{test_stat}) and \code{p} value detemined using Z test statistic as determined using formulas in \href{http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract}{Wheeler et al. 2006}.

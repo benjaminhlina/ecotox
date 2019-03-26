@@ -52,7 +52,7 @@
 # function ------
 ratio_test <- function (model_1, model_2, percentage = NULL,
                         type = c("probit", "logit"),
-                        log_x = TRUE, log_base = NULL) {
+                        log_base = NULL, log_x = TRUE) {
 
   if(missing(model_1)) {
     stop("Ratio test needs first `glm()` object to compare LC or LT values",
