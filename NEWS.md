@@ -1,5 +1,6 @@
 # ecotox v1.4.0
 
+  * type is now null with default being "probit" can be "logit" if specified 
 
 ### New Feature as of 26-Mar-2018
   *  New function, ratio_test. This function allows the user to caculate                differences between two seperate LC or LT values using a ratio test derived        from Wheeler et al. 2006. To use the function, the user needs to create two 
