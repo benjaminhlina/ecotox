@@ -41,7 +41,8 @@
 #' # now that both May and June models have been made. use ratio_test to
 #' # compare LC50 values or whatever LC values of interest.
 #'
-#' ratios <- ratio_test(model_1 = m, model_2 = j, percentage = 50, type = "probit")
+#' ratios <- ratio_test(model_1 = m, model_2 = j, percentage = 50,
+#' compare = "May - June")
 #'
 #' # view ratio test results
 #'
@@ -52,7 +53,7 @@
 
 # function ------
 ratio_test <- function (model_1, model_2, percentage = NULL,
-                        type = c("probit", "logit"),
+                        type = NULL, compare = NULL,
                         log_base = NULL, log_x = TRUE) {
 
   if(missing(model_1)) {
