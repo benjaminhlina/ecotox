@@ -136,6 +136,13 @@ ratio_test <- function (model_1, model_2, percentage = NULL,
 
   # create estimate from p
 
+  if (is.null(type)) {
+    type <- c("probit")
+  }
+  else {
+    type <- c("logit")
+
+  }
 
   if (type == "probit") {
 
