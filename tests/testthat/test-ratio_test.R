@@ -16,15 +16,14 @@ j <- glm((response / total) ~ log10(dose),
          family = binomial(link = "probit"))
 
 
-ratios <- ratio_test(model_1 = j, model_2 = s, percentage = 50,
-                     type = "probit")
+ratios <- ratio_test(model_1 = j, model_2 = s, percentage = 50)
 ratios
 
 expect_equal(ratios$dose_1, expected = 2.66, tolerance = 0.001)
   expect_equal(ratios$dose_2, expected = 2.12, tolerance = 0.001)
   expect_equal(ratios$se, expected = 0.0387, tolerance = 0.001)
   expect_equal(ratios$test_stat, expected = 2.544, tolerance = 0.001)
-  expect_equal(ratios$p, expected =  0.0109, tolerance = 0.0001)
+  expect_equal(ratios$p_value, expected =  0.0109, tolerance = 0.0001)
 
 })
 
