@@ -1,6 +1,10 @@
 # ecotox v1.4.0
 
-  * type is now null with default being "probit" can be "logit" if specified 
+
+### New Feature as of 04-April-2018
+  
+  * `type` is now null with default being `"probit"` can be `"logit"` if specified
+  * `compare` argument has been added. This adds a compare column to the output letting        the user know what models are being compared. Current default stats `"Model 1 - Model 2"`. However, you can specificy this with a vector of characters like `compare = c("May - June)"`
 
 ### New Feature as of 26-Mar-2018
   *  New function, ratio_test. This function allows the user to caculate                differences between two seperate LC or LT values using a ratio test derived        from Wheeler et al. 2006. To use the function, the user needs to create two 
