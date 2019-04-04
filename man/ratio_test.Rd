@@ -23,7 +23,7 @@ ratio_test(model_1, model_2, percentage = NULL,
 \item{log_x}{default is \code{TRUE} and will calculate results using the antilog of determined by \code{log_base} given that the x variable has been \code{log()} tranformed. If \code{FALSE} results will not be back transformed.}
 }
 \value{
-A tibble with \code{percentage} for the LC or LT value desired for the above percentage argument, \code{dose_1} and \code{dose_2} displayed calculated backtransformed or untransformed doses for the desired LC or LT values. Standard Error (\code{se}), Z test statistic (\code{test_stat}) and \code{p} value detemined using Z test statistic as determined using formulas in \href{http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract}{Wheeler et al. 2006}.
+A tibble with \code{percentage} for the LC or LT value desired for the above percentage argument, \code{dose_1} and \code{dose_2} displayed calculated backtransformed or untransformed doses for the desired LC or LT values. Standard Error (\code{se}), Z test statistic (\code{test_stat}) and \code{p_value} detemined using Z test statistic as determined using formulas in \href{http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract}{Wheeler et al. 2006}.
 .
 }
 \description{
