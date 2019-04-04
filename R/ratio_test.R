@@ -175,14 +175,14 @@ ratio_test <- function (model_1, model_2, percentage = NULL,
   # creteate se for ratio test for model 1 and model 2 -----
 
   se_1 <- (intercept_se_a ^ 2 / b0_a ^ 2) + (slope_se_a ^ 2 / b1_a ^ 2) +
-              (intercept_se_b ^ 2 / b0_b ^ 2) + (slope_se_b ^ 2 / b1_b ^ 2) -
-              ((2 * cov_b0_b1_a) / (b1_a * b0_a)) -
-              ((2 * cov_b0_b1_b) / (b1_b * b0_b))
+          (intercept_se_b ^ 2 / b0_b ^ 2) + (slope_se_b ^ 2 / b1_b ^ 2) -
+          ((2 * cov_b0_b1_a) / (b1_a * b0_a)) -
+          ((2 * cov_b0_b1_b) / (b1_b * b0_b))
 
   # square root the se ----
   se_2 <- sqrt(se_1)
 
-  # take themodel 1 predicted dose - model 2 prediected dose -----
+  # take the model 1 predicted dose - model 2 prediected dose -----
   t <- abs(model_1_d - model_2_d)
 
 
@@ -193,30 +193,36 @@ ratio_test <- function (model_1, model_2, percentage = NULL,
 
 
 
+
   if (log_x == TRUE) {
 
     if(is.null(log_base)) {
       log_base <- 10
+
+      dose_1 <- log_base ^ model_1_d
+      dose_2 <- log_base ^ model_2_d
     }
-
-
-    table <- tibble(percentage = percentage,
-                  dose_1 =  log_base ^ model_1_d,
-                  dose_2 = log_base ^ model_2_d,
-                  se = se_2,
-                  test_stat = z,
-                  p = p_value)
   }
 
 
   if (log_x == FALSE) {
-    table <- tibble(percentage = percentage,
-                    dose_1 = model_1_d,
-                    dose_2 = model_2_d,
-                    se = se_2,
-                    test_stat = z,
-                    p = p_value)
+
+    dose_1 <- model_1_d
+    dose_2 <- model_2_d
   }
+
+
+  if (is.null(compare)) {
+    compare <- "Model 1 - Model 2"
+  }
+
+  table <- tibble(compare = compare,
+                  percentage = percentage,
+                  dose_1 =  dose_1,
+                  dose_2 = dose_2,
+                  se = se_2,
+                  test_stat = z,
+                  p_value = p_value)
   return(table)
 }
 
