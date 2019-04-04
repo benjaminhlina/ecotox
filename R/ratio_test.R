@@ -66,10 +66,10 @@ ratio_test <- function (model_1, model_2, percentage = NULL,
          call. = FALSE)
   }
 
-  if(missing(type)) {
-    stop('Ratio test needs a link type of either "probit", or "logit" to calculate properly',
-         call. = FALSE)
-  }
+  # if(missing(type)) {
+  #   stop('Ratio test needs a link type of either "probit", or "logit" to calculate properly',
+  #        call. = FALSE)
+  # }
 
 
 
@@ -78,6 +78,7 @@ ratio_test <- function (model_1, model_2, percentage = NULL,
     percentage  <- seq(1, 99, 1)
     warning("`percentage`argument has to be supplied otherwise ratio test will use values for 1-99 and will display values for 1-99", call. = FALSE)
   }
+
 
   # create summary for models that you are to compare ----
   s_m1 <- summary(model_1)
