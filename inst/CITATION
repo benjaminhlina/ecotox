@@ -5,20 +5,13 @@ citEntry(entry = "Article",
          an invasive species",
          author       = personList(as.person("Benjamin L. Hlina"),
                                    as.person("Oana Birceanu"),
-                                   as.person("Christopher Robinson"),
-                                   as.person("Nicole Thackeray"),
-                                   as.person("Laura R. Tessier"),
-                                   as.person("Alexandra Muhametsafina,"),
-                                   as.person("Leslie M. Bragg"),
-                                   as.person("Mark R. Servos,"),
+                                   as.person("Christopher S. Robinson"),
+                                   as.person("Hadi Dhiyebi"),
                                    as.person("Michael P. Wilkie")),
-         journal      = "Environmental Science & Technology",
-         year         = "2018",
+         journal      = "North American Journal of Fisheries Managment",
+         year         = "2019",
 
          textVersion  =
-           paste("Hlina, B.L., Birceanu, O., Robinson, C., Thackeray, N.,
-           Tessier, L.R., Muhametsafina, A., Bragg, L.M.,
-           Servos, M.R., Wilkie, M.P.",
-                 "In Preparation.", "Changes in the sensitivity of
-                 piscicide in an invasive species.",
-                 "Environmental Science & Technology"))
+           paste("Hlina, B.L., Birceanu, O., Robinson, C.S., Dhiyebi, H., Wilkie, M.P.",
+                 "In Review.", "Seasonal Variation in the Sensitivity of Invasive Sea Lampreys to the Lampricide TFM: Importance of Energy Reserves and Temperature.",
+                 "North American Journal of Fisheries Managment"))

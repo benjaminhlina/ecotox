@@ -83,7 +83,7 @@ m_2
 
 * When using this package please cite the following  publication:
 
-  Hlina, B.L., Birceanu, O., Robinson, C.S., Thackeray, N., Tessier, L.R., Muhametsafina, A., Bragg, L.M., Servos, M.R., Wilkie, M.P. *In Preparation*. Changes in the sensitivity of piscicide in an invasive species. Environmental Science & Technology.
+  Hlina, B.L., Birceanu, O., Robinson, C.S., Dhiyebi, H., Wilkie, M.P. *In Reivew*. Seasonal Variation in the Sensitivity of Invasive Sea Lampreys to the Lampricide TFM: Importance of Energy Reserves and Temperature. North American Journal of Fisheries Managment
 
 
 * Version 1.4.0 written by Benjamin L. Hlina, Carleton University, Ottawa, Ontario, Canada. Written in ['Programming Language R'](https://www.r-project.org/), version 3.5.3 (2019-03-11) -- "Great Truth". Run on a PC with Intel&reg; Core&trade; I7 - Q820 CPU, 1.73 GHz processor, 8.0 GB RAM, and Microsoft Windows 7 Professional operating system, 2009 Service Pack 1. Source code is available at ['ecotox'](https://github.com/benjaminhlina/ecotox) or by contacting Benjamin L. Hlina at benjamin.hlina@gmail.com
