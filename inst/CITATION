@@ -8,10 +8,10 @@ citEntry(entry = "Article",
                                    as.person("Christopher S. Robinson"),
                                    as.person("Hadi Dhiyebi"),
                                    as.person("Michael P. Wilkie")),
-         journal      = "North American Journal of Fisheries Managment",
+         journal      = "North American Journal of Fisheries Management",
          year         = "2019",
 
          textVersion  =
            paste("Hlina, B.L., Birceanu, O., Robinson, C.S., Dhiyebi, H., Wilkie, M.P.",
                  "In Review.", "Seasonal Variation in the Sensitivity of Invasive Sea Lampreys to the Lampricide TFM: Importance of Energy Reserves and Temperature.",
-                 "North American Journal of Fisheries Managment"))
+                 "North American Journal of Fisheries Management"))
