@@ -51,7 +51,7 @@ head(lamprey_tox)
 
 m <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
          weights = total,
-         data = lamprey_tox,
+         data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
          subset = c(month == "May"))
 
 # view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
@@ -65,7 +65,7 @@ library(ggplot2)
 
 lc_may <- subset(lamprey_tox, month \%in\% c("May"))
 
-p1 <- ggplot(data = lc_may,
+p1 <- ggplot(data = lc_may[lc_may$nominal_dose != 0, ],
              aes(x = log10(dose), y = (response / total))) +
   geom_point() +
   geom_smooth(method = "glm",
@@ -78,17 +78,17 @@ p1
 
 j <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
         weights = total,
-        data = lamprey_tox,
+        data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
         subset = c(month == "June"))
 
 a <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
         weights = total,
-        data = lamprey_tox,
+        data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
         subset = c(month == "August"))
 
 s <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
         weights = total,
-        data = lamprey_tox,
+        data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
         subset = c(month == "September"))
 
 # group results together in a dataframe to plot with 'ggplot2'
