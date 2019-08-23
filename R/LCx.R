@@ -440,10 +440,10 @@ LC_logit <- function(formula, data, p = NULL, weights,
 
 
   # make p a null object and create warning message if p isn't supplied
-    if (is.null(p)) {
-      p <- seq(1, 99, 1)
-      warning(call. = FALSE, "`p`argument has to be supplied otherwise LC values for 1-99 will be displayed")
-    }
+  if (is.null(p)) {
+    p <- seq(1, 99, 1)
+    warning(call. = FALSE, "`p`argument has to be supplied otherwise LC values for 1-99 will be displayed")
+  }
   # Calculate heterogeneity correction to confidence intervals
   # according to Finney, 1971, (p.72, eq. 4.27; also called "h")
   # Heterogeneity correction factor is used if
@@ -634,4 +634,6 @@ LC_logit <- function(formula, data, p = NULL, weights,
   return(table)
 
 }
+
+
 
