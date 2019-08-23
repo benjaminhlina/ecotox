@@ -26,14 +26,14 @@
 #' # using glm() to detemine LC values using probit model for May and June
 #'
 #' m <- glm((response / total) ~ log10(dose),
-#'          data = lamprey_tox,
+#'          data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
 #'          subset = c(month == "May"),
 #'          weights = total,
 #'          family = binomial(link = "probit"))
 #'
 #'
 #' j <- glm((response / total) ~ log10(dose),
-#'          data = lamprey_tox,
+#'          data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
 #'          subset = c(month == "June"),
 #'          weights = total,
 #'          family = binomial(link = "probit"))
@@ -225,5 +225,6 @@ ratio_test <- function (model_1, model_2, percentage = NULL,
                   p_value = p_value)
   return(table)
 }
+
 
 
