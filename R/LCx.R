@@ -263,19 +263,13 @@ LC_probit <- function(formula, data, p = NULL,
   var_m <- (1 / (m ^ 2)) * (var_b0 + 2 * m * cov_b0_b1 +
                               m ^ 2 * var_b1)
 
-  # if(is.null(log_base)) {
-  #   ex <- 10
-  #
-  # }
-
-
 
 
   if (log_x == TRUE) {
 
     if(is.null(log_base)) {
       log_base <- 10
-      }
+    }
     dose <- log_base ^ m
     LCL <- log_base ^ LCL
     UCL <- log_base ^ UCL
