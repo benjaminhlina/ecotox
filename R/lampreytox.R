@@ -4,7 +4,7 @@
 #' @usage lamprey_tox
 #' @format A tibble containing 64 rows and 7 columns.
 #' \describe{
-#'   \item{nominal.dose}{nominal TFM dose (mg/L)}
+#'   \item{nominal_dose}{nominal TFM dose (mg/L)}
 #'   \item{tank}{tank assignment}
 #'   \item{month}{month in which toxicity test occurred}
 #'   \item{dose}{averaged measured TFM dose (mg/L) over 12 h of exposure}
