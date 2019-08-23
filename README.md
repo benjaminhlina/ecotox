@@ -42,7 +42,7 @@ head(lamprey_tox)
 m <- LC_probit((response / total) ~ log10(dose),
                 p = c(50, 99),
                 weights = total,
-                data = lamprey_tox,
+                data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
                 subset = c(month == "May"))
 
 ## view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
@@ -57,7 +57,7 @@ m
 m_2 <- LC_probit((response / total) ~ dose,
                   p = c(50, 99),
                   weights = total,
-                  data = lamprey_tox,
+                  data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
                   subset = c(month == "May"), 
                   log_x = FALSE, 
                   long_output = FALSE)
