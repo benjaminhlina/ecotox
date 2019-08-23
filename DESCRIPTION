@@ -25,12 +25,14 @@ Imports:
     tibble
 Suggests: 
     covr,
+    data.table,
     dplyr,
     Hmisc,
+    openxlsx,
     readr,
     testthat,
-    tidyr,
-    xlsx
+    tidyr
+    
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
