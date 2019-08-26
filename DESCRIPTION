@@ -20,7 +20,6 @@ Description: A simple approach to using a probit or logit analysis to calculate
         (2007, ISBN: 0849323312).
 Depends: R (>= 3.3.0)
 Imports:
-    ggplot2,
     stats,
     tibble
 Suggests: 
