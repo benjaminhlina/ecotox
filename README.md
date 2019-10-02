@@ -69,6 +69,38 @@ m_2
 
 
 ## A new function `ratio_test` has been added 
+
+# view lamprey_tox data
+
+head(lamprey_tox)
+
+# using glm() to detemine LC values using probit model for May and June
+
+m <- glm((response / total) ~ log10(dose),
+         data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+         subset = c(month == "May"),
+         weights = total,
+         family = binomial(link = "probit"))
+
+
+j <- glm((response / total) ~ log10(dose),
+         data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+         subset = c(month == "June"),
+         weights = total,
+         family = binomial(link = "probit"))
+
+# now that both May and June models have been made. use ratio_test to
+# compare LC50 values or whatever LC values of interest.
+
+ratios <- ratio_test(model_1 = m, model_2 = j, 
+                     percentage = 50, 
+                     compare = "May - June")
+
+# view ratio test results
+
+ratios
+
+
 ``` 
 
 ## References 
