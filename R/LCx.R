@@ -4,7 +4,7 @@
 #' @description Calculates lethal concentration (LC) and
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LC_probit(formula, data, p = NULL, weights,
+#' @usage LC_probit(formula, data, p = NULL, weights = NULL,
 #'           subset = NULL, log_base = NULL, log_x = TRUE,
 #'           het_sig = NULL, conf_level = NULL,
 #'           long_output = TRUE)
@@ -324,7 +324,7 @@ LC_probit <- function(formula, data, p = NULL,
 #' @description Calculates lethal concentration (LC) and
 #' its fiducial confidence limits (CL) using a logit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LC_logit(formula, data, p = NULL, weights,
+#' @usage LC_logit(formula, data, p = NULL, weights = NULL,
 #'          subset = NULL, log_base = NULL,
 #'          log_x = TRUE, het_sig = NULL,
 #'          conf_level = NULL, long_output = TRUE)
