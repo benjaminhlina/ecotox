@@ -100,7 +100,7 @@
 
 # Function  LC_probit ----
 LC_probit <- function(formula, data, p = NULL,
-                      weights,
+                      weights = NULL,
                       subset = NULL, log_base = NULL,
                       log_x = TRUE,
                       het_sig = NULL,
@@ -420,7 +420,7 @@ LC_probit <- function(formula, data, p = NULL,
 #' @export
 
 # Function  LC_logit ----
-LC_logit <- function(formula, data, p = NULL, weights,
+LC_logit <- function(formula, data, p = NULL, weights = NULL,
                      subset = NULL, log_base = NULL,
                      log_x = TRUE,
                      het_sig = NULL, conf_level = NULL,
