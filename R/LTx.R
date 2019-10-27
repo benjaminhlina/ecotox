@@ -46,7 +46,7 @@
 
 # Function  LT_probit ----
 LT_probit <- function(formula, data, p = NULL,
-               weights, subset = NULL, log_base = NULL,
+               weights = NULL, subset = NULL, log_base = NULL,
                log_x = TRUE,
                het_sig = NULL, conf_level = NULL,
                long_output = TRUE) {
