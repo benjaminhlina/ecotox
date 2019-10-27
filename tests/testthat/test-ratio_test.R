@@ -62,6 +62,36 @@ test_that("Determine if ratio_test runs properly for logits", {
 
 
 
+# test if ratio_test returns proper values when does isn't log transformed ----
+
+test_that("Determine if ratio_test runs properly
+          if dose isn't log transformed", {
+
+  s <- glm((response / total) ~ dose,
+           data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+           subset = c(month == "September"),
+           weights = total,
+           family = binomial(link = "probit"))
+
+
+  j <- glm((response / total) ~ dose,
+           data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+           subset = c(month == "June"),
+           weights = total,
+           family = binomial(link = "probit"))
+
+
+  ratios <- ratio_test(model_1 = j, model_2 = s, percentage = 50, log_x = FALSE)
+  ratios
+
+  expect_equal(ratios$dose_1, expected = 2.666, tolerance = 0.001)
+  expect_equal(ratios$dose_2, expected = 2.140, tolerance = 0.001)
+  expect_equal(ratios$se, expected = 0.0292, tolerance = 0.001)
+  expect_equal(ratios$test_stat, expected =  17.974, tolerance = 0.001)
+  expect_equal(ratios$p_value, expected =  3.107007e-72, tolerance = 0.0001)
+
+})
+
 # test errors -----
 
 test_that("Test errors if model 2 isn't supplied", {
