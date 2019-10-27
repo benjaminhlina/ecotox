@@ -1,5 +1,7 @@
 context("Test LT_probit")
 
+
+# test if LT_probit runs properly -----
 test_that("Determine if LT_probit runs properly", {
   m <- LT_probit((response / total) ~ log10(hour),
             p = c(50),
@@ -71,8 +73,12 @@ test_that("Determine if LT_probit runs properly", {
   expect_equal(mm$chi_square, expected = 30.313, tolerance = 0.001)
   expect_equal(mm$pgof_sig, expected = 0.000388, tolerance = 0.000001)
 
+})
 
-  ma <- LT_probit((response / total) ~ log(hour), p = c(50),
+# test long and short outputs ----
+test_that("Determine if LT_probit runs properly", {
+
+   ma <- LT_probit((response / total) ~ log(hour), p = c(50),
                   weights = total,
                   data = lamprey_time,
                   subset = c(month == "May"),
@@ -89,4 +95,24 @@ test_that("Determine if LT_probit runs properly", {
   expect_equal(nrow(may), 1)
 
 
+})
+
+# test error when weights are not given -----
+
+test_that("LT_probit throws error when weights are not given", {
+
+  expect_error(expect_warning(LT_probit((response / total) ~ log10(dose),
+                                        p = 50,
+                                        data = lamprey_tox,
+                                        subset = c(month == "May"))))
+})
+
+
+# warning for not suppling p -----
+test_that("LT_probit throws warning when p is not supplied", {
+
+  expect_warning(LT_probit((response / total) ~ log10(dose),
+                           weights = total,
+                           data = lamprey_tox,
+                           subset = c(month == "May")))
 })
