@@ -4,7 +4,7 @@
 \alias{LC_logit}
 \title{Lethal Concentration Logit}
 \usage{
-LC_logit(formula, data, p = NULL, weights,
+LC_logit(formula, data, p = NULL, weights = NULL,
          subset = NULL, log_base = NULL,
          log_x = TRUE, het_sig = NULL,
          conf_level = NULL, long_output = TRUE)
