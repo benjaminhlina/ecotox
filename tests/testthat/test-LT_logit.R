@@ -1,5 +1,6 @@
 context("Test LT_logit")
 
+# test if LT_logit is caculating things properly -----
 test_that("Determine if LT_logit calculations are correct", {
   m <- LT_logit((response / total) ~ log10(hour),
            p = c(50),
@@ -72,8 +73,10 @@ test_that("Determine if LT_logit calculations are correct", {
   expect_equal(mm$chi_square, expected = 34.577, tolerance = 0.001)
   expect_equal(mm$pgof_sig, expected = 0.0000707, tolerance = 0.000001)
 
+})
 
-
+# determine if long and short outputs are working properly ------
+  test_that("Determine if long and short outputs work ", {
   ma <- LT_logit((response / total) ~ log(hour), p = c(50),
                   weights = total,
                   data = lamprey_time,
@@ -91,4 +94,26 @@ test_that("Determine if LT_logit calculations are correct", {
   expect_equal(nrow(may), 1)
 
 
+})
+
+
+# test error when weights are not given -----
+
+test_that("LT_logit throws error when weights are not given", {
+
+  expect_error(expect_warning(LT_logit((response / total) ~ log10(dose),
+                                        p = 50,
+                                        data = lamprey_tox,
+                                        subset = c(month == "May"))))
+})
+
+
+
+# warning for not suppling p -----
+test_that("LC_logit throws warning when p is not supplied", {
+
+  expect_warning(LT_logit((response / total) ~ log10(dose),
+                           weights = total,
+                           data = lamprey_tox,
+                           subset = c(month == "May")))
 })
