@@ -4,7 +4,7 @@
 \alias{LT_probit}
 \title{Lethal Time Probit}
 \usage{
-LT_probit(formula, data, p = NULL, weights,
+LT_probit(formula, data, p = NULL, weights = NULL,
           subset = NULL, log_base = NULL,
           log_x = TRUE, het_sig = NULL, conf_level = NULL,
           long_output = TRUE)

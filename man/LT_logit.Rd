@@ -4,7 +4,7 @@
 \alias{LT_logit}
 \title{Lethal Time Logit}
 \usage{
-LT_logit(formula, data, p = NULL, weights,
+LT_logit(formula, data, p = NULL, weights = NULL,
           subset = NULL, log_base = NULL, log_x = TRUE, het_sig = NULL,
           conf_level = NULL, long_output = TRUE)
 }
