@@ -4,7 +4,7 @@
 #' @description Calculates lethal time (LT) and
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LT_probit(formula, data, p = NULL, weights,
+#' @usage LT_probit(formula, data, p = NULL, weights = NULL,
 #'           subset = NULL, log_base = NULL,
 #'           log_x = TRUE, het_sig = NULL, conf_level = NULL,
 #'           long_output = TRUE)
@@ -266,7 +266,7 @@ LT_probit <- function(formula, data, p = NULL,
 #' @description Calculates lethal time (LT) and
 #' its fiducial confidence limits (CL) using a logit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LT_logit(formula, data, p = NULL, weights,
+#' @usage LT_logit(formula, data, p = NULL, weights = NULL,
 #'           subset = NULL, log_base = NULL, log_x = TRUE, het_sig = NULL,
 #'           conf_level = NULL, long_output = TRUE)
 #' @param formula an object of class `formula` or one that can be coerced to that class: a symbolic description of the model to be fitted.
