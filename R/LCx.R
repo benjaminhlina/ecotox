@@ -37,9 +37,9 @@
 #' # calculate LC50 and LC99
 #'
 #' m <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
-#'          weights = total,
-#'          data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
-#'          subset = c(month == "May"))
+#'                weights = total,
+#'                data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+#'                subset = c(month == "May"))
 #'
 #' # view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
 #' # to lamprey in 2011
@@ -145,9 +145,7 @@ LC_probit <- function(formula, data, p = NULL,
 
   if (pgof < het_sig) {
     het <- chi_square / df
-  }
-
-  else {
+  } else {
     het <- 1
   }
 
@@ -189,9 +187,7 @@ LC_probit <- function(formula, data, p = NULL,
 
   if (pgof < het_sig) {
     vcova <- vcov(model) * het
-  }
-
-  else {
+  } else {
     vcova <- vcov(model)
   }
 
@@ -222,9 +218,7 @@ LC_probit <- function(formula, data, p = NULL,
 
   if (pgof < het_sig) {
     tdis <- -qt(t_2, df = df)
-  }
-
-  else {
+  } else {
     tdis <- -qnorm(t_2)
   }
 
@@ -462,8 +456,7 @@ LC_logit <- function(formula, data, p = NULL, weights = NULL,
 
   if (pgof < het_sig) {
     het <- chi_square / df
-  }
-  else {
+  } else {
     het <- 1
   }
 
@@ -503,9 +496,7 @@ LC_logit <- function(formula, data, p = NULL, weights = NULL,
   # covariance matrix
   if (pgof < het_sig) {
     vcova <- vcov(model) * het
-  }
-
-  else {
+  } else {
     vcova <- vcov(model)
   }
 
@@ -536,9 +527,7 @@ LC_logit <- function(formula, data, p = NULL, weights = NULL,
 
   if (pgof < het_sig) {
     tdis <- -qt(t_2, df = df)
-  }
-
-  else {
+  } else {
     tdis <- -qnorm(t_2)
   }
 
