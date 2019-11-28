@@ -138,8 +138,7 @@ ratio_test <- function (model_1, model_2, percentage = NULL,
 
   if (is.null(type)) {
     type <- c("probit")
-  }
-  else {
+  } else {
     type <- c("logit")
 
   }
