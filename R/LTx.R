@@ -90,9 +90,7 @@ LT_probit <- function(formula, data, p = NULL,
 
   if (pgof < het_sig) {
     het <- chi_square / df
-  }
-
-  else {
+  } else {
     het <- 1
   }
 
@@ -134,9 +132,7 @@ LT_probit <- function(formula, data, p = NULL,
   if (pgof < het_sig) {
 
   vcova <- vcov(model) * het
-  }
-
-  else {
+  } else {
     vcova <- vcov(model)
   }
 
@@ -164,9 +160,7 @@ LT_probit <- function(formula, data, p = NULL,
   t <- (1 - conf_level)
   if (pgof < het_sig) {
     tdis <- -qt((t / 2), df = df)
-  }
-
-  else {
+  } else {
     tdis <- -qnorm(t / 2)
   }
 
@@ -348,9 +342,7 @@ LT_logit <- function(formula, data, p = NULL, weights = NULL,
 
   if (pgof < het_sig) {
     het <- chi_square / df
-  }
-
-  else {
+  } else {
     het <- 1
   }
 
@@ -391,9 +383,7 @@ LT_logit <- function(formula, data, p = NULL, weights = NULL,
   # covariance matrix
   if (pgof < het_sig) {
   vcova <- vcov(model) * het
-  }
-
-  else {
+  } else {
     vcova <- vcov(model)
   }
 
@@ -421,9 +411,7 @@ LT_logit <- function(formula, data, p = NULL, weights = NULL,
   t <- (1 - conf_level)
   if (pgof < het_sig) {
     tdis <- -qt((t / 2), df = df)
-  }
-
-  else {
+  } else {
     tdis <- -qnorm(t / 2)
   }
 
