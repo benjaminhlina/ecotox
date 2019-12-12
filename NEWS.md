@@ -1,12 +1,17 @@
 # ecotox v1.4.1
 
-
-### New Feature as of 04-April-2018
+### New infomation as of 12-Dec-2019
+  * Test coverage is now 100% for all functions including `ratio_test()`
+  * `LC_` and `LT_` functions now have warnings for not supplying a value for p
+  * 'LC_` and `LT_` functions now have error messages for not supplying a variable for the `weights` argument. 
+  * `ecotox` no longer relys on `ggplot2` as `ggplot2` was a dependency as the examples for `LC_` and `LT_` functions use `ggplot2` to plot the results. Instead these examples have now been commented. To run this part of the example just uncomment the lines. This was done as `ggplot2` does not need to be a dependency for `ecotox`. `tibble` and `stats` are now the only dependency with `stats` being the only truely necessary dependency for `ecotox`. `tibble` is being used instead of R's default dataframe as tibbles are more useful but not necssary for the anlysis. 
+  
+### New Feature as of 04-April-2019
   
   * `type` is now null with default being `"probit"` can be `"logit"` if specified
   * `compare` argument has been added. This adds a compare column to the output letting        the user know what models are being compared. Current default stats `"Model 1 - Model 2"`. However, you can specificy this with a vector of characters like `compare = c("May - June")`
 
-### New Feature as of 26-Mar-2018
+### New Feature as of 26-Mar-2019
   *  New function, ratio_test. This function allows the user to caculate                differences between two seperate LC or LT values using a ratio test derived        from Wheeler et al. 2006. To use the function, the user needs to create two 
      `glm()` objects with either a probit or logit link. Model objects then can be      passed to `ratio_test()` along with a `percent` argument which is the same         argument as the `p` argument in `LC_` and `LT_` functions. A `type` argument       is also needed to specify the link function used in the `glm()`. This can be       either `"probit"` or `"logit"`. 
   *  All functions now output a `tibble` instead of dataframe
