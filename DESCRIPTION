@@ -26,6 +26,7 @@ Suggests:
     covr,
     data.table,
     dplyr,
+    ggplot2,
     Hmisc,
     openxlsx,
     readr,
@@ -35,4 +36,4 @@ License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.99.9001
+RoxygenNote: 7.0.2
