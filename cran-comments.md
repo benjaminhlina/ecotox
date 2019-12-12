@@ -1,16 +1,14 @@
-## New Version Submission - v1.4.0
+## New Version Submission - v1.4.1
 This is an updated version of 'ecotox'. In this version I have:
 
-  *  New function, ratio_test. This function allows the user to caculate                differences between two seperate LC or LT values using a ratio test derived        from Wheeler et al. 2006. To use the function, the user needs to create two 
-     `glm()` objects with either a probit or logit link. Model objects then can be      passed to `ratio_test()` along with a `percent` argument which is the same         argument as the `p` argument in `LC_` and `LT_` functions. A `type` argument       is also needed to specify the link function used in the `glm()`. This can be       either `"probit"` or `"logit"`. 
-  *  New argument `log_base` for all LC, LT, and ratio_test functions, 
-     allows the user to specifcy the base used when transfoming the dose/x              variable. 
-  *  All functions now allow for an LC or LT value to be calculated down to the 
-     1.0e-16 of a percent however four decmial places is typically appropriate          (e.g. LC75.5). `Tibble` output will usually round the p value to the nearest         whole number but if you insepect the p column or export to excel using             `openxlsx` package you'll see p in the output is the same value supplied in        the function call. 
+  * Test coverage is now 100% for all functions including `ratio_test()`
+  * `LC_` and `LT_` functions now have warnings for not supplying a value for p
+  * 'LC_` and `LT_` functions now have error messages for not supplying a variable for the `weights` argument. 
+  * `ecotox` no longer relys on `ggplot2` as `ggplot2` was a dependency as the examples for `LC_` and `LT_` functions use `ggplot2` to plot the results. Instead these examples have now been commented. To run this part of the example just uncomment the lines. This was done as `ggplot2` does not need to be a dependency for `ecotox`. `tibble` and `stats` are now the only dependency with `stats` being the only truely necessary dependency for `ecotox`. `tibble` is being used instead of R's default dataframe as tibbles are more useful but not necssary for the anlysis. 
      
 ## Test environments
-* local Windows 7, SP1 install, R 3.5.3
-* ubuntu 14.04 (on travis-ci), R 3.5.3
+* local Windows 7, SP1 install, R 3.6.1
+* ubuntu 14.04 (on travis-ci), R 3.6.1
 * win-builder (devel and release)
 
 ## R CMD check results
