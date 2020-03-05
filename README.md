@@ -25,7 +25,7 @@ devtools::install_github("benjaminhlina/ecotox")
 
 ## Example
 
-This is an example which uses the LC_probit function to calculate a LC<sub>50</sub> and LC<sub>99</sub> for a probit analysis : 
+##### This is an example which uses the LC_probit function to calculate a LC<sub>50</sub> and LC<sub>99</sub> for a probit analysis : 
 
 
 ``` r
@@ -67,6 +67,17 @@ m_2 <- LC_probit((response / total) ~ dose,
 
 m_2
 
+
+## Additionally changes have been made to allow for the user to use `cbind()` method when specificying the response varialbe  
+
+```
+
+
+
+##### Example of using `ratio_test` from [Wheeler et al. 2006](http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract) to determine differences in LC values:
+
+
+```
 
 ## A new function `ratio_test` has been added 
 
