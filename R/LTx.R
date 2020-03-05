@@ -58,7 +58,7 @@ LT_probit <- function(formula, data, p = NULL,
                                subset = substitute(subset)))
 
   # error message for missing weights argument in function call
-  if(is.null(weights)) {
+  if(missing(weights)) {
     warning ("Are you using cbind(response, non-response) method as your y variable, if so do not weight the model. If you are using (response / total) method, model needs the total of test organisms per dose to weight the model properly",
              call. = FALSE)
   }
@@ -314,7 +314,7 @@ LT_logit <- function(formula, data, p = NULL, weights = NULL,
                                subset = substitute(subset)))
 
   # error message for missing weights argument in function call
-  if(is.null(weights)) {
+  if(missing(weights)) {
     warning ("Are you using cbind(response, non-response) method as your y variable, if so do not weight the model. If you are using (response / total) method, model needs the total of test organisms per dose to weight the model properly",
              call. = FALSE)
   }
