@@ -1,9 +1,14 @@
-# ecotox v1.4.1
+# ecotox v1.4.2
 
-### New infomation as of 12-Dec-2019
+### New information as of 5-Mar-2020
+
+  * `LC_` and `LT_` functions now have warnings messages for not supplying a variable for the `weights` argument. This is due to only needing to supply if you are taking the response / total for your response variable within the formula call of `LC_probit`. Otherwise if you use `cbind(response, non-response)` method you do not need to supply weights. If you do the model will be incorrect. If you don't supply `weights` there is a warning that will help you to make sure you are using one method or the other.
+ 
+
+### New information as of 12-Dec-2019
   * Test coverage is now 100% for all functions including `ratio_test()`
   * `LC_` and `LT_` functions now have warnings for not supplying a value for p
-  * 'LC_` and `LT_` functions now have error messages for not supplying a variable for the `weights` argument. 
+  * `LC_` and `LT_` functions now have error messages for not supplying a variable for the `weights` argument. 
   * `ecotox` no longer relys on `ggplot2` as `ggplot2` was a dependency as the examples for `LC_` and `LT_` functions use `ggplot2` to plot the results. Instead these examples have now been commented. To run this part of the example just uncomment the lines. This was done as `ggplot2` does not need to be a dependency for `ecotox`. `tibble` and `stats` are now the only dependency with `stats` being the only truely necessary dependency for `ecotox`. `tibble` is being used instead of R's default dataframe as tibbles are more useful but not necssary for the anlysis. 
   
 ### New Feature as of 04-April-2019
