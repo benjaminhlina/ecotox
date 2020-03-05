@@ -100,10 +100,10 @@ test_that("Determine if long and short outputs work properly", {
 
 test_that("LC_probit throws error when weights are not given", {
 
-  expect_error(expect_warning(LC_probit((response / total) ~ log10(dose),
-                                        p = 50,
-                                        data = lamprey_tox,
-                                        subset = c(month == "May"))))
+  expect_warning(LC_probit(cbind(response, survive) ~ log10(dose),
+                           p = 50,
+                           data = lamprey_tox,
+                           subset = c(month == "May")))
 })
 
 

@@ -3,10 +3,10 @@ context("Test LT_logit")
 # test if LT_logit is caculating things properly -----
 test_that("Determine if LT_logit calculations are correct", {
   m <- LT_logit((response / total) ~ log10(hour),
-           p = c(50),
-           weights = total,
-           data = lamprey_time,
-           subset = c(month == "May"))
+                p = c(50),
+                weights = total,
+                data = lamprey_time,
+                subset = c(month == "May"))
 
   expect_equal(m$time, expected = 9.967, tolerance = 0.001)
   expect_equal(m$LCL, expected = 8.851, tolerance = 0.001)
@@ -60,10 +60,10 @@ test_that("Determine if LT_logit calculations are correct", {
 
 
   mm <- LT_logit((response / total) ~ hour, p = c(50),
-                  weights = total,
-                  data = lamprey_time,
-                  log_x = FALSE,
-                  subset = c(month == "May"))
+                 weights = total,
+                 data = lamprey_time,
+                 log_x = FALSE,
+                 subset = c(month == "May"))
 
   expect_equal(mm$time, expected = 10.082, tolerance = 0.001)
   expect_equal(mm$LCL, expected =  8.843, tolerance = 0.001)
@@ -76,20 +76,20 @@ test_that("Determine if LT_logit calculations are correct", {
 })
 
 # determine if long and short outputs are working properly ------
-  test_that("Determine if long and short outputs work ", {
+test_that("Determine if long and short outputs work ", {
   ma <- LT_logit((response / total) ~ log(hour), p = c(50),
-                  weights = total,
-                  data = lamprey_time,
-                  subset = c(month == "May"),
-                  long_output = FALSE)
+                 weights = total,
+                 data = lamprey_time,
+                 subset = c(month == "May"),
+                 long_output = FALSE)
   expect_equal(ncol(ma), 7)
   expect_equal(nrow(ma), 1)
 
   may <- LT_logit((response / total) ~ log10(hour), p = c(50),
-                   weights = total,
-                   data = lamprey_time,
-                   subset = c(month == "May"),
-                   long_output = TRUE)
+                  weights = total,
+                  data = lamprey_time,
+                  subset = c(month == "May"),
+                  long_output = TRUE)
   expect_equal(ncol(may), 19)
   expect_equal(nrow(may), 1)
 
@@ -101,10 +101,10 @@ test_that("Determine if LT_logit calculations are correct", {
 
 test_that("LT_logit throws error when weights are not given", {
 
-  expect_error(expect_warning(LT_logit((response / total) ~ log10(dose),
-                                        p = 50,
-                                        data = lamprey_tox,
-                                        subset = c(month == "May"))))
+  expect_warning(LT_logit(cbind(response, survive) ~ log10(dose),
+                          p = 50,
+                          data = lamprey_tox,
+                          subset = c(month == "May")))
 })
 
 
@@ -113,7 +113,7 @@ test_that("LT_logit throws error when weights are not given", {
 test_that("LC_logit throws warning when p is not supplied", {
 
   expect_warning(LT_logit((response / total) ~ log10(dose),
-                           weights = total,
-                           data = lamprey_tox,
-                           subset = c(month == "May")))
+                          weights = total,
+                          data = lamprey_tox,
+                          subset = c(month == "May")))
 })
