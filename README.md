@@ -80,7 +80,7 @@ m_3 <- LC_probit(cbind(response, survive) ~ log10(dose),
                   subset = c(month == "May"))
                   
 
-m3 
+m_3 
 
 # notice that m and m_3 produce the same results, however m_3 will produce 
 # a warning to ensure you have not weighted the model as it is not necessary 
