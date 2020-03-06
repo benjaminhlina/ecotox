@@ -16,7 +16,7 @@ LC_logit(formula, data, p = NULL, weights = NULL,
 
 \item{p}{Lethal Concentration (LC) values for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector. LC values can be calculated down to the 1e-16 of a percentage (e.g. LC99.99). However, the tibble produced can round to nearest whole number.}
 
-\item{weights}{vector of 'prior weights' to be used in the fitting process. Only needs to be supplied if you are taking the response / total for your response variable within the formula call of \code{LC_probit}. Otherwise if you use cbind(response, non-response) method you do not need to supply weights. If you do the model will be incorrect. If you don't supply weights there is a warning that will help you to make sure you are using one method or the other.}
+\item{weights}{vector of 'prior weights' to be used in the fitting process. Only needs to be supplied if you are taking the response / total for your response variable within the formula call of \code{LC_probit}. Otherwise if you use cbind(response, non-response) method you do not need to supply weights. If you do the model will be incorrect. If you don't supply weights there is a warning that will help you to make sure you are using one method or the other.See the following StackExchange post about differences \href{https://stats.stackexchange.com/questions/259502/in-using-the-cbind-function-in-r-for-a-logistic-regression-on-a-2-times-2-t}{cbind() function in R for a logistic regression}.}
 
 \item{subset}{allows for the data to be subseted if desired. Default set to \code{NULL}.}
 
@@ -54,10 +54,22 @@ m <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
          data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
          subset = c(month == "May"))
 
+
+# OR
+
+m1 <- LC_logist(cbind(response, survive) ~ log10(dose), p = c(50, 99),
+               data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+               subset = c(month == "May"))
+
+
 # view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
 # to lamprey in 2011
 
 m
+
+# they are the same
+
+m1
 
 # dose-response curve can be plotted using 'ggplot2'
 # Uncomment the below lines to run create plots
