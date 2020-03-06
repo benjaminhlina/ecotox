@@ -3,6 +3,8 @@
 ### New information as of 5-Mar-2020
 
   * `LC_` and `LT_` functions now have warnings messages for not supplying a variable for the `weights` argument. This is due to only needing to supply if you are taking the response / total for your response variable within the formula call of `LC_probit`. Otherwise if you use `cbind(response, non-response)` method you do not need to supply weights. If you do the model will be incorrect. If you don't supply `weights` there is a warning that will help you to make sure you are using one method or the other.
+  
+  * This stackExchange question explains the differences to using `cbind()` vs. `respone / total` method. [cbind() function in R for a logistic regression](https://stats.stackexchange.com/questions/259502/in-using-the-cbind-function-in-r-for-a-logistic-regression-on-a-2-times-2-t)
  
 
 ### New information as of 12-Dec-2019
