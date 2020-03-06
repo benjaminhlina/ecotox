@@ -67,9 +67,24 @@ m_2 <- LC_probit((response / total) ~ dose,
 
 m_2
 
+``` 
+See StackExchange post about differences in using `cbind()` vs. `response / total` [cbind() function in R for a logistic regression](https://stats.stackexchange.com/questions/259502/in-using-the-cbind-function-in-r-for-a-logistic-regression-on-a-2-times-2-t).
 
+``` r
 ## Additionally changes have been made to allow for the user 
 ## to use `cbind()` method when specificying the response varialbe  
+
+m_3 <- LC_probit(cbind(response, survive) ~ log10(dose),
+                  p = c(50, 99),
+                  data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+                  subset = c(month == "May"))
+                  
+
+m3 
+
+# notice that m and m_3 produce the same results, however m_3 will produce 
+# a warning to ensure you have not weighted the model as it is not necessary 
+
 
 ```
 
@@ -78,7 +93,7 @@ m_2
 Example of using `ratio_test` from [Wheeler et al. 2006](http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract) to determine differences in LC values:
 
 
-```
+``` r
 
 ## A new function `ratio_test` has been added 
 
