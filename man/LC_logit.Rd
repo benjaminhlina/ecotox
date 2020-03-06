@@ -57,7 +57,7 @@ m <- LC_logit((response / total) ~ log10(dose), p = c(50, 99),
 
 # OR
 
-m1 <- LC_logist(cbind(response, survive) ~ log10(dose), p = c(50, 99),
+m1 <- LC_logit(cbind(response, survive) ~ log10(dose), p = c(50, 99),
                data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
                subset = c(month == "May"))
 
