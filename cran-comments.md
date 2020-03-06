@@ -1,14 +1,15 @@
-## New Version Submission - v1.4.1
+## New Version Submission - v1.4.2
+
 This is an updated version of 'ecotox'. In this version I have:
 
-  * Test coverage is now 100% for all functions including `ratio_test()`
-  * `LC_` and `LT_` functions now have warnings for not supplying a value for p
-  * 'LC_` and `LT_` functions now have error messages for not supplying a variable for the `weights` argument. 
-  * `ecotox` no longer relys on `ggplot2` as `ggplot2` was a dependency as the examples for `LC_` and `LT_` functions use `ggplot2` to plot the results. Instead these examples have now been commented. To run this part of the example just uncomment the lines. This was done as `ggplot2` does not need to be a dependency for `ecotox`. `tibble` and `stats` are now the only dependency with `stats` being the only truely necessary dependency for `ecotox`. `tibble` is being used instead of R's default dataframe as tibbles are more useful but not necssary for the anlysis. 
+  * `LC_` and `LT_` functions now have warnings messages for not supplying a variable for the `weights` argument. This is due to only needing to supply if you are taking the response / total for your response variable within the formula call of `LC_probit`. Otherwise if you use `cbind(response, non-response)` method you do not need to supply weights. If you do the model will be incorrect. If you don't supply `weights` there is a warning that will help you to make sure you are using one method or the other.
+  
+  * This stackExchange question explains the differences to using `cbind()` vs. `respone / total` method. [cbind() function in R for a logistic regression](https://stats.stackexchange.com/questions/259502/in-using-the-cbind-function-in-r-for-a-logistic-regression-on-a-2-times-2-t)
+ 
      
 ## Test environments
-* local Windows 7, SP1 install, R 3.6.1
-* ubuntu 14.04 (on travis-ci), R 3.6.1
+* local Windows 10, R 3.6.3
+* ubuntu 14.04 (on travis-ci), R 3.6.3
 * win-builder (devel and release)
 
 ## R CMD check results
