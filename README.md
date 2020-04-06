@@ -57,7 +57,7 @@ m
 m_2 <- LC_probit((response / total) ~ dose,
                   p = c(50, 99),
                   weights = total,
-                  data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+                  data = lamprey_tox,
                   subset = c(month == "May"), 
                   log_x = FALSE, 
                   long_output = FALSE)
@@ -72,7 +72,7 @@ See StackExchange post about differences in using `cbind()` vs. `response / tota
 
 ``` r
 ## Additionally changes have been made to allow for the user 
-## to use `cbind()` method when specificying the response varialbe  
+## to use `cbind()` method when specificying the response variable  
 
 m_3 <- LC_probit(cbind(response, survive) ~ log10(dose),
                   p = c(50, 99),
@@ -145,4 +145,4 @@ ratios
   Hlina, B.L., Birceanu, O., Robinson, C.S., Dhiyebi, H., Wilkie, M.P. *In Reivew*. Seasonal Variation in the Sensitivity of Invasive Sea Lampreys to the Lampricide TFM: Importance of Energy Reserves and Temperature. North American Journal of Fisheries Management.
 
 
-* Version 1.4.2 written by Benjamin L. Hlina, Carleton University, Ottawa, Ontario, Canada. Written in ['Programming Language R'](https://www.r-project.org/), version 3.6.1 (2019-07-05) -- "Action of the Toes". Source code is available at ['ecotox'](https://github.com/benjaminhlina/ecotox) or by contacting Benjamin L. Hlina at benjamin.hlina@gmail.com
+* Version 1.4.3 written by Benjamin L. Hlina, Carleton University, Ottawa, Ontario, Canada. Written in ['Programming Language R'](https://www.r-project.org/), version 3.6.1 (2019-07-05) -- "Action of the Toes". Source code is available at ['ecotox'](https://github.com/benjaminhlina/ecotox) or by contacting Benjamin L. Hlina at benjamin.hlina@gmail.com
