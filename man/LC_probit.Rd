@@ -110,7 +110,7 @@ results$month <- factor(c(rep("May", 2), rep("June", 2),
 # p2 <- ggplot(data = results, aes(x = month, y = dose,
 #                              group = factor(p), fill = factor(p))) +
 #   geom_col(position = position_dodge(width = 0.9), colour = "#000000") +
-#   geom_errorbar(aes(ymin = (dose - LCL_dis), ymax = (dose + UCL_dis)),
+#   geom_errorbar(aes(ymin = LCL, ymax = UCL),
 #                 size = 0.4, width = 0.06,
 #                 position = position_dodge(width = 0.9))
 
