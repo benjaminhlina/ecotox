@@ -46,10 +46,10 @@
 
 # Function  LT_probit ----
 LT_probit <- function(formula, data, p = NULL,
-               weights = NULL, subset = NULL, log_base = NULL,
-               log_x = TRUE,
-               het_sig = NULL, conf_level = NULL,
-               long_output = TRUE) {
+                      weights = NULL, subset = NULL, log_base = NULL,
+                      log_x = TRUE,
+                      het_sig = NULL, conf_level = NULL,
+                      long_output = TRUE) {
 
   model <- do.call("glm", list(formula = formula,
                                family = binomial(link = "probit"),
@@ -132,22 +132,22 @@ LT_probit <- function(formula, data, p = NULL,
 
   if (pgof < het_sig) {
 
-  vcova <- vcov(model) * het
+    vcova <- vcov(model) * het
   } else {
     vcova <- vcov(model)
   }
 
   # Slope variance
 
-    var_b1 <- vcova[2, 2]
+  var_b1 <- vcova[2, 2]
 
   # Intercept variance
 
-    var_b0 <- vcova[1, 1]
+  var_b0 <- vcova[1, 1]
 
   # intercept and slope covariance
 
-    cov_b0_b1 <- vcova[1, 2]
+  cov_b0_b1 <- vcova[1, 2]
 
   # Adjust distibution depending on heterogeneity (Finney, 1971,  p72,
   # t distubtion used instead of normal distubtion  with appropriate df
@@ -184,7 +184,7 @@ LT_probit <- function(formula, data, p = NULL,
 
   cl_part_1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b1))
   cl_part_2 <- var_b0 + (2 * cov_b0_b1 * m) + (m ^ 2 * var_b1) -
-            (g * (var_b0 - cov_b0_b1 ^ 2 / var_b1))
+    (g * (var_b0 - cov_b0_b1 ^ 2 / var_b1))
 
   cl_part_3 <- (tdis / ((1 - g) * abs(b1))) * sqrt(cl_part_2)
 
@@ -375,7 +375,7 @@ LT_logit <- function(formula, data, p = NULL, weights = NULL,
 
   # covariance matrix
   if (pgof < het_sig) {
-  vcova <- vcov(model) * het
+    vcova <- vcov(model) * het
   } else {
     vcova <- vcov(model)
   }
@@ -427,7 +427,7 @@ LT_logit <- function(formula, data, p = NULL, weights = NULL,
 
   cl_part_1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b1))
   cl_part_2 <- var_b0 + (2 * cov_b0_b1 * m) + (m ^ 2 * var_b1) -
-            (g * (var_b0 - cov_b0_b1 ^ 2 / var_b1))
+    (g * (var_b0 - cov_b0_b1 ^ 2 / var_b1))
   cl_part_3 <- (tdis / ((1 - g) * abs(b1))) * sqrt(cl_part_2)
 
   # Calculate the fiducial limit LFL=lower fiducial limit,
