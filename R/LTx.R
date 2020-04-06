@@ -206,16 +206,12 @@ LT_probit <- function(formula, data, p = NULL,
     time <- log_base ^ m
     LCL <- log_base ^ LCL
     UCL <- log_base ^ UCL
-    LCL_dis <- time - LCL
-    UCL_dis <- UCL - time
   }
 
   if (log_x == FALSE) {
     time <- m
     LCL <- LCL
     UCL <- UCL
-    LCL_dis <-  time - LCL
-    UCL_dis <- UCL - time
   }
 
 
@@ -226,8 +222,6 @@ LT_probit <- function(formula, data, p = NULL,
                     time = time,
                     LCL =  LCL,
                     UCL =  UCL,
-                    LCL_dis = LCL_dis,
-                    UCL_dis =  UCL_dis,
                     chi_square = chi_square,
                     df = df,
                     pgof_sig = pgof,
@@ -247,9 +241,7 @@ LT_probit <- function(formula, data, p = NULL,
                     n = n,
                     time = time,
                     LCL =  LCL,
-                    UCL =  UCL,
-                    LCL_dis = LCL_dis,
-                    UCL_dis =  UCL_dis)
+                    UCL =  UCL)
   }
   return(table)
 
@@ -456,16 +448,12 @@ LT_logit <- function(formula, data, p = NULL, weights = NULL,
     time <- log_base ^ m
     LCL <- log_base ^ LCL
     UCL <- log_base ^ UCL
-    LCL_dis <- time - LCL
-    UCL_dis <- UCL - time
   }
 
   if (log_x == FALSE) {
     time <- m
     LCL <- LCL
     UCL <- UCL
-    LCL_dis <-  time - LCL
-    UCL_dis <- UCL - time
   }
 
 
@@ -476,8 +464,6 @@ LT_logit <- function(formula, data, p = NULL, weights = NULL,
                     time = time,
                     LCL = LCL,
                     UCL = UCL,
-                    LCL_dis = LCL_dis,
-                    UCL_dis = UCL_dis,
                     chi_square = chi_square,
                     df = df,
                     pgof_sig = pgof,
@@ -497,9 +483,7 @@ LT_logit <- function(formula, data, p = NULL, weights = NULL,
                     n = n,
                     time = time,
                     LCL = LCL,
-                    UCL = UCL,
-                    LCL_dis = LCL_dis,
-                    UCL_dis = UCL_dis)
+                    UCL = UCL)
   }
   return(table)
 }
