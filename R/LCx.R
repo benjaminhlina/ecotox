@@ -309,9 +309,7 @@ LC_probit <- function(formula, data, p = NULL,
                     n = n,
                     dose = dose,
                     LCL = LCL,
-                    UCL = UCL,
-                    LCL_dis = LCL_dis,
-                    UCL_dis = UCL_dis)
+                    UCL = UCL)
   }
   return(table)
 
