@@ -275,16 +275,13 @@ LC_probit <- function(formula, data, p = NULL,
     dose <- log_base ^ m
     LCL <- log_base ^ LCL
     UCL <- log_base ^ UCL
-    LCL_dis <- dose - LCL
-    UCL_dis <- UCL - dose
   }
 
   if (log_x == FALSE) {
     dose <- m
     LCL <- LCL
     UCL <- UCL
-    LCL_dis <-  dose - LCL
-    UCL_dis <- UCL - dose
+
   }
 
   # Make a data frame from the data at all the different values
@@ -294,8 +291,6 @@ LC_probit <- function(formula, data, p = NULL,
                     dose = dose,
                     LCL = LCL,
                     UCL = UCL,
-                    LCL_dis = LCL_dis,
-                    UCL_dis = UCL_dis,
                     chi_square = chi_square,
                     df = df,
                     pgof_sig = pgof,
@@ -597,16 +592,12 @@ LC_logit <- function(formula, data, p = NULL, weights = NULL,
     dose <- log_base ^ m
     LCL <- log_base ^ LCL
     UCL <- log_base ^ UCL
-    LCL_dis <- dose - LCL
-    UCL_dis <- UCL - dose
   }
 
   if (log_x == FALSE) {
     dose <- m
     LCL <- LCL
     UCL <- UCL
-    LCL_dis <-  dose - LCL
-    UCL_dis <- UCL - dose
   }
 
 
@@ -617,8 +608,6 @@ LC_logit <- function(formula, data, p = NULL, weights = NULL,
                     dose = dose,
                     LCL = LCL,
                     UCL = UCL,
-                    LCL_dis = LCL_dis,
-                    UCL_dis = UCL_dis,
                     chi_square = chi_square,
                     df = df,
                     pgof_sig = pgof,
@@ -637,9 +626,7 @@ LC_logit <- function(formula, data, p = NULL, weights = NULL,
                     n = n,
                     dose = dose,
                     LCL = LCL,
-                    UCL = UCL,
-                    LCL_dis = LCL_dis,
-                    UCL_dis = UCL_dis)
+                    UCL = UCL)
   }
 
   return(table)
