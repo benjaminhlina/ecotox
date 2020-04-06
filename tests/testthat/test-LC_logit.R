@@ -10,8 +10,6 @@ test_that("Determine if LC_logit calculations are correct", {
   expect_equal(m$dose, expected = 1.256, tolerance = 0.001)
   expect_equal(m$LCL, expected = 1.188, tolerance = 0.001)
   expect_equal(m$UCL, expected = 1.312, tolerance = 0.001)
-  expect_equal(m$LCL_dis, expected = 0.067, tolerance = 0.001)
-  expect_equal(m$UCL_dis, expected = 0.056, tolerance = 0.001)
   expect_equal(m$chi_square, expected = 15.213, tolerance = 0.001)
   expect_equal(m$pgof_sig, expected = 0.509, tolerance = 0.001)
 
@@ -23,8 +21,6 @@ test_that("Determine if LC_logit calculations are correct", {
   expect_equal(j$dose, expected = 2.654, tolerance = 0.001)
   expect_equal(j$LCL, expected = 2.603, tolerance = 0.001)
   expect_equal(j$UCL, expected = 2.710, tolerance = 0.001)
-  expect_equal(j$LCL_dis, expected = 0.051, tolerance = 0.001)
-  expect_equal(j$UCL_dis, expected = 0.055, tolerance = 0.001)
   expect_equal(j$chi_square, expected = 20.690, tolerance = 0.001)
   expect_equal(j$pgof_sig, expected = 0.190, tolerance = 0.001)
 
@@ -38,8 +34,6 @@ test_that("Determine if LC_logit calculations are correct", {
   expect_equal(a$dose, expected = 4.013, tolerance = 0.001)
   expect_equal(a$LCL, expected = 3.621, tolerance = 0.001)
   expect_equal(a$UCL, expected = 4.385, tolerance = 0.001)
-  expect_equal(a$LCL_dis, expected = 0.391, tolerance = 0.001)
-  expect_equal(a$UCL_dis, expected = 0.372, tolerance = 0.001)
   expect_equal(a$chi_square, expected = 21.908, tolerance = 0.001)
   expect_equal(a$pgof_sig, expected = 0.0155, tolerance = 0.0001)
 
@@ -52,8 +46,6 @@ test_that("Determine if LC_logit calculations are correct", {
   expect_equal(s$dose, expected = 2.118, tolerance = 0.001)
   expect_equal(s$LCL, expected = 1.984, tolerance = 0.001)
   expect_equal(s$UCL, expected = 2.230, tolerance = 0.001)
-  expect_equal(s$LCL_dis, expected = 0.134, tolerance = 0.001)
-  expect_equal(s$UCL_dis, expected = 0.111, tolerance = 0.001)
   expect_equal(s$chi_square, expected = 7.717, tolerance = 0.001)
   expect_equal(s$pgof_sig, expected = 0.656, tolerance = 0.001)
 
@@ -65,8 +57,6 @@ test_that("Determine if LC_logit calculations are correct", {
   expect_equal(mm$dose, expected = 1.279, tolerance = 0.001)
   expect_equal(mm$LCL, expected = 1.215, tolerance = 0.001)
   expect_equal(mm$UCL, expected = 1.335, tolerance = 0.001)
-  expect_equal(mm$LCL_dis, expected = 0.0644, tolerance = 0.0001)
-  expect_equal(mm$UCL_dis, expected = 0.0553, tolerance = 0.0001)
   expect_equal(mm$chi_square, expected = 16.593, tolerance = 0.001)
   expect_equal(mm$pgof_sig, expected =  0.412, tolerance = 0.001)
 
@@ -79,7 +69,7 @@ test_that("Determine if long and short outputs work", {
                  data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
                  subset = c(month == "May"),
                  long_output = FALSE)
-  expect_equal(ncol(ma), 7)
+  expect_equal(ncol(ma), 5)
   expect_equal(nrow(ma), 1)
 
   may <- LC_logit((response / total) ~ log10(dose), p = c(50),
@@ -87,7 +77,7 @@ test_that("Determine if long and short outputs work", {
                   data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
                   subset = c(month == "May"),
                   long_output = TRUE)
-  expect_equal(ncol(may), 19)
+  expect_equal(ncol(may), 17)
   expect_equal(nrow(may), 1)
 
 })
