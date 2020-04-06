@@ -18,8 +18,8 @@
 
 #' @param het_sig significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. `NULL` is set to 0.15.
 #' @param conf_level  Adjust confidence level as necessary or `NULL` set at 0.95.
-#' @param long_output default is `TRUE` which will return a tibble with all 19 variabless. If `FALSE` the tibble returned will consist of the p level, n, the predicted LC for given p level, lower and upper confidence limits and their distances.
-#' @return Returns a tibble with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LT variance.
+#' @param long_output default is `TRUE` which will return a tibble with all 17 variabless. If `FALSE` the tibble returned will consist of the p level, n, the predicted LC for given p level, lower and upper confidence limits.
+#' @return Returns a tibble with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL, Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LT variance.
 #' @references
 #'
 #' Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England, ISBN: 052108041X
@@ -265,8 +265,8 @@ LT_probit <- function(formula, data, p = NULL,
 #' @param log_x default is `TRUE` and will calculate results using the antilog of determined by `log_base` given that the x variable has been `log()` tranformed. If `FALSE` results will not be back transformed.
 #' @param het_sig significance level from person's chi sqaure goodness-of-fit test that is used to decide if a heterogeneity factor is used. `NULL` is set to 0.15.
 #' @param conf_level  Adjust confidence level as necessary or `NULL` set at 0.95.
-#' @param long_output default is `TRUE` which will return a tibble with all 19 variabless. If `FALSE` the tibble returned will consist of the p level, n, the predicted LC for given p level, lower and upper confidence limits and their distances.
-#' @return Returns a tibble with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL and UCL distance away from LT (LCL_dis & UCL_dis; important for creating a plot), Pearson's chi sqaure goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LT variance.
+#' @param long_output default is `TRUE` which will return a tibble with all 17 variabless. If `FALSE` the tibble returned will consist of the p level, n, the predicted LC for given p level, lower and upper confidence limits.
+#' @return Returns a tibble with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL, Pearson's chi sqaure goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LT variance.
 #' @references
 #'
 #' Finney, D.J., 1971. Probit Analysis, Cambridge University Press, Cambridge, England, ISBN: 052108041X
