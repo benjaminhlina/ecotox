@@ -4,7 +4,8 @@
 \name{lamprey_tox}
 \alias{lamprey_tox}
 \title{Lethal concentration data for seasonal exposure to TFM for larval sea lamprey}
-\format{A tibble containing 64 rows and 7 columns.
+\format{
+A tibble containing 64 rows and 7 columns.
 \describe{
 \item{nominal_dose}{nominal TFM dose (mg/L)}
 \item{tank}{tank assignment}
@@ -13,7 +14,8 @@
 \item{response}{number of lamprey that responded over 12 h exposure to TFM}
 \item{survive}{number of lamprey that survived over 12 h exposure to TFM}
 \item{total}{total number of lamprey that were exposed to TFM over 12 h}
-}}
+}
+}
 \source{
 Hlina, B.L., Birceanu, O., Robinson, C.S., Dhiyebi, H., Wilkie, M.P. \emph{In Reivew}. Seasonal Variation in the Sensitivity of Invasive Sea Lampreys to the Lampricide TFM: Importance of Energy Reserves and Temperature. North American Journal of Fisheries Management
 }
