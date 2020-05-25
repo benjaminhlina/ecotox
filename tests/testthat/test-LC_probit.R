@@ -78,7 +78,7 @@ test_that("Determine if long and short outputs work properly", {
                    data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
                    subset = c(month == "May"),
                    long_output = TRUE)
-  expect_equal(ncol(may), 17)
+  expect_equal(ncol(may), 18)
   expect_equal(nrow(may), 1)
 
 
