@@ -80,55 +80,128 @@ ratio_test <- function (model_1, model_2, percentage = NULL,
   }
 
 
-  # create summary for models that you are to compare ----
-  s_m1 <- summary(model_1)
-  s_m2 <- summary(model_2)
+  if (is.null(obj_type)) {
+    obj_type <- c("list")
+  } else {
+    obj_type <- c("df")
 
-  # extract coeffiecnets from model 1-----
-  b0_a <- s_m1$coefficients[1]
-
-  # Slope (b1)
-  b1_a <- s_m1$coefficients[2]
-
-  # intercept se info
-
-  intercept_se_a <- s_m1$coefficients[3]
-
-  # slope se info
-
-  slope_se_a <- s_m1$coefficients[4]
-
-  # extract coeficencts from the second model -----
-
-  b0_b <- s_m2$coefficients[1]
-
-  # Slope (b1)
-
-  b1_b <- s_m2$coefficients[2]
-
-  # intercept se  info
-
-  intercept_se_b <- s_m2$coefficients[3]
+  }
 
 
-  # slope se info
+  if (obj_type == "list") {
 
-  slope_se_b <- s_m2$coefficients[4]
+    # create summary for models that you are to compare ----
+    s_m1 <- summary(model_1)
+    s_m2 <- summary(model_2)
 
-  # create varaince and covraince matix for both models----
+    # extract coeffiecnets from model 1-----
+    b0_a <- s_m1$coefficients[1]
 
-  # variance co variance matrix for model 1
-  vcov_a <- vcov(model_1)
+    # Slope (b1)
+    b1_a <- s_m1$coefficients[2]
 
-  # extract slope and incercpt co varaince for model 1
-  cov_b0_b1_a <- vcov_a[1, 2]
+    # intercept se info
+
+    intercept_se_a <- s_m1$coefficients[3]
+
+    # slope se info
+
+    slope_se_a <- s_m1$coefficients[4]
+
+    # extract coeficencts from the second model -----
+
+    b0_b <- s_m2$coefficients[1]
+
+    # Slope (b1)
+
+    b1_b <- s_m2$coefficients[2]
+
+    # intercept se  info
+
+    intercept_se_b <- s_m2$coefficients[3]
 
 
-  # variance co variance matrix for model
-  vcov_b <- vcov(model_2)
+    # slope se info
 
-  # extract slope and incercpt co varaince for model 1
-  cov_b0_b1_b <- vcov_b[1, 2]
+    slope_se_b <- s_m2$coefficients[4]
+
+    # create varaince and covraince matix for both models----
+
+    # variance co variance matrix for model 1
+    vcov_a <- vcov(model_1)
+
+    # extract slope and incercpt co varaince for model 1
+    cov_b0_b1_a <- vcov_a[1, 2]
+
+
+    # variance co variance matrix for model
+    vcov_b <- vcov(model_2)
+
+    # extract slope and incercpt co varaince for model 1
+    cov_b0_b1_b <- vcov_b[1, 2]
+
+  }
+
+  if (obj_type == "df") {
+
+    s_m1 <- model_1
+    s_m2 <- model_2
+
+    # extract coeffiecnets from model 1-----
+    b0_a <- unique(s_m1$intercept)
+
+    # Slope (b1)
+    b1_a <- unique(s_m1$slope)
+
+    # intercept se info
+
+    intercept_se_a <- unique(s_m1$intercept_se)
+
+    # slope se info
+
+    slope_se_a <- unique(s_m1$slope_se)
+
+    h_a <- unique(s_m1$h)
+
+    # extract coeficencts from the second model -----
+
+    b0_b <- unique(s_m2$intercept)
+
+    # Slope (b1)
+
+    b1_b <- unique(s_m2$slope)
+
+    # intercept se  info
+
+    intercept_se_b <- unique(s_m2$intercept_se)
+
+
+    # slope se info
+
+    slope_se_b <- unique(s_m2$slope_se)
+
+    h_b <- unique(s_m2$h)
+    # create varaince and covraince matix for both models----
+
+    # variance co variance matrix for model 1
+    if (h_a > 1) {
+      # extract slope and incercpt co varaince for model 1
+      cov_b0_b1_a <- unique(s_m1$covariance) / h_a
+
+    } else {
+      cov_b0_b1_a <- unique(s_m1$covariance)
+    }
+
+    if (h_b > 1) {
+      # extract slope and incercpt co varaince for model 2
+      cov_b0_b1_b <- unique(s_m2$covariance) / h_b
+    } else {
+      cov_b0_b1_b <- unique(s_m2$covariance)
+    }
+  }
+
+
+
 
 
 
@@ -174,9 +247,9 @@ ratio_test <- function (model_1, model_2, percentage = NULL,
   # creteate se for ratio test for model 1 and model 2 -----
 
   se_1 <- (intercept_se_a ^ 2 / b0_a ^ 2) + (slope_se_a ^ 2 / b1_a ^ 2) +
-          (intercept_se_b ^ 2 / b0_b ^ 2) + (slope_se_b ^ 2 / b1_b ^ 2) -
-          ((2 * cov_b0_b1_a) / (b1_a * b0_a)) -
-          ((2 * cov_b0_b1_b) / (b1_b * b0_b))
+    (intercept_se_b ^ 2 / b0_b ^ 2) + (slope_se_b ^ 2 / b1_b ^ 2) -
+    ((2 * cov_b0_b1_a) / (b1_a * b0_a)) -
+    ((2 * cov_b0_b1_b) / (b1_b * b0_b))
 
   # square root the se ----
   se_2 <- sqrt(se_1)
