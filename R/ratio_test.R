@@ -3,7 +3,8 @@
 #' Ratio test
 #'@description Calculates a ratio test to compare two LC or LT values from two seperate probit or logit models. This function is based on the ratio test developed in [Wheeler et al. 2006. 10.1897/05-320R.1](http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract) which has been suggested as a replacement to the common method of comparing confidence intervals to determine differences.
 #' @usage ratio_test(model_1, model_2, percentage = NULL,
-#'            type = NULL, compare = NULL, log_base = NULL, log_x = TRUE)
+#'            type = NULL, compare = NULL, log_base = NULL, log_x = TRUE,
+#'            obj_type = NULL)
 #' @param model_1 first model used in the ratio test. Should be an object of either a probit or logit model created using the `glm()` function. See example.
 #' @param model_2 second model used in the ratio test. Should be an object of either a probit or logit model created using the `glm()` function. See example.
 #' @param percentage either a single value or a vector for given LC or LT percentage desired to compare. Percentage is the same value used for the argument `p` in all `LC_` and `LT_` functions. For example, 50 will return and compare LC50 values for the two models. If more than one LC value is disired specify by creating a vector. LC values can be calculated down to the 1e-16 of a percentage (e.g. LC99.99). However, the tibble produced can and will round to nearest whole number.
@@ -11,6 +12,7 @@
 #' @param compare Supply a character string to be used in the output letting the user know what models the LCs or LTs are being compared. Default output is "Model 1 - Model 2". See example.
 #' @param log_base default is `10` and will be used to  calculate results using the anti of `log10()` given that the x variable has been `log10` tranformed. If `FALSE` results will not be back transformed.
 #' @param log_x default is `TRUE` and will calculate results using the antilog of determined by `log_base` given that the x variable has been `log()` tranformed. If `FALSE` results will not be back transformed.
+#' @param obj_type defualt is  `"list"` which requires both `model_1` and `model_2` to be list model objects from `glm()` functions. Alternatively `"df"` can be used which will require both `model_1` and `model_2` to be data.frame objects created when running `LC_probit()`.
 #' @return A tibble with `percentage` for the LC or LT value desired for the above percentage argument, `dose_1` and `dose_2` displayed calculated backtransformed or untransformed doses for the desired LC or LT values. Standard Error (`se`), Z test statistic (`test_stat`) and `p_value` detemined using Z test statistic as determined using formulas in [Wheeler et al. 2006](http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract).
 #'.
 #'
@@ -48,13 +50,34 @@
 #'
 #' ratios
 #'
+#' # you can also use LC_probit to create the models and use ratio test
+#'
+#' m_1 <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
+#' weights = total,
+#' data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+#' subset = c(month == "May"))
+#'
+#'
+#'
+#' j_1 <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
+#' weights = total,
+#' data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+#' subset = c(month == "June"))
+#'
+#'
+#'
+#' ratios_2 <- ratio_test(model_1 = m_1, model_2 = j_1, percentage = 50,
+#' compare = "May - June", obj_type = "df")
+#'
+#' ratios_2
+#'
 #' @export
 
 
 # function ------
 ratio_test <- function (model_1, model_2, percentage = NULL,
                         type = NULL, compare = NULL,
-                        log_base = NULL, log_x = TRUE) {
+                        log_base = NULL, log_x = TRUE, obj_type = NULL) {
 
   if(missing(model_1)) {
     stop("Ratio test needs first `glm()` object to compare LC or LT values",

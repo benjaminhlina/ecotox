@@ -5,7 +5,8 @@
 \title{Ratio test}
 \usage{
 ratio_test(model_1, model_2, percentage = NULL,
-           type = NULL, compare = NULL, log_base = NULL, log_x = TRUE)
+           type = NULL, compare = NULL, log_base = NULL, log_x = TRUE,
+           obj_type = NULL)
 }
 \arguments{
 \item{model_1}{first model used in the ratio test. Should be an object of either a probit or logit model created using the \code{glm()} function. See example.}
@@ -21,6 +22,8 @@ ratio_test(model_1, model_2, percentage = NULL,
 \item{log_base}{default is \code{10} and will be used to  calculate results using the anti of \code{log10()} given that the x variable has been \code{log10} tranformed. If \code{FALSE} results will not be back transformed.}
 
 \item{log_x}{default is \code{TRUE} and will calculate results using the antilog of determined by \code{log_base} given that the x variable has been \code{log()} tranformed. If \code{FALSE} results will not be back transformed.}
+
+\item{obj_type}{defualt is  \code{"list"} which requires both \code{model_1} and \code{model_2} to be list model objects from \code{glm()} functions. Alternatively \code{"df"} can be used which will require both \code{model_1} and \code{model_2} to be data.frame objects created when running \code{LC_probit()}.}
 }
 \value{
 A tibble with \code{percentage} for the LC or LT value desired for the above percentage argument, \code{dose_1} and \code{dose_2} displayed calculated backtransformed or untransformed doses for the desired LC or LT values. Standard Error (\code{se}), Z test statistic (\code{test_stat}) and \code{p_value} detemined using Z test statistic as determined using formulas in \href{http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract}{Wheeler et al. 2006}.
@@ -58,6 +61,27 @@ compare = "May - June")
 # view ratio test results
 
 ratios
+
+# you can also use LC_probit to create the models and use ratio test
+
+m_1 <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
+weights = total,
+data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+subset = c(month == "May"))
+
+
+
+j_1 <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
+weights = total,
+data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+subset = c(month == "June"))
+
+
+
+ratios_2 <- ratio_test(model_1 = m_1, model_2 = j_1, percentage = 50,
+compare = "May - June", obj_type = "df")
+
+ratios_2
 
 }
 \references{
