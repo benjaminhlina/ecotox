@@ -77,7 +77,8 @@
 # function ------
 ratio_test <- function (model_1, model_2, percentage = NULL,
                         type = NULL, compare = NULL,
-                        log_base = NULL, log_x = TRUE, obj_type = NULL) {
+                        log_base = NULL, log_x = TRUE, obj_type = NULL,
+                        conf_type = NULL) {
 
   if(missing(model_1)) {
     stop("Ratio test needs first `glm()` object to compare LC or LT values",
@@ -184,7 +185,7 @@ ratio_test <- function (model_1, model_2, percentage = NULL,
 
     slope_se_a <- unique(s_m1$slope_se)
 
-    h_a <- unique(s_m1$h)
+
 
     # extract coeficencts from the second model -----
 
@@ -203,23 +204,34 @@ ratio_test <- function (model_1, model_2, percentage = NULL,
 
     slope_se_b <- unique(s_m2$slope_se)
 
-    h_b <- unique(s_m2$h)
-    # create varaince and covraince matix for both models----
-
-    # variance co variance matrix for model 1
-    if (h_a > 1) {
-      # extract slope and incercpt co varaince for model 1
-      cov_b0_b1_a <- unique(s_m1$covariance) / h_a
-
+    if (is.null(conf_type)) {
+      conf_type <- c("fl")
     } else {
-      cov_b0_b1_a <- unique(s_m1$covariance)
+      conf_type <- c("dm")
     }
 
-    if (h_b > 1) {
-      # extract slope and incercpt co varaince for model 2
-      cov_b0_b1_b <- unique(s_m2$covariance) / h_b
-    } else {
-      cov_b0_b1_b <- unique(s_m2$covariance)
+    if (conf_type == "fl") {
+
+
+      h_a <- unique(s_m1$h)
+      h_b <- unique(s_m2$h)
+      # create varaince and covraince matix for both models----
+
+      # variance co variance matrix for model 1
+      if (h_a > 1) {
+        # extract slope and incercpt co varaince for model 1
+        cov_b0_b1_a <- unique(s_m1$covariance) / h_a
+
+      } else {
+        cov_b0_b1_a <- unique(s_m1$covariance)
+      }
+
+      if (h_b > 1) {
+        # extract slope and incercpt co varaince for model 2
+        cov_b0_b1_b <- unique(s_m2$covariance) / h_b
+      } else {
+        cov_b0_b1_b <- unique(s_m2$covariance)
+      }
     }
   }
 
