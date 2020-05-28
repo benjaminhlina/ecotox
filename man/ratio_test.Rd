@@ -6,7 +6,7 @@
 \usage{
 ratio_test(model_1, model_2, percentage = NULL,
            type = NULL, compare = NULL, log_base = NULL, log_x = TRUE,
-           obj_type = NULL)
+           obj_type = NULL, conf_type = NULL)
 }
 \arguments{
 \item{model_1}{first model used in the ratio test. Should be an object of either a probit or logit model created using the \code{glm()} function. See example.}
@@ -23,7 +23,9 @@ ratio_test(model_1, model_2, percentage = NULL,
 
 \item{log_x}{default is \code{TRUE} and will calculate results using the antilog of determined by \code{log_base} given that the x variable has been \code{log()} tranformed. If \code{FALSE} results will not be back transformed.}
 
-\item{obj_type}{defualt is  \code{"list"} which requires both \code{model_1} and \code{model_2} to be list model objects from \code{glm()} functions. Alternatively \code{"df"} can be used which will require both \code{model_1} and \code{model_2} to be data.frame objects created when running \code{LC_probit()}.}
+\item{obj_type}{default is  \code{"list"} which requires both \code{model_1} and \code{model_2} arguments to be model objects, in the form of a list, from \code{glm()} functions. Alternatively \code{"df"} can be used which will require both \code{model_1} and \code{model_2} argumens to be data.frame objects created when running either \code{LC_} or \code{LT_} functions.}
+
+\item{conf_type}{default is \code{"fl"} which if \code{"df"} is supplied will correct covariance values if h is above 1 as fudicial confidence limits use a heterogenity factor, h, to correct variances when chi-square p value is less than 0.15. \code{conf_type} can also be \code{"dm"}, delta method, which doesn't use a hetrogenity correction factor therefore covariance will not be uncorrected. This argument is only needed if you are using the dataframe objects from \code{LC_} or \code{LT_} functions and have used the delta method in that analysis.}
 }
 \value{
 A tibble with \code{percentage} for the LC or LT value desired for the above percentage argument, \code{dose_1} and \code{dose_2} displayed calculated backtransformed or untransformed doses for the desired LC or LT values. Standard Error (\code{se}), Z test statistic (\code{test_stat}) and \code{p_value} detemined using Z test statistic as determined using formulas in \href{http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract}{Wheeler et al. 2006}.
