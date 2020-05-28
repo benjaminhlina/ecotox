@@ -619,7 +619,8 @@ LC_logit <- function(formula, data, p = NULL, weights = NULL,
                     intercept_se = intercept_se,
                     intercept_sig = intercept_sig,
                     z = z_value,
-                    var_m = var_m)
+                    var_m = var_m,
+                    covariance = cov_b0_b1)
   }
   if (long_output == FALSE) {
     table <- tibble(p = p,
