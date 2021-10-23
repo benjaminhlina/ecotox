@@ -108,77 +108,109 @@ LT_probit <- function(formula, data, p = NULL,
 
   #sample size
   n <- df + 2
-
-  # variances have to be adjusted for heterogenity
-  # if pgof returns a signfacnce value less than 0.15
-  # (Finney 1971 p 72; 'SPSS 24')
-
-  # covariance matrix
-
-  if (pgof < het_sig) {
-
-    vcova <- vcov(model) * het
-  } else {
-    vcova <- vcov(model)
-  }
-
-  # Slope variance
-
-  var_b1 <- vcova[2, 2]
-
-  # Intercept variance
-
-  var_b0 <- vcova[1, 1]
-
-  # intercept and slope covariance
-
-  cov_b0_b1 <- vcova[1, 2]
-
-  # Adjust distibution depending on heterogeneity (Finney, 1971,  p72,
-  # t distubtion used instead of normal distubtion  with appropriate df
-  # if pgof returns a signfacnce value less than 0.15
-  # (Finney 1971 p 72; 'SPSS 24')
-
-  if (is.null(conf_level)) {
-    conf_level <- 0.95
-  }
-
-  t <- (1 - conf_level)
-  if (pgof < het_sig) {
-    tdis <- -qt((t / 2), df = df)
-  } else {
-    tdis <- -qnorm(t / 2)
-  }
-
-  # Calculate g (Finney, 1971, p 78, eq. 4.36) "With almost
-  # all good sets of data, g will be substantially smaller
-  # than 1.0 and ## seldom greater than 0.4."
-
-  g <- (tdis ^ 2 * var_b1) / b1 ^ 2
-
   # Calculate m for all LC levels based on probits
   # in est (Robertson et al., 2007, pg. 27; or "m" in Finney, 1971, p. 78)
 
   est <- qnorm(p / 100)
   m <- (est - b0) / b1
+  # Calculate heterogeneity correction to confidence intervals
+  # according to Finney, 1971, (p.72, eq. 4.27; also called "h")
+  # Heterogeneity correction factor is used if
+  # pearson's goodness of fit test (pgof) returns a sigficance
+  # value less than 0.150 (source: 'SPSS 24')
+  if (is.null(het_sig)) {
+    het_sig <- 0.150
+  }
 
-  # Calculate correction of fiducial confidence limits according to
-  # Fieller method
-  # (Finney, 1971,# p. 78-79. eq. 4.35)
-  # v11 = var_b1 , v22 = var_b0, v12 = cov_b0_b1
+  if (pgof < het_sig) {
+    het <- chi_square / df
+  } else {
+    het <- 1
+  }
 
-  cl_part_1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b1))
-  cl_part_2 <- var_b0 + (2 * cov_b0_b1 * m) + (m ^ 2 * var_b1) -
-    (g * (var_b0 - cov_b0_b1 ^ 2 / var_b1))
+  # set confiidewnce limit type for calculating confidence limtis
+  if (is.null(conf_type)) {
+    conf_type <- c("fl")
+  } else {
 
-  cl_part_3 <- (tdis / ((1 - g) * abs(b1))) * sqrt(cl_part_2)
+    conf_type <- c("dm")
 
-  # Calculate the fiducial limit LFL=lower fiducial limit,
-  # UFL = upper fiducial limit (Finney, 1971, p. 78-79. eq. 4.35)
+  }
 
-  LCL <- (m + (cl_part_1 - cl_part_3))
-  UCL <- (m + (cl_part_1 + cl_part_3))
+  if (conf_type == "fl") {
 
+    # variances have to be adjusted for heterogenity
+    # if pgof returns a signfacnce value less than 0.15
+    # (Finney 1971 p 72; 'SPSS 24')
+
+    # covariance matrix
+
+    if (pgof < het_sig) {
+
+      vcova <- vcov(model) * het
+    } else {
+      vcova <- vcov(model)
+    }
+
+    # Slope variance
+
+    var_b1 <- vcova[2, 2]
+
+    # Intercept variance
+
+    var_b0 <- vcova[1, 1]
+
+    # intercept and slope covariance
+
+    cov_b0_b1 <- vcova[1, 2]
+
+    # Adjust distibution depending on heterogeneity (Finney, 1971,  p72,
+    # t distubtion used instead of normal distubtion  with appropriate df
+    # if pgof returns a signfacnce value less than 0.15
+    # (Finney 1971 p 72; 'SPSS 24')
+
+    if (is.null(conf_level)) {
+      conf_level <- 0.95
+    }
+
+    t <- (1 - conf_level)
+    if (pgof < het_sig) {
+      tdis <- -qt((t / 2), df = df)
+    } else {
+      tdis <- -qnorm(t / 2)
+    }
+
+    # Calculate g (Finney, 1971, p 78, eq. 4.36) "With almost
+    # all good sets of data, g will be substantially smaller
+    # than 1.0 and ## seldom greater than 0.4."
+
+    g <- (tdis ^ 2 * var_b1) / b1 ^ 2
+
+
+    # Calculate correction of fiducial confidence limits according to
+    # Fieller method
+    # (Finney, 1971,# p. 78-79. eq. 4.35)
+    # v11 = var_b1 , v22 = var_b0, v12 = cov_b0_b1
+
+    cl_part_1 <- (g / (1 - g)) * (m + (cov_b0_b1 / var_b1))
+    cl_part_2 <- var_b0 + (2 * cov_b0_b1 * m) + (m ^ 2 * var_b1) -
+      (g * (var_b0 - cov_b0_b1 ^ 2 / var_b1))
+
+    cl_part_3 <- (tdis / ((1 - g) * abs(b1))) * sqrt(cl_part_2)
+
+    # Calculate the fiducial limit LFL=lower fiducial limit,
+    # UFL = upper fiducial limit (Finney, 1971, p. 78-79. eq. 4.35)
+
+    LCL <- (m + (cl_part_1 - cl_part_3))
+    UCL <- (m + (cl_part_1 + cl_part_3))
+  }
+
+  # calculate standard error
+  cf <- -cbind(1, m) / b1
+
+  se_1 <- ((cf %*% vcov(model)) * cf) %*% c(1, 1)
+
+  se_2 <- as.numeric(sqrt(se_1))
   # Calculate variance for m (Robertson et al., 2007, pg. 27)
 
   var_m <- (1 / (m ^ 2)) * (var_b0 + 2 * m * cov_b0_b1 + var_b1 * m ^ 2)
@@ -191,13 +223,16 @@ LT_probit <- function(formula, data, p = NULL,
     time <- log_base ^ m
     LCL <- log_base ^ LCL
     UCL <- log_base ^ UCL
+    se_2 <- log_base ^ se_2
   }
 
   if (log_x == FALSE) {
     time <- m
     LCL <- LCL
     UCL <- UCL
+    se <- se_2
   }
+
 
 
   # Make a data frame from the data at all the different values
@@ -207,6 +242,7 @@ LT_probit <- function(formula, data, p = NULL,
                     time = time,
                     LCL =  LCL,
                     UCL =  UCL,
+                    se = se_2,
                     chi_square = chi_square,
                     df = df,
                     pgof_sig = pgof,
@@ -218,7 +254,8 @@ LT_probit <- function(formula, data, p = NULL,
                     intercept_se = intercept_se,
                     intercept_sig = intercept_sig,
                     z = z_value,
-                    var_m = var_m)
+                    var_m = var_m,
+                    covariance = cov_b0_b1)
   }
 
   if (long_output == FALSE) {
