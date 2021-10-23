@@ -139,11 +139,7 @@ LC_probit <- function(formula, data, p = NULL,
     warning("`p`argument has to be supplied otherwise LC values for 1-99 will be displayed", call. = FALSE)
   }
 
-  # Calculate heterogeneity to correct confidence intervals
-  # according to Finney, 1971, (p.72, eq. 4.27; also called "h")
-  # Heterogeneity correction factor is used if
-  # pearson's goodness of fit test (pgof) returns a sigficance
-  # value less than 0.150 (source: 'SPSS 24')
+
 
   chi_square <- sum(residuals.glm(model, type = "pearson") ^ 2)
 
@@ -151,15 +147,6 @@ LC_probit <- function(formula, data, p = NULL,
 
   pgof <- pchisq(chi_square, df, lower.tail = FALSE)
 
-  if (is.null(het_sig)) {
-    het_sig <- 0.150
-  }
-
-  if (pgof < het_sig) {
-    het <- chi_square / df
-  } else {
-    het <- 1
-  }
 
   # Extract slope and intercept SE, slope and intercept signifcance
   # z-value, & N
@@ -324,12 +311,14 @@ LC_probit <- function(formula, data, p = NULL,
     dose <- log_base ^ m
     LCL <- log_base ^ LCL
     UCL <- log_base ^ UCL
+    se_2 <- log_base ^ se_2
   }
 
   if (log_x == FALSE) {
     dose <- m
     LCL <- LCL
     UCL <- UCL
+    se_2 <- se_2
 
   }
 
@@ -340,6 +329,7 @@ LC_probit <- function(formula, data, p = NULL,
                     dose = dose,
                     LCL = LCL,
                     UCL = UCL,
+                    se = se_2,
                     chi_square = chi_square,
                     df = df,
                     pgof_sig = pgof,
@@ -629,6 +619,14 @@ LC_logit <- function(formula, data, p = NULL, weights = NULL,
   LCL <- (m + (cl_part_1 - cl_part_3))
   UCL <- (m + (cl_part_1 + cl_part_3))
 
+
+
+  # calculate standard error
+  cf <- -cbind(1, m) / b1
+
+  se_1 <- ((cf %*% vcov(model)) * cf) %*% c(1, 1)
+
+  se_2 <- as.numeric(sqrt(se_1))
   # Calculate variance for m (Robertson et al., 2007, pg. 27)
 
   var_m <- (1 / (m ^ 2)) * (var_b0 + 2 * m * cov_b0_b1 + var_b1 * m ^ 2)
@@ -645,6 +643,7 @@ LC_logit <- function(formula, data, p = NULL, weights = NULL,
     dose <- log_base ^ m
     LCL <- log_base ^ LCL
     UCL <- log_base ^ UCL
+    se_2 <- log_base ^ se_2
   }
 
   if (log_x == FALSE) {
@@ -661,6 +660,7 @@ LC_logit <- function(formula, data, p = NULL, weights = NULL,
                     dose = dose,
                     LCL = LCL,
                     UCL = UCL,
+                    se = se_2,
                     chi_square = chi_square,
                     df = df,
                     pgof_sig = pgof,
