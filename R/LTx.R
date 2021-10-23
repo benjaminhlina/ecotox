@@ -4,10 +4,6 @@
 #' @description Calculates lethal time (LT) and
 #' its fiducial confidence limits (CL) using a probit analysis
 #' according to Finney 1971, Wheeler et al. 2006, and Robertson et al. 2007.
-#' @usage LT_probit(formula, data, p = NULL, weights = NULL,
-#'           subset = NULL, log_base = NULL,
-#'           log_x = TRUE, het_sig = NULL, conf_level = NULL,
-#'           long_output = TRUE)
 #' @param formula an object of class `formula` or one that can be coerced to that class: a symbolic description of the model to be fitted.
 #' @param data an optional data frame, list or environment (or object coercible by as.data.frame to a data frame) containing the variables in the model. If not found in data, the variables are taken from environment(formula), typically the environment from which `LT_probit` is called.
 #' @param p Lethal time (LT) values for given p, example will return a LT50 value if p equals 50. If more than one LT value wanted specify by creating a vector. LT values can be calculated down to the 1e-16 of a percentage (e.g. LT99.99). However, the tibble produced can and will round to nearest whole number.
@@ -18,6 +14,7 @@
 
 #' @param het_sig significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. `NULL` is set to 0.15.
 #' @param conf_level  Adjust confidence level as necessary or `NULL` set at 0.95.
+#' @param conf_type default is `"fl"` which will calculate fudicial confidence limits per Finney 1971. If set to `"dm"` the delta method will be used instead.
 #' @param long_output default is `TRUE` which will return a tibble with all 17 variabless. If `FALSE` the tibble returned will consist of the p level, n, the predicted LC for given p level, lower and upper confidence limits.
 #' @return Returns a tibble with predicted LT for given p level, lower CL (LCL), upper CL (UCL), LCL, Pearson's chi square goodness-of-fit test (pgof), slope, intercept, slope and intercept p values and standard error, and LT variance.
 #' @references
@@ -49,6 +46,7 @@ LT_probit <- function(formula, data, p = NULL,
                       weights = NULL, subset = NULL, log_base = NULL,
                       log_x = TRUE,
                       het_sig = NULL, conf_level = NULL,
+                      conf_type = NULL,
                       long_output = TRUE) {
 
   model <- do.call("glm", list(formula = formula,
@@ -73,11 +71,7 @@ LT_probit <- function(formula, data, p = NULL,
   }
 
 
-  # Calculate heterogeneity correction to confidence intervals
-  # according to Finney, 1971, (p.72, eq. 4.27; also called "h")
-  # Heterogeneity correction factor is used if
-  # pearson's goodness of fit test (pgof) returns a sigficance
-  # value less than 0.150 (source: 'SPSS 24')
+
 
   chi_square <- sum(residuals(model, type = "pearson") ^ 2)
 
@@ -85,15 +79,6 @@ LT_probit <- function(formula, data, p = NULL,
 
   pgof <- pchisq(chi_square, df, lower.tail = FALSE)
 
-  if (is.null(het_sig)) {
-    het_sig <- 0.150
-  }
-
-  if (pgof < het_sig) {
-    het <- chi_square / df
-  } else {
-    het <- 1
-  }
 
   # Extract slope and intercept SE, slope and intercept signifcance
   # z-value, & N
