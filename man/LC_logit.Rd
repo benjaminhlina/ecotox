@@ -7,7 +7,8 @@
 LC_logit(formula, data, p = NULL, weights = NULL,
          subset = NULL, log_base = NULL,
          log_x = TRUE, het_sig = NULL,
-         conf_level = NULL, long_output = TRUE)
+         conf_level = NULL, conf_type = NULL,
+         long_output = TRUE)
 }
 \arguments{
 \item{formula}{an object of class \code{formula} or one that can be coerced to that class): a symbolic description of the model to be fitted. The details of model specification are given under Details.}
@@ -27,6 +28,8 @@ LC_logit(formula, data, p = NULL, weights = NULL,
 \item{het_sig}{significance level from person's chi square goodness-of-fit test that is used to decide if a heterogeneity factor is used. \code{NULL} is set to 0.15.}
 
 \item{conf_level}{adjust confidence level as necessary or \code{NULL} set at 0.95.}
+
+\item{conf_type}{default is \code{"fl"} which will calculate fudicial confidence limits per Finney 1971. If set to \code{"dm"} the delta method will be used instead.}
 
 \item{long_output}{default is \code{TRUE} which will return a tibble with all 17 variables. If \code{FALSE} the tibble returned will consist of the p level, n, the predicted LC for given p level, lower and upper confidence limits.}
 }
