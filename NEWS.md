@@ -1,4 +1,14 @@
-# ecotox v1.4.2
+# ecotox v1.4.4
+
+### New information as of 23-Oct-2021
+
+  * `LC_` and `LT_` functions now determine both the standard error similar to how `predict()` works
+  as well as the covariance of the model to be used by `ratio_test()`
+  * `ratio_test()` was discovered to be inaccurately calculating test statistic and p value 
+  when `log_x = FALSE`. This has been corrected when determining t by taking the log of each doses
+  * citation for the package has been updated as the paper the package was writing for has now been published
+  * v1.4.4 will be pushed to CRAN within a few days
+
 
 ### New information as of 5-Mar-2020
 
