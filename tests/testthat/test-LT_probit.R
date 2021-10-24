@@ -81,7 +81,7 @@ test_that("Determine if LT_probit runs properly", {
                    data = lamprey_time,
                    subset = c(month == "May"),
                    long_output = TRUE)
-  expect_equal(ncol(may), 17)
+  expect_equal(ncol(may), 19)
   expect_equal(nrow(may), 1)
 
 
