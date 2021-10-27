@@ -128,7 +128,7 @@ ratios <- ratio_test(model_1 = m, model_2 = j,
 
 ratios
 
-# you can also use LC_probit to create the models and use ratio test
+# you can also use LC_* or LT_* objects to create the models and use ratio test:
 
 m_1 <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
 weights = total,
