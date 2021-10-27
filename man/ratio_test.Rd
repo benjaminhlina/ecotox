@@ -11,28 +11,30 @@ ratio_test(model_1, model_2, percentage = NULL,
 \arguments{
 \item{model_1}{first model used in the ratio test. Should be an object of either a probit or logit model created using the \code{glm()} function. See example.}
 
-\item{model_2}{second model used in the ratio test. Should be an object of either a probit or logit model created using the \code{glm()} function. See example.}
+\item{model_2}{second model used in the ratio test. Should be an object of either a
+probit or logit model created using the \code{glm()} function. See example.}
 
-\item{percentage}{either a single value or a vector for given LC or LT percentage desired to compare. Percentage is the same value used for the argument \code{p} in all \code{LC_} and \code{LT_} functions. For example, 50 will return and compare LC50 values for the two models. If more than one LC value is disired specify by creating a vector. LC values can be calculated down to the 1e-16 of a percentage (e.g. LC99.99). However, the tibble produced can and will round to nearest whole number.}
+\item{percentage}{either a single value or a vector for given LC or LT percentage desired to compare.
+Percentage is the same value used for the argument \code{p} in all \code{LC_} and \code{LT_} functions. For example, 50 will return and compare LC50 values for the two models. If more than one LC value is desired specify by creating a vector. LC values can be calculated down to the 1e-16 of a percentage (e.g. LC99.99). However, the tibble produced can and will round to nearest whole number.}
 
-\item{type}{Link type needs to be specfied to either \code{"probit"} which is default and will return and used in calculations for a probit model for the desired LCs or LTs. If specified to \code{"logit"} then \code{ratio_test} will return and calcuate using a logit model for the desired LCs or LTs.}
+\item{type}{Link type needs to be specified to either \code{"probit"} which is default and will return and used in calculations for a probit model for the desired LCs or LTs. If specified to \code{"logit"} then \code{ratio_test} will return and calculate using a logit model for the desired LCs or LTs.}
 
 \item{compare}{Supply a character string to be used in the output letting the user know what models the LCs or LTs are being compared. Default output is "Model 1 - Model 2". See example.}
 
-\item{log_base}{default is \code{10} and will be used to  calculate results using the anti of \code{log10()} given that the x variable has been \code{log10} tranformed. If \code{FALSE} results will not be back transformed.}
+\item{log_base}{default is \code{10} and will be used to  calculate results using the anti of \code{log10()} given that the x variable has been \code{log10} transformed. If \code{FALSE} results will not be back transformed.}
 
-\item{log_x}{default is \code{TRUE} and will calculate results using the antilog of determined by \code{log_base} given that the x variable has been \code{log()} tranformed. If \code{FALSE} results will not be back transformed.}
+\item{log_x}{default is \code{TRUE} and will calculate results using the antilog of determined by \code{log_base} given that the x variable has been \code{log()} transformed. If \code{FALSE} results will not be back transformed.}
 
-\item{obj_type}{default is  \code{"list"} which requires both \code{model_1} and \code{model_2} arguments to be model objects, in the form of a list, from \code{glm()} functions. Alternatively \code{"df"} can be used which will require both \code{model_1} and \code{model_2} argumens to be data.frame objects created when running either \code{LC_} or \code{LT_} functions.}
+\item{obj_type}{default is  \code{"list"} which requires both \code{model_1} and \code{model_2} arguments to be model objects, in the form of a list, from \code{glm()} functions. Alternatively \code{"df"} can be used which will require both \code{model_1} and \code{model_2} arguments to be data.frame objects created when running either \code{LC_} or \code{LT_} functions.}
 
-\item{conf_type}{default is \code{"fl"} which if \code{"df"} is supplied will correct covariance values if h is above 1 as fudicial confidence limits use a heterogenity factor, h, to correct variances when chi-square p value is less than 0.15. \code{conf_type} can also be \code{"dm"}, delta method, which doesn't use a hetrogenity correction factor therefore covariance will not be uncorrected. This argument is only needed if you are using the dataframe objects from \code{LC_} or \code{LT_} functions and have used the delta method in that analysis.}
+\item{conf_type}{default is \code{"fl"} which if \code{"df"} is supplied will correct covariance values if h is above 1 as fudicial confidence limits use a heterogeneity factor, h, to correct variances when chi-square p value is less than 0.15. \code{conf_type} can also be \code{"dm"}, delta method, which doesn't use a heterogeneity correction factor therefore covariance will not be uncorrected. This argument is only needed if you are using the dataframe objects from \code{LC_} or \code{LT_} functions and have used the delta method in that analysis.}
 }
 \value{
-A tibble with \code{percentage} for the LC or LT value desired for the above percentage argument, \code{dose_1} and \code{dose_2} displayed calculated backtransformed or untransformed doses for the desired LC or LT values. Standard Error (\code{se}), Z test statistic (\code{test_stat}) and \code{p_value} detemined using Z test statistic as determined using formulas in \href{http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract}{Wheeler et al. 2006}.
+A tibble with \code{percentage} for the LC or LT value desired for the above percentage argument, \code{dose_1} and \code{dose_2} displayed calculated backtransformed or untransformed doses for the desired LC or LT values. Standard Error (\code{se}), Z test statistic (\code{test_stat}) and \code{p_value} determined using Z test statistic as determined using formulas in \href{https://setac.onlinelibrary.wiley.com/doi/abs/10.1897/05-320R.1}{Wheeler et al. 2006}.
 .
 }
 \description{
-Calculates a ratio test to compare two LC or LT values from two seperate probit or logit models. This function is based on the ratio test developed in \href{http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract}{Wheeler et al. 2006. 10.1897/05-320R.1} which has been suggested as a replacement to the common method of comparing confidence intervals to determine differences.
+Calculates a ratio test to compare two LC or LT values from two separate probit or logit models. This function is based on the ratio test developed in \href{https://setac.onlinelibrary.wiley.com/doi/abs/10.1897/05-320R.1}{Wheeler et al. 2006. 10.1897/05-320R.1} which has been suggested as a replacement to the common method of comparing confidence intervals to determine differences.
 }
 \examples{
 # view lamprey_tox data
@@ -87,5 +89,5 @@ ratios_2
 
 }
 \references{
-Wheeler, M.W., Park, R.M., and Bailey, A.J., 2006. Comparing median lethal concentration values using confidence interval overlap or ratio tests, Environ. Toxic. Chem. 25(5), 1441-1444.\href{http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract}{10.1897/05-320R.1}
+Wheeler, M.W., Park, R.M., and Bailey, A.J., 2006. Comparing median lethal concentration values using confidence interval overlap or ratio tests, Environ. Toxic. Chem. 25(5), 1441-1444.\href{https://setac.onlinelibrary.wiley.com/doi/abs/10.1897/05-320R.1}{10.1897/05-320R.1}
 }
