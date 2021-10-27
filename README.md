@@ -164,6 +164,6 @@ ratios_2
 
 * When using this package please cite the following  publication:
 
-  Hlina, B.L., Birceanu, O., Robinson, C.S., Dhiyebi, H., Wilkie, M.P. *In Press*.The relationship between thermal physiology and lampricide sensitivity in larval sea lamprey (*Petromyzon marinus*). Journal of Great Lakes Research. 
+  Hlina, B.L., Birceanu, O., Robinson, C.S., Dhiyebi, H., Wilkie, M.P. *In Press*.The relationship between thermal physiology and lampricide sensitivity in larval sea lamprey (*Petromyzon marinus*). Journal of Great Lakes Research.[10.1016/j.jglr.2021.10.002](https://doi.org/10.1016/j.jglr.2021.10.002)
 
 * Version 1.4.4 written by Benjamin L. Hlina, Carleton University, Ottawa, Ontario, Canada. Written in ['Programming Language R'](https://www.r-project.org/), R version 4.1.1 (2021-08-10) -- "Kick Things". Source code is available at ['ecotox'](https://github.com/benjaminhlina/ecotox) or by contacting Benjamin L. Hlina at benjamin.hlina@gmail.com
