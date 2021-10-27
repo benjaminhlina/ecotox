@@ -8,12 +8,12 @@ citEntry(entry = "Article",
                                    as.person("Christopher S. Robinson"),
                                    as.person("Hadi Dhiyebi"),
                                    as.person("Michael P. Wilkie")),
-         journal      = "Journal of Great Lakes Research",
+         journal      = "Journal of Great Lakes Research. https://doi.org/10.1016/j.jglr.2021.10.002",
          year         = "In Press",
 
          textVersion  =
            paste("Hlina, B.L., Birceanu, O., Robinson, C.S., Dhiyebi, H., Wilkie, M.P.",
                  "In Press.",
-                 "The relationship between thermal physiology and lampricide sensitivity in
-                 larval sea lamprey (Petromyzon marinus).",
-                 "Journal of Great Lakes Research"))
+                 "The relationship between thermal physiology and lampricide sensitivity in larval sea lamprey (Petromyzon marinus).",
+                 "Journal of Great Lakes Research.",
+                 "https://doi.org/10.1016/j.jglr.2021.10.002"))
