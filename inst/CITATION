@@ -1,17 +1,19 @@
 citHeader("To cite ecotox in publications, please use:")
 
 citEntry(entry = "Article",
-         title        = "Changes in the sensitivity of piscicide in
-         an invasive species",
+         title        = "The relationship between thermal physiology and lampricide
+         sensitivity in larval sea lamprey (Petromyzon marinus)",
          author       = personList(as.person("Benjamin L. Hlina"),
                                    as.person("Oana Birceanu"),
                                    as.person("Christopher S. Robinson"),
                                    as.person("Hadi Dhiyebi"),
                                    as.person("Michael P. Wilkie")),
-         journal      = "North American Journal of Fisheries Management",
-         year         = "2019",
+         journal      = "Journal of Great Lakes Research",
+         year         = "In Press",
 
          textVersion  =
            paste("Hlina, B.L., Birceanu, O., Robinson, C.S., Dhiyebi, H., Wilkie, M.P.",
-                 "In Review.", "Seasonal Variation in the Sensitivity of Invasive Sea Lampreys to the Lampricide TFM: Importance of Energy Reserves and Temperature.",
-                 "North American Journal of Fisheries Management"))
+                 "In Press.",
+                 "The relationship between thermal physiology and lampricide sensitivity in
+                 larval sea lamprey (Petromyzon marinus).",
+                 "Journal of Great Lakes Research"))
