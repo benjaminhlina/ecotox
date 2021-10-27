@@ -16,13 +16,13 @@ LC_probit(formula, data, p = NULL, weights = NULL,
 
 \item{p}{Lethal Concentration (LC) values for given p, example will return a LC50 value if p equals 50. If more than one LC value wanted specify by creating a vector. LC values can be calculated down to the 1e-16 of a percentage (e.g. LC99.99). However, the tibble produced can round to nearest whole number.}
 
-\item{weights}{vector of 'prior weights' to be used in the fitting process. Only needs to be supplied if you are taking the response / total for your response variable withiSn the formula call of \code{LC_probit}. Otherwise if you use cbind(response, non-response) method you do not need to supply weights. If you do the model will be incorrect. If you don't supply weights there is a warning that will help you to make sure you are using one method or the other. See the following StackExchanges post about differences \href{https://stats.stackexchange.com/questions/259502/in-using-the-cbind-function-in-r-for-a-logistic-regression-on-a-2-times-2-t}{cbind() function in R for a logistic regression} and \href{https://stats.stackexchange.com/questions/322038/input-format-for-response-in-binomial-glm-in-r}{input format for binomial glm}.}
+\item{weights}{vector of 'prior weights' to be used in the fitting process. Only needs to be supplied if you are taking the response / total for your response variable within the formula call of \code{LC_probit}. Otherwise if you use cbind(response, non-response) method you do not need to supply weights. If you do the model will be incorrect. If you don't supply weights there is a warning that will help you to make sure you are using one method or the other. See the following StackExchanges post about differences \href{https://stats.stackexchange.com/questions/259502/in-using-the-cbind-function-in-r-for-a-logistic-regression-on-a-2-times-2-t}{cbind() function in R for a logistic regression} and \href{https://stats.stackexchange.com/questions/322038/input-format-for-response-in-binomial-glm-in-r}{input format for binomial glm}.}
 
 \item{subset}{allows for the data to be subseted if desired. Default set to \code{NULL}.}
 
-\item{log_base}{default is \code{10} and will be used to  calculate results using the anti of \code{log10()} given that the x variable has been \code{log10} tranformed. If \code{FALSE} results will not be back transformed.}
+\item{log_base}{default is \code{10} and will be used to  calculate results using the anti of \code{log10()} given that the x variable has been \code{log10} transformed. If \code{FALSE} results will not be back transformed.}
 
-\item{log_x}{default is \code{TRUE} and will calculate results using the antilog of determined by \code{log_base} given that the x variable has been \code{log()} tranformed. If \code{FALSE} results will not be back transformed.}
+\item{log_x}{default is \code{TRUE} and will calculate results using the antilog of determined by \code{log_base} given that the x variable has been \code{log()} transformed. If \code{FALSE} results will not be back transformed.}
 
 \item{het_sig}{significance level from person's chi square goodness-of-fit test (pgof) that is used to decide if a heterogeneity factor is used. \code{NULL} is set to 0.15.}
 
