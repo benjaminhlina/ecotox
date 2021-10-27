@@ -91,7 +91,7 @@ m_3
 
 
 
-Example of using `ratio_test` from [Wheeler et al. 2006](http://onlinelibrary.wiley.com/doi/10.1897/05-320R.1/abstract) to determine differences in LC values:
+Example of using `ratio_test` from [Wheeler et al. 2006](https://setac.onlinelibrary.wiley.com/doi/abs/10.1897/05-320R.1) to determine differences in LC values:
 
 
 ``` r
