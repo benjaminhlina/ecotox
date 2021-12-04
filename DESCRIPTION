@@ -23,15 +23,11 @@ Imports:
     stats,
     tibble
 Suggests: 
-    covr,
     data.table,
     dplyr,
     ggplot2,
-    Hmisc,
     openxlsx,
-    readr,
-    testthat,
-    tidyr
+    readr
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
