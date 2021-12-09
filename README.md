@@ -1,4 +1,4 @@
-# ecotox <img src="man/figures/logo.png" align="right" width="120" />
+# ecotox <img src="man/figures/hex_sticker.png" align="right" width="120" />
 
 
 [![R-CMD-check](https://github.com/benjaminhlina/ecotox/workflows/R-CMD-check/badge.svg)](https://github.com/benjaminhlina/ecotox/actions)[![CRAN status](http://www.r-pkg.org/badges/version-ago/ecotox)](https://CRAN.R-project.org/package=ecotox)[![Coverage status](https://codecov.io/gh/benjaminhlina/ecotox/branch/master/graph/badge.svg)](https://codecov.io/github/benjaminhlina/ecotox?branch=master) [![](http://cranlogs.r-pkg.org/badges/last-month/ecotox)](https://CRAN.R-project.org/package=ecotox)
