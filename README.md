@@ -5,7 +5,7 @@
 
 ## Overview
 ['ecotox'](https://CRAN.R-project.org/package=ecotox) was created as simple approach to using either probit or logit analysis to calculate lethal concentration (LC) or time (LT) and the appropriate fiducial confidence limits desired for selected LC or LT for ecotoxicology studies (Finney 1971; Wheeler et al. 2006; Robertson et al. 2007). The simplicity of ['ecotox'](https://CRAN.R-project.org/package=ecotox) comes from the syntax it implies within its functions which are similar to functions like [glm()](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html) and [lm()](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html). In addition to the simplicity of the syntax, a comprehensive tibble is produced which gives the user a predicted LC or LT value for the desired level and a suite of parameters such as fiducial confidence limits, z-value, and slope.
-['ecotox'](https://CRAN.R-project.org/package=ecotox) was built for and is published in [Hlina et al. *In Press*.](https://doi.org/10.1016/j.jglr.2021.10.002)
+['ecotox'](https://CRAN.R-project.org/package=ecotox) was built for and is published in [Hlina et al. 2021.](https://doi.org/10.1016/j.jglr.2021.10.002)
 
 
 ## Installation
@@ -164,6 +164,6 @@ ratios_2
 
 * When using this package please cite the following  publication:
 
-  Hlina, B.L., Birceanu, O., Robinson, C.S., Dhiyebi, H., Wilkie, M.P. *In Press*.The relationship between thermal physiology and lampricide sensitivity in larval sea lamprey (*Petromyzon marinus*). Journal of Great Lakes Research.[10.1016/j.jglr.2021.10.002](https://doi.org/10.1016/j.jglr.2021.10.002)
+  Hlina, B.L., Birceanu, O., Robinson, C.S., Dhiyebi, H., Wilkie, M.P. 2021.The relationship between thermal physiology and lampricide sensitivity in larval sea lamprey (*Petromyzon marinus*). Journal of Great Lakes Research 47: S272 - S284. [10.1016/j.jglr.2021.10.002](https://doi.org/10.1016/j.jglr.2021.10.002)
 
 * Version 1.4.4 written by Benjamin L. Hlina, Carleton University, Ottawa, Ontario, Canada. Written in ['Programming Language R'](https://www.r-project.org/), R version 4.1.1 (2021-08-10) -- "Kick Things". Source code is available at ['ecotox'](https://github.com/benjaminhlina/ecotox) or by contacting Benjamin L. Hlina at benjamin.hlina@gmail.com
