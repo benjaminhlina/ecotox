@@ -41,10 +41,10 @@ head(lamprey_tox)
 ## calculate LC50 and LC99 for May
 
 m <- LC_probit((response / total) ~ log10(dose),
-                p = c(50, 99),
-                weights = total,
-                data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
-                subset = c(month == "May"))
+               p = c(50, 99),
+               weights = total,
+               data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+               subset = c(month == "May"))
 
 ## view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
 ## 3-trifluoromethyl-4-nitrophenol (TFM) to lamprey in 2011
@@ -56,12 +56,12 @@ m
 ## not if it has the output will take that into consideration
 
 m_2 <- LC_probit((response / total) ~ dose,
-                  p = c(50, 99),
-                  weights = total,
-                  data = lamprey_tox,
-                  subset = c(month == "May"), 
-                  log_x = FALSE, 
-                  long_output = FALSE)
+                 p = c(50, 99),
+                 weights = total,
+                 data = lamprey_tox,
+                 subset = c(month == "May"), 
+                 log_x = FALSE, 
+                 long_output = FALSE)
                   
 ## view calculated LC50 and LC99 for seasonal toxicity of a pisicide,
 ## 3-trifluoromethyl-4-nitrophenol (TFM) to lamprey in 2011.
@@ -76,9 +76,9 @@ See StackExchange post about differences in using `cbind()` vs. `response / tota
 ## to use `cbind()` method when specificying the response variable  
 
 m_3 <- LC_probit(cbind(response, survive) ~ log10(dose),
-                  p = c(50, 99),
-                  data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
-                  subset = c(month == "May"))
+                 p = c(50, 99),
+                 data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+                 subset = c(month == "May"))
                   
 
 m_3 
@@ -131,21 +131,23 @@ ratios
 # you can also use LC_* or LT_* objects to create the models and use ratio test:
 
 m_1 <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
-weights = total,
-data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
-subset = c(month == "May"))
+                 weights = total,
+                 data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+                 subset = c(month == "May"))
 
 
 
 j_1 <- LC_probit((response / total) ~ log10(dose), p = c(50, 99),
-weights = total,
-data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
-subset = c(month == "June"))
+                 weights = total,
+                 data = lamprey_tox[lamprey_tox$nominal_dose != 0, ],
+                 subset = c(month == "June"))
 
 
 
-ratios_2 <- ratio_test(model_1 = m_1, model_2 = j_1, percentage = 50,
-compare = "May - June", obj_type = "df")
+ratios_2 <- ratio_test(model_1 = m_1, model_2 = j_1, 
+                       percentage = 50,
+                       compare = "May - June", 
+                       obj_type = "df")
 
 ratios_2
 
@@ -164,6 +166,6 @@ ratios_2
 
 * When using this package please cite the following  publication:
 
-  Hlina, B.L., Birceanu, O., Robinson, C.S., Dhiyebi, H., Wilkie, M.P. 2021.The relationship between thermal physiology and lampricide sensitivity in larval sea lamprey (*Petromyzon marinus*). Journal of Great Lakes Research 47: S272 - S284. [10.1016/j.jglr.2021.10.002](https://doi.org/10.1016/j.jglr.2021.10.002)
+  Hlina, B.L., Birceanu, O., Robinson, C.S., Dhiyebi, H., Wilkie, M.P. 2021.The relationship between thermal physiology and lampricide sensitivity in larval sea lamprey (*Petromyzon marinus*). Journal of Great Lakes Research 47: S272-S284. [10.1016/j.jglr.2021.10.002](https://doi.org/10.1016/j.jglr.2021.10.002)
 
 * Version 1.4.4 written by Benjamin L. Hlina, Carleton University, Ottawa, Ontario, Canada. Written in ['Programming Language R'](https://www.r-project.org/), R version 4.1.1 (2021-08-10) -- "Kick Things". Source code is available at ['ecotox'](https://github.com/benjaminhlina/ecotox) or by contacting Benjamin L. Hlina at benjamin.hlina@gmail.com
