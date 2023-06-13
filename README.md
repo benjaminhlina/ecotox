@@ -162,10 +162,5 @@ ratios_2
 
 * Robertson, J.L., Savin, N.E., Russell, R.M. and Preisler, H.K., 2007. Bioassays with arthropods. CRC press. ISBN: 0849323312
 
-## Citation 
-
-* When using this package please cite the following  publication:
-
-  Hlina, B.L., Birceanu, O., Robinson, C.S., Dhiyebi, H., Wilkie, M.P. 2021.The relationship between thermal physiology and lampricide sensitivity in larval sea lamprey (*Petromyzon marinus*). Journal of Great Lakes Research 47: S272-S284. [10.1016/j.jglr.2021.10.002](https://doi.org/10.1016/j.jglr.2021.10.002)
 
 * Version 1.4.4 written by Benjamin L. Hlina, Carleton University, Ottawa, Ontario, Canada. Written in ['Programming Language R'](https://www.r-project.org/), R version 4.1.1 (2021-08-10) -- "Kick Things". Source code is available at [{ecotox}](https://github.com/benjaminhlina/ecotox) or by contacting Benjamin L. Hlina at benjamin.hlina@gmail.com

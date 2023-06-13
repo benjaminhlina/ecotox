@@ -1,19 +1,11 @@
 citHeader("To cite ecotox in publications, please use:")
 
-citEntry(entry = "Article",
-         title        = "The relationship between thermal physiology and lampricide
-         sensitivity in larval sea lamprey (Petromyzon marinus)",
-         author       = personList(as.person("Benjamin L. Hlina"),
-                                   as.person("Oana Birceanu"),
-                                   as.person("Christopher S. Robinson"),
-                                   as.person("Hadi Dhiyebi"),
-                                   as.person("Michael P. Wilkie")),
-         journal      = "Journal of Great Lakes Research 47: S272-S284B. https://doi.org/10.1016/j.jglr.2021.10.002",
-         year         = "2021",
+citEntry(entry = "Package",
+         title        = "ecotox: Analysis of Ecotoxicology",
+         author       = personList(as.person("Benjamin L. Hlina")),
+         year         = "2023",
 
          textVersion  =
-           paste("Hlina, B.L., Birceanu, O., Robinson, C.S., Dhiyebi, H., Wilkie, M.P.",
-                 "2021.",
-                 "The relationship between thermal physiology and lampricide sensitivity in larval sea lamprey (Petromyzon marinus).",
-                 "Journal of Great Lakes Research 47: S272-S284.",
-                 "https://doi.org/10.1016/j.jglr.2021.10.002"))
+           paste("Hlina, B.L.",
+                 "2023",
+                 "ecotox: Analysis of Ecotoxicology"))
